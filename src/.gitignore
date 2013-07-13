@@ -1,0 +1,8 @@
+# ignore dojo components ( we don't want to commit any of that code )
+dgrid
+dijit
+dojo
+dojox
+put-selector
+util
+xstyle

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DriverCheck | Emanda2, build: __REVISION__</title>
+    <!-- Application-specific CSS should be stored in your application’s package to ensure portability and to allow
+         the build system to combine & minify it. -->
+    <link rel="stylesheet" href="app/resources/style.css">
+</head>
+<body class="drivercheck">
+
+
+    <!-- Union's Javascript client framework ( Orbiter ) -->
+    <script type="text/javascript" src="app/resources/Orbiter_2.0.1.817_Release_min.js"></script>
+
+
+    <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute,
+         as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
+         a global require object.
+
+         Configuration options for the loader can be viewed at http://livedocs.dojotoolkit.org/loader/amd
+         along with a bunch of additional information about its features.
+
+         Below, we’re doing the following:
+
+         1. Enabling the AMD loader. (async: 1)
+         2. Fixing the loader to use normal AMD resolution of unregistered module paths (relative to baseDir)
+            instead of the traditional Dojo resolution method (relative to the parent of baseDir).
+            (tlmSiblingOfDojo: 0)
+         3. Enabling debugging. (isDebug: 1)
+
+         The remainder of Dojo configuration, as well as our application’s instantiation, occurs within
+         app/run.js. -->
+         
+         <script>
+
+         	
+         	/*IMPORTANT The build script removes html comments, but it doesn't remove js comments yet, 
+         	 * and since the code gets inlined, we can't use single line comments or everything gets commented */
+         	
+         	var api_host;
+         	var auth_host;
+            var js_host_name = window.location.host;
+            
+            /*var websocket_host = "ws://app.drivercheck.com:8080/" */;
+            /*var websocket_host = "ws://192.168.4.111:8080/";*/
+            /*var websocket_host = "ws://staging:8080/";*/
+            /*var websocket_host = "ws://" + js_host_name + ":8080/";*/
+            var client_host = 'http://' + js_host_name + window.location.pathname;
+
+
+            var union_host = js_host_name;
+            var union_port = 9100;
+
+			/*api_host:'api.drivercheck.vm:8080/',*/
+ 			/*api_host:'http://app.drivercheck.local/fwd.php?url=/',*/
+ 			/*api_host:'http://app.drivercheck.local/donnors.json',*/
+         	if(js_host_name.indexOf('.local') != -1 || js_host_name.indexOf('.loc') != -1){
+         		/*api_host = 'http://api.drivercheck.vm:8080/';*/ /* This currently doesn't work due to cross-domain issues*/
+         		auth_host = '/fwd.php?url=/';  /* For local development we use this little proxy*/
+         		api_host = '/fwd.php?url=/'; /* For local development we use this little proxy*/
+         	}else{
+                api_host = 'http://' + js_host_name + '/';
+                auth_host = 'http://' + js_host_name + '/';
+                /*
+                api_host = 'http://dc_api/';
+                auth_host = 'http://dc_api/';
+                */
+         	};
+         	
+         	var iconPath = 'app/resources/mapIcons/';
+         	var mapIcons = {
+         		site_priority:{
+         			DRIVERCHECK: iconPath + 'icons/fortress.png',
+         			MAIN: iconPath + 'icons/embassy.png',
+         			NO_PRIORITY: iconPath + 'icons/bw_cabin.png',
+         			EMERGENCY_ONLY: iconPath + 'icons/firstaid.png'
+         		}
+         	};
+
+            var stampPath = client_host + "app/resources/stamps/";
+            var stamps = [
+                {name:"Procedural Problem Not Sufficient to Cancel Test", url:stampPath + "1.gif", width: 223, height:36, tag:"PROCEDURAL_PROBLEM_NOT_SUFFICIENT_TO_CANCEL_TEST"},
+                {name:"Should be Non-DOT", url:stampPath + "2.gif", width: 206, height:36, tag:"SHOULD_BE_NON_DOT"},
+                {name:"CF - Specimen temp not checked", url:stampPath + "3_1_1.gif", width: 300, height:62, tag:"SPECIMEN_TEMP_NOT_CHECKED"},
+                {name:"CF - Collector signature omitted", url:stampPath + "3_1_2.gif", width: 300, height:62, tag:"COLLECTOR_SIGNATURE_OMITTED"},
+                {name:"CF - Use of old CCF", url:stampPath + "3_1_3.gif", width: 300, height:62, tag:"USE_OF_OLD_CCF"},
+                {name:"CF - Donor's signature omitted", url:stampPath + "3_2_1.gif", width: 300, height:62, tag:"DONORS_SIGNATURE_OMITTED"},
+                {name:"CF - No Cert. Scientist's signature", url:stampPath + "3_2_2.gif", width: 300, height:62, tag:"NO_CERT_SCIENTISTS_SIGNATURE"},
+                {name:"CF - Non-DOT CCF used for DOT test", url:stampPath + "3_2_3.gif", width: 340, height:62, tag:"NON_DOT_CCF_USED_FOR_DOT_TEST"},
+                {name:"CF - BAT or STT signature omitted", url:stampPath + "3_3_1.gif", width: 340, height:62, tag:"BAT_OR_STT_SIGNATURE_OMITTED"},
+                {name:"CF - Non-DOT ATF used for DOT test", url:stampPath + "3_3_2.gif", width: 340, height:62, tag:"NON_DOT_ATF_USED_FOR_DOT_TEST"}
+            ];
+
+            /*var webSocketEnabled = true && (typeof(WebSocket) != "undefined");*/
+            var union_enabled = true && (typeof(WebSocket) != "undefined");
+         	
+         	dojoConfig = {
+         		isDebug: 1,
+         		async: 1,
+         		ioPublish: true,
+         		tlmSiblingOfDojo: 0,
+         		drivercheck:{
+	         		/*
+	         		offline: true,
+	         		*/
+	         		/*
+	         		cache:true,
+	         		*/
+                    client_host:client_host,
+                    union_host:union_host,
+                    union_port:union_port,
+	         		mapIcons:mapIcons,
+                    stamps:stamps,
+         			api_host: api_host,
+         			auth_host: auth_host,
+         			/*websocket_host: websocket_host,
+	         		websocket_enabled:webSocketEnabled,*/
+                    union_enabled:union_enabled,
+         			modules:[]
+         		}
+         	};
+         	
+         </script>
+         
+    <script src="dojo/dojo.js" defer></script>
+
+    <!-- Load the loader configuration script. Note that this module ID is hard-coded in build.sh in order to provide
+         an optimised build that loads as few as one script for the entire application. If you change the name or
+         location of this module, you will need to update build.sh too. -->
+    <script src="app/run.js" defer></script>
+    <div id="appLayout" class="demoLayout"></div>
+</body>
+</html>
