@@ -35,6 +35,11 @@ define([
 
 			if(typeof(this.store) == "object" && this.store != null && this.store.hasOwnProperty("config")){
 				var config = this.store.config;
+				
+				if(typeof(config.selectFirst) != "undefined"){
+					this._selectFirst = config.selectFirst;
+				}
+
 				var filterFunction = undefined;
 				if(typeof(config.filterCondition) != "undefined"){
 					this.filterCondition = config.filterCondition;
@@ -125,14 +130,30 @@ define([
 						this.pendingValue = undefined;
 					}
 			}
+
+			if(this.storeSet  && this._selectFirst){
+				var owner = this;
+				this.getFirstValue(function(firstValue){
+					owner.set("value", firstValue);
+				});
+			}
 		},
 
-		getFirstValue:function(){
+		getFirstValue:function(callBack){
 			var store = this.store;
-			var firstItem = store.data[0];
-			if(typeof(firstItem) == "object" && firstItem != null){
-				return firstItem.id;
-			}else if(typeof(firstItem) == "string"){
+
+			if(store.isInstanceOf && store.isInstanceOf(Memory)){
+				var firstItem = store.data[0];
+				if(typeof(firstItem) == "object" && firstItem != null){
+					callBack(firstItem.id);
+					return firstItem.id;
+				}else if(typeof(firstItem) == "string"){
+					callBack(firstItem);
+					return firstItem;
+				}
+			}else if(store.isInstanceOf && store.isInstanceOf(JsonRest)){
+				var firstItem = store.getFirstValue()
+				callBack(firstItem);
 				return firstItem;
 			}
 		},

@@ -203,7 +203,7 @@ define([
 			var owner = this;
 			var myResults = results.then(function(data){
 				var nestedArray = lang.isArray(data) ? data : [];
-				//var nestedArray =  owner.findArrayProperty(data) || [];
+				owner._rawData = nestedArray;
 				var range = results.ioArgs.xhr.getResponseHeader("Content-Range");
 				nestedArray.total = range && (range=range.match(/\/(.*)/)) && +range[1];
 				if(nestedArray.total == null) nestedArray.total = nestedArray.length;
@@ -220,6 +220,20 @@ define([
 			*/
 			
 			return QueryResults(myResults);
+    	},
+
+    	getFirstValue:function(){
+    		var data = this._rawData;
+    		if(lang.isArray(data) && data.length > 0){
+    			var firstItem = data[0];
+				if(typeof(firstItem) == "object" && firstItem != null){
+					return firstItem.id;
+				}else if(typeof(firstItem) == "string"){
+					return firstItem;
+				}
+    		}
+
+    		return null;
     	},
     	
     	//<custom>

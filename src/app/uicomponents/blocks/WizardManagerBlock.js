@@ -35,6 +35,7 @@ define([
 			_inheritOnActivate:true,
 			_hashManagement: null,
 			_entityLabel:undefined,
+			_showTabs:false,
 			_showInstructions:false,
 			_showNotes:false,
 			_showCancelBtn:false,
