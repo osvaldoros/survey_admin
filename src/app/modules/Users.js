@@ -6,11 +6,11 @@ define([
 	"dijit/_WidgetsInTemplateMixin",
 	"app/mixins/StatefulModule",
 
-	"dojo/text!./templates/Clients.html", // this is what includes the html template
+	"dojo/text!./templates/Users.html", // this is what includes the html template
 	"dojo/_base/lang",
 	
 	"dijit/form/Button",
-	"app/modules/clients/ClientList",
+	"app/modules/users/UserList",
 	"app/loader/DialogLauncher",
 	"app/utils/HashManager",
 	],
@@ -18,7 +18,7 @@ define([
 		template, lang, 
 		Button, ClientList, DialogLauncher, HashManager){
 	
-	return declare("app.modules.Clients", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule], {
+	return declare("app.modules.Users", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule], {
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			hashManager: HashManager.getInstance(),

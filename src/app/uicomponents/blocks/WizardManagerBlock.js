@@ -519,6 +519,14 @@ define([
 					this._notes.bringToTop();
 				}
 			},
+
+			__entitySaved:function(entity){
+				this.inherited(arguments);
+				this.updateTitle(entity);
+				if(this.parentDialog){
+					this.parentDialog.confirmHide();
+				}
+			},
 			
 			updateTitle:function(entity){
 				if(entity != null){

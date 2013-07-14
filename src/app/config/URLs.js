@@ -12,6 +12,7 @@ define([
 			this.TOKEN = dojo.config.appSpecific.api_host + "api/surveys/token";
 
 			this.CLIENT = dojo.config.appSpecific.api_host + "api/surveys/client";
+			this.USER = dojo.config.appSpecific.api_host + "api/surveys/user";
 			
 		}
 	});

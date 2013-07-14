@@ -64,7 +64,7 @@ define([
 	 * 
 	 */
 	
-	return declare("app.modules.clients.clientSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.users.userSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -80,22 +80,12 @@ define([
 				this.inherited(arguments);
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.clientBasicInfoForm = this.getWidget('clientBasicInfoForm');
-				this.clientBasicInfoForm.set('storeURL', __.urls.CLIENT);
-				this.clientBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.userBasicInfoForm = this.getWidget('userBasicInfoForm');
+				this.userBasicInfoForm.set('storeURL', __.urls.USER);
+				this.userBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.clientBasicInfoForm);
-				
-				
-				this.street = this.getWidget('street');
-				this.city = this.getWidget('city');
-				this.country = this.getWidget('country');
-				
-				this.province = this.getWidget('province');
-				this.mail_province = this.getWidget('mail_province');
-				this.province.set('store', this.uiStores.getStates());
-				
+				this.configureForm(this.userBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -106,8 +96,7 @@ define([
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
 				}								
-
-				this.viewInForm(this.getUpdatingEntity(), this.clientBasicInfoForm);	
+				this.viewInForm(this.getUpdatingEntity(), this.userBasicInfoForm);				
 			},
 			
 			onDeactivate:function(){
