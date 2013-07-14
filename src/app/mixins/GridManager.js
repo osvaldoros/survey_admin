@@ -316,7 +316,7 @@ define([
 				if(!this.__requiredPermissions.hasOwnProperty(type)){
 					return true;
 				}
-				return emanda2.authManager.hasPermission(this.__requiredPermissions[type]);
+				return __.authManager.hasPermission(this.__requiredPermissions[type]);
 			},
 			
 			/**
@@ -353,15 +353,15 @@ define([
 					}*/
 					this.getSingleEntity(lang.hitch(this,"__entityReadyForDelete"));
 				}else{
-					emanda2.alert.set("message", "You don't have permission to delete this item");
-					emanda2.alert.show();
+					__.alert.set("message", "You don't have permission to delete this item");
+					__.alert.show();
 				}
 				
 			},
 			
 			__entityReadyForDelete:function(entity){
 				if(typeof(this._deleteConfirmMessage) != "undefined"){
-					emanda2.confirmDialog.set("confirmMessage", this._deleteConfirmMessage);
+					__.confirmDialog.set("confirmMessage", this._deleteConfirmMessage);
 				}else{
 					
 					var itemDisplay = "";
@@ -378,9 +378,9 @@ define([
 						itemDisplay = "this " + itemDisplay;
 					}
 					
-					emanda2.confirmDialog.set("confirmMessage", 'Are you sure you want to delete <br/> ' + itemDisplay + ' ?');
+					__.confirmDialog.set("confirmMessage", 'Are you sure you want to delete <br/> ' + itemDisplay + ' ?');
 				}
-				emanda2.confirmDialog.show(lang.hitch(this, "deleteSelected"));
+				__.confirmDialog.show(lang.hitch(this, "deleteSelected"));
 				
 			},
 			
@@ -409,12 +409,12 @@ define([
 					if(this.editable){
 						this.__editEntity();
 					}else{
-						emanda2.alert.set("message", "This item is not editable");
-						emanda2.alert.show();
+						__.alert.set("message", "This item is not editable");
+						__.alert.show();
 					}
 				}else{
-					emanda2.alert.set("message", "You don't have permission to edit this item");
-					emanda2.alert.show();
+					__.alert.set("message", "You don't have permission to edit this item");
+					__.alert.show();
 				}
 			},
 
@@ -450,12 +450,12 @@ define([
 					if(this.editable){
 						this.__editEntity();
 					}else{
-						emanda2.alert.set("message", "This item is not editable");
-						emanda2.alert.show();
+						__.alert.set("message", "This item is not editable");
+						__.alert.show();
 					}
 				}else{
-					emanda2.alert.set("message", "You don't have permission to edit this item");
-					emanda2.alert.show();
+					__.alert.set("message", "You don't have permission to edit this item");
+					__.alert.show();
 				}
 			},
 			
@@ -518,17 +518,17 @@ define([
 						if(typeof(this.setupDialog.setUpdatingEntity) == "function") this.setupDialog.setUpdatingEntity(entity, true);
 
 						if(this.isREST == true){
-							emanda2.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity}, this.__storeURL);
+							__.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity}, this.__storeURL);
 						}else{ //If the entity does not come from URL then it comes from an array
-							emanda2.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity, arrayStore: this.__store.data}, "");
+							__.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity, arrayStore: this.__store.data}, "");
 						}
 
 						if(typeof(this.setupDialog.show) == "function") this.setupDialog.show();
 					}else{
 						if(this.isREST == true){
-							emanda2.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity}, this.__storeURL);
+							__.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity}, this.__storeURL);
 						}else{ //If the entity does not come from URL then it comes from an array
-							emanda2.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity, arrayStore: this.__store.data}, "");
+							__.entities.setContext({entityId:entity.id, entityType:entity.$ref, entity:entity, arrayStore: this.__store.data}, "");
 						}
 						
 						this.hashManager.setHash(this.hashManager.getModule() + '/' + this._updateStateHash + '/' + entity.id + '/_step_0')

@@ -37,7 +37,7 @@ define([
 		    		this.setHash(newHash); // this will cause another onHashChange 
 		    	}else{
 		    		if(this.update == true){
-		    			topic.publish("/emanda2/hashchange", hashValue);
+		    			topic.publish("/__/hashchange", hashValue);
 		    		}
 		    		
 		    		this.update = true;
@@ -89,7 +89,7 @@ define([
 			},
 
 			addAuthToken:function(url){
-				return url + "_-_" + emanda2.user.auth_token;
+				return url + "_-_" + __.user.auth_token;
 			},
 
 			getAuthToken:function(){

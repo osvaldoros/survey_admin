@@ -51,7 +51,7 @@ define([
 				var owner = this;
 
 				meta.usedHash = true;
-				var res = emanda2.entities.getEntityFromHash(this._store, function(entity){
+				var res = __.entities.getEntityFromHash(this._store, function(entity){
 					if(typeof(editEntityHandler) == "function") editEntityHandler(entity);
 					topic.publish(owner.id + "-entity-ready");
 				},this._baseQuery);

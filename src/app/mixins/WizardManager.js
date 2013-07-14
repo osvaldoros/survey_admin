@@ -19,15 +19,14 @@ define([
 	"dojo/topic",
 	"dojo/dom-class",
 	"app/utils/ChangeTracker",
-	"app/mixins/MultiUser",
 	"app/utils/HashManager",
 	"app/mixins/Saver",
 	"app/mixins/TabManager",
 	"app/meta/Schema"
 	],
-	function(declare, on, lang, topic, domClass, ChangeTracker, MultiUser, HashManager, Saver, TabManager, Schema){
+	function(declare, on, lang, topic, domClass, ChangeTracker, HashManager, Saver, TabManager, Schema){
 	
-	return declare([Saver, TabManager, MultiUser], {
+	return declare([Saver, TabManager], {
 		
 		changeTracker: ChangeTracker.getInstance(),
 		hashManager: HashManager.getInstance(),
@@ -51,7 +50,6 @@ define([
 			
 			this.configureSaver(configObject);
 			this.configureTabs(configObject);
-			this.configureMultiUser(configObject);
 
 			this.__previousButton = configObject.previousButton;
 			this.__nextButton = configObject.nextButton;

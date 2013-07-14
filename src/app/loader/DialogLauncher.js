@@ -151,7 +151,7 @@ define([
 					}
 					
 				}
-				//emanda2.spinner.unspin()
+				//__.spinner.unspin()
 				this.updateHash = false;
 			},
 			

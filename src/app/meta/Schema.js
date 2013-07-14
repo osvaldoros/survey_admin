@@ -69,7 +69,7 @@ define([
 				return callBack( app.meta.Schema.modelCache[modelName] );
 			}
 
-			var req = emanda2.api.get("/emanda2/_meta/" + modelName );
+			var req = __.api.get("/__/_meta/" + modelName );
 			req.then(function(response){
 				app.meta.Schema.modelCache[modelName] = response;
 				callBack(response);
@@ -172,7 +172,7 @@ define([
 				if(typeof(preloadedStoreFunction) != "undefined"){
 					targetField.fieldOptions.storeFunction = preloadedStoreFunction;
 				}else{
-					targetField.fieldOptions.storeURL = dojo.config.drivercheck.api_host + "emanda2/" + fieldMeta.type;
+					targetField.fieldOptions.storeURL = dojo.config.appSpecific.api_host + "__/" + fieldMeta.type;
 				}
 
 			}

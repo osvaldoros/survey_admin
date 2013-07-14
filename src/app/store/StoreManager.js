@@ -102,7 +102,7 @@ define([
 				});
 				
 				var store;
-				if(dojo.config.drivercheck.cache == true){
+				if(dojo.config.appSpecific.cache == true){
 					store = Observable(Cache(baseStore, Memory()));
 				}else{
 					store = Observable(baseStore);

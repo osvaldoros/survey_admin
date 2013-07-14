@@ -8,8 +8,7 @@ define([
 	"dojo/text!./templates/Sidebar.html", // this is what includes the html template
 	"dojo/_base/lang",
 	"dijit/registry",
-	"dojo/parser",
-	"app/modules/MessengerOrbiter" 
+	"dojo/parser"
 	
 	],
 	function(declare, on, StatefulModule, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template, lang, registry, parser){

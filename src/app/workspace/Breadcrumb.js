@@ -56,26 +56,26 @@ define([
 				}				
 				
 				var displayUsername;
-				if(typeof(emanda2.user.name) != "undefined"){
-					displayUsername = emanda2.user.name
-				}else if(typeof(emanda2.user.username) != "undefined"){
-					displayUsername = emanda2.user.username
+				if(typeof(__.user.name) != "undefined"){
+					displayUsername = __.user.name
+				}else if(typeof(__.user.username) != "undefined"){
+					displayUsername = __.user.username
 				}else{
 					displayUsername = "Unnamed user";
 				}
 				
 				var displayOrgname;
-				if(typeof(emanda2.user.org.name) != "undefined"){
-					displayOrgname = emanda2.user.org.name
+				if(typeof(__.user.client) == "object" && __.user.client != null && typeof(__.user.client.name) != "undefined"){
+					displayOrgname = __.user.client.name
 				}else{
-					displayOrgname = "Unnamed organization";
+					displayOrgname = "All clients";
 				}
 				
 				this.userCrumb.set('label', displayUsername);
 				this.orgCrumb.set('label', displayOrgname);
 				
 				this.onHashChange(this.hashManager.getHash());
-				this.eventHandlers.push( dojo.subscribe("/emanda2/hashchange", this, this.onHashChange) );
+				this.eventHandlers.push( dojo.subscribe("/__/hashchange", this, this.onHashChange) );
 			},
 			
 			

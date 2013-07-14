@@ -1,6 +1,7 @@
-@import "../../dijit/themes/drivercheck/variables";
-@import "../../dijit/themes/drivercheck/icons/commonIcons.css";
-@import "../../dijit/themes/drivercheck/icons/commonIcons_rtl.css";
+@import "../../dijit/themes/claro/variables";
+/*@import "../../dijit/themes/claro/icons/commonIcons.css";*/
+/*@import "../../dijit/themes/claro/icons/commonIcons_rtl.css";*/
+
 
 /**
  * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
@@ -11,13 +12,13 @@
  */
 
 @import '../../dojo/resources/dojo.css';
-@import '../../dijit/themes/drivercheck/drivercheck.css';
+@import '../../dijit/themes/claro/claro.css';
 
 /*
  * Dgrid
  */
 @import "../../dgrid/css/dgrid.css";
-@import "../../dgrid/css/skins/drivercheck.css";
+@import "../../dgrid/css/skins/claro.css";
 
 /*
  * FloatingPane
@@ -33,6 +34,7 @@ html, body {
     background-color: #231f1e;
     padding: 0;
 }
+
 
 h2{
     margin-top: 5px; 
@@ -62,11 +64,11 @@ td[label]{
   font-weight:bold;
 }
 
-.drivercheck .moduleLoader{
+.claro .moduleLoader{
   padding: 0;
 }
 
-.drivercheck .gridButtons{
+.claro .gridButtons{
   padding: 0;
   margin-top: 5px;
 }
@@ -81,25 +83,25 @@ td[label]{
   padding-left: 0;
 }
 
-.drivercheck .filterForm .edgePanel{
+.claro .filterForm .edgePanel{
   padding-right: 10px;
   padding-left: 5px;
 }
 
-.drivercheck .modifiedLabel{
+.claro .modifiedLabel{
   color: #000000;
   background-color: yellow;
   padding: 1px;
   marging-left: 3px;
 }
 
-.drivercheck .activeUsersLabel{
+.claro .activeUsersLabel{
   color: #FFFFFF;
   background-color: red;
   padding: 1px;
 }
 
-.drivercheck .link{
+.claro .link{
   /*border-bottom:1px solid @button-background-color;*/
   padding-right: 1px; 
   color: @button-background-color;
@@ -113,7 +115,7 @@ td[label]{
 }
 
 
-.drivercheck .XwBorder{
+.claro .XwBorder{
   border-bottom:1px solid @button-background-color;
   background-color:#FCFCFC;
   padding-right: 2px; 
@@ -129,19 +131,19 @@ td[label]{
 }
 
 
-.drivercheck .permissionTable tr{
+.claro .permissionTable tr{
   height: 40px;
 }
-.drivercheck .permissionTable td{
+.claro .permissionTable td{
   padding-left: 10px;
 }
 
-.drivercheck .moreInfo ul{
+.claro .moreInfo ul{
   list-style-type: none;
   padding:5px;
 }
 
-.drivercheck .noOutline{
+.claro .noOutline{
   outline: none;
 }
 
@@ -160,40 +162,40 @@ td[label]{
 	height: 550px;
 }
 
-.drivercheck .secondayColoredBackground{
+.claro .secondayColoredBackground{
     background-color: @secondary-color;
 }
 
-.drivercheck .panel{
+.claro .panel{
     padding: 8px; 
     display: block; 
     overflow: auto;
 }
 
-.drivercheck .edgePanel {
-    .drivercheck .secondayColoredBackground;  
-    .drivercheck .panel;
+.claro .edgePanel {
+    .claro .secondayColoredBackground;  
+    .claro .panel;
 }
 
-.drivercheck .leftArrowOffset{
+.claro .leftArrowOffset{
   background-position: -77px 53%;
 }
 
-.drivercheck .whitePanel {
+.claro .whitePanel {
     background-color: #ffffff;
-    .drivercheck .panel;
+    .claro .panel;
     /*background-color: #c9192a;*/
 }
 
-.drivercheck .coloredPanel {
+.claro .coloredPanel {
     /*background-color: #231f1e;*/
     background-color: @primary-color;
-    .drivercheck .panel;
+    .claro .panel;
 }
 
 
 .logo{
-	background-image: url('driverchecklogo.png');
+	background-image: url('clarologo.png');
 	background-repeat:no-repeat;
 }
 .checkmark{
@@ -256,7 +258,7 @@ td[label]{
 
 
 .logo_small{
-	background-image: url('driverchecklogo_small.png');
+	background-image: url('iCAS_logo_small.png');
 	background-repeat:no-repeat;
 }
 
@@ -268,22 +270,22 @@ td[label]{
   font-weight:bold;
 }
 
-.drivercheck .dgrid-row-odd {
-    .drivercheck .secondayColoredBackground;  
+.claro .dgrid-row-odd {
+    .claro .secondayColoredBackground;  
 }
 
-.drivercheck .disabledRow{
+.claro .disabledRow{
   background-color: #EDEDED;
   color:#999999;
 }
 
-.drivercheck .fadedRow{
+.claro .fadedRow{
   font-style: italic;
   background-color: #FFE4E1;
   color:#666666;
 }
 
-.drivercheck .note_label{
+.claro .note_label{
   color: darken(@secondary-color, 65);
   font-size: small;
   font-style: italic;

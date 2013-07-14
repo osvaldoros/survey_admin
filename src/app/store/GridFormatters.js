@@ -13,7 +13,6 @@ define([
 	"app/store/UIStores",
 	"app/uicomponents/MoreInfoRenderer",
 	"app/uicomponents/moreInfoRenderers/TestMoreInfoRenderer",
-	"app/uicomponents/UserPresenceRenderer",
 	"dijit/ProgressBar",
 	"dijit/form/CheckBox",
 	"dijit/form/RadioButton",
@@ -25,7 +24,7 @@ define([
 
 	],
 	function(declare, lang, aspect, domClass, UIStores, MoreInfoRenderer, TestMoreInfoRenderer, 
-				UserPresenceRenderer, ProgressBar, CheckBox, RadioButton, Tooltip, HashManager,topic,on, GridCheckboxes){
+			ProgressBar, CheckBox, RadioButton, Tooltip, HashManager,topic,on, GridCheckboxes){
 		
 		
 	var classRef = declare("app.store.GridFormatters", [], {
@@ -469,18 +468,18 @@ define([
 		},
 
 		progressBarRenderer:function(object, data, td, options){
-			if(typeof(emanda2.renderers) != "object" || emanda2.renderers == null){
-				emanda2.renderers = {};
+			if(typeof(__.renderers) != "object" || __.renderers == null){
+				__.renderers = {};
 			}
 
 			var rendererWidget
-			if(emanda2.renderers.hasOwnProperty(object.id)){
-				rendererWidget = emanda2.renderers[object.id];
+			if(__.renderers.hasOwnProperty(object.id)){
+				rendererWidget = __.renderers[object.id];
 				rendererWidget.update({maximum: object.steps, progress: object.progress});
 			}else{
 				rendererWidget = new ProgressBar({maximum: object.steps, progress: object.progress})
 				rendererWidget.startup();
-				emanda2.renderers[object.id] = rendererWidget;
+				__.renderers[object.id] = rendererWidget;
 			}
 
 			rendererWidget.placeAt(td);
@@ -489,25 +488,10 @@ define([
 		},
 
 		updateProgressBar:function(data){
-			if(emanda2.renderers != null && emanda2.renderers != undefined){
-				var rendererWidget = emanda2.renderers[data.target];
+			if(__.renderers != null && __.renderers != undefined){
+				var rendererWidget = __.renderers[data.target];
 				rendererWidget.update({maximum: data.steps, progress: data.progress});
 			}
-		},
-
-		userPresenceRenderer:function(object, data, td, options){
-			var rendererWidget = new UserPresenceRenderer({
-				_data: object
-			})
-			
-			var div = document.createElement("div");
-			div.className = "renderedCell";
-
-			rendererWidget.placeAt(div);
-			rendererWidget.startup();
-
-			return div;		
-
 		},
 
 		runExpressionRenderer:function(object, data, td, options){
@@ -515,15 +499,15 @@ define([
 			var currentLabel;
 			var currentColor;
 			var id = "_"+object.id;
-			if(emanda2.runExpressionCheckBoxes == undefined || emanda2.runExpressionCheckBoxes == null){
-				emanda2.runExpressionCheckBoxes = {};
+			if(__.runExpressionCheckBoxes == undefined || __.runExpressionCheckBoxes == null){
+				__.runExpressionCheckBoxes = {};
 			}
-			if(emanda2.runExpressionCheckBoxes[id] == null || emanda2.runExpressionCheckBoxes[id] == undefined){
+			if(__.runExpressionCheckBoxes[id] == null || __.runExpressionCheckBoxes[id] == undefined){
 				rendererWidget = new CheckBox();
 				rendererWidget.set("id",id);
-				emanda2.runExpressionCheckBoxes[id] = rendererWidget;
+				__.runExpressionCheckBoxes[id] = rendererWidget;
 			}else{
-				rendererWidget = emanda2.runExpressionCheckBoxes[id];
+				rendererWidget = __.runExpressionCheckBoxes[id];
 			}
 			
 			rendererWidget.startup();
@@ -547,9 +531,9 @@ define([
 		billingRunRenderer:function(object, data, td, options){
 			var rendererWidget;
 			var id = "_"+object.eid;
-			if(emanda2.billingRunCheckBoxes == undefined || emanda2.billingRunCheckBoxes == null){
-				emanda2.billingRunCheckBoxes = {};
-				emanda2.billingRunCheckBoxesLength = 0;
+			if(__.billingRunCheckBoxes == undefined || __.billingRunCheckBoxes == null){
+				__.billingRunCheckBoxes = {};
+				__.billingRunCheckBoxesLength = 0;
 			}
 			
 			rendererWidget = new RadioButton();
@@ -560,8 +544,8 @@ define([
 				
 				rendererWidget.companyName = object.account.name;
 				rendererWidget.companyId = object.account.id;
-				emanda2.billingRunCheckBoxes[id] = rendererWidget;
-				emanda2.billingRunCheckBoxesLength++;
+				__.billingRunCheckBoxes[id] = rendererWidget;
+				__.billingRunCheckBoxesLength++;
 				
 				if(object.exceptions && object.exceptions.length > 0){
 					for(var i = 0; i < object.exceptions.length; i++){
@@ -644,16 +628,16 @@ define([
 		creditInvoiceRenderer:function(object, data, td, options){
 			var id = object.id;
 			var rendererWidget;
-			if(emanda2.creditInvoiceCheckBoxes == undefined || emanda2.creditInvoiceCheckBoxes == null){
-				emanda2.creditInvoiceCheckBoxes = {};
+			if(__.creditInvoiceCheckBoxes == undefined || __.creditInvoiceCheckBoxes == null){
+				__.creditInvoiceCheckBoxes = {};
 			}
-			if(emanda2.creditInvoiceCheckBoxes[id] == null || emanda2.creditInvoiceCheckBoxes[id] == undefined){
+			if(__.creditInvoiceCheckBoxes[id] == null || __.creditInvoiceCheckBoxes[id] == undefined){
 				rendererWidget = new CheckBox();
 				rendererWidget.set("id",id);
 				rendererWidget.invoice = object;
-				emanda2.creditInvoiceCheckBoxes[id] = rendererWidget;
+				__.creditInvoiceCheckBoxes[id] = rendererWidget;
 			}else{
-				rendererWidget = emanda2.creditInvoiceCheckBoxes[id];
+				rendererWidget = __.creditInvoiceCheckBoxes[id];
 			}
 			
 			rendererWidget.startup();
@@ -665,7 +649,7 @@ define([
 
 		documentMoreInfoRenderer:function(object, data, td, options){
 			var div = app.store.GridFormatters.nestedObjectRenderer(object, data, td, options,"doc_type.name");	
-			var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( emanda2.urls.model.links.editor["doc"] , object.id ));
+			var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( __.urls.model.links.editor["doc"] , object.id ));
 			div.innerHTML =  '<a href="'+ link +'" target="_blank">'+ div.innerHTML +'</a>'
 
 			return div;

@@ -220,7 +220,7 @@ define([
 						domConstruct.place(removeLinkNode, labelDiv, "last");
 						
 						// if we have an editor for the model, create a button to allow the creation of new entities
-						var hasEditorOrHandler = (emanda2.urls.model.modules.editor.hasOwnProperty(field.basicName) || typeof(fieldOptions.newHandler) == "function");
+						var hasEditorOrHandler = (__.urls.model.modules.editor.hasOwnProperty(field.basicName) || typeof(fieldOptions.newHandler) == "function");
 						var isNewEnabled = (!fieldOptions.hasOwnProperty("disableNew") || fieldOptions.disableNew == false);
 
 						if(hasEditorOrHandler && isNewEnabled){
@@ -373,7 +373,7 @@ define([
 								}else{
 									// by default the new button will open a dialog, with an editor matched by model name i.e. DonorSetup for 'donor'
 									// - in this auto-dialog, dependencies are evaluated so that, say, if DonorSetup needs a company to be injected it will be passed in the newHandler
-									var editor = emanda2.urls.model.modules.editor[field.basicName];
+									var editor = __.urls.model.modules.editor[field.basicName];
 									var dialogOptions = {
 										title : 'New ' + field.basicName,  
 										dialogWidth: editor.width,
@@ -409,7 +409,7 @@ define([
 										}
 									};
 
-									emanda2.workspaceManager.getDialogFromModuleURL(editor.url, dialogOptions);
+									__.workspaceManager.getDialogFromModuleURL(editor.url, dialogOptions);
 								}
 							}
 
@@ -431,7 +431,7 @@ define([
 								}else{
 									// by default the new button will open a dialog, with an editor matched by model name i.e. DonorSetup for 'donor'
 									// - in this auto-dialog, dependencies are evaluated so that, say, if DonorSetup needs a company to be injected it will be passed in the newHandler
-									var editor = emanda2.urls.model.modules.editor[field.basicName];
+									var editor = __.urls.model.modules.editor[field.basicName];
 									var editDialogOptions = {
 										title : 'Edit ' + field.basicName,  
 										dialogWidth: editor.width,
@@ -467,7 +467,7 @@ define([
 										}
 									};
 
-									emanda2.workspaceManager.getDialogFromModuleURL(editor.url, editDialogOptions);
+									__.workspaceManager.getDialogFromModuleURL(editor.url, editDialogOptions);
 								}
 							}
 
@@ -579,8 +579,8 @@ define([
 					dialog.setUpdatingEntity(null, true);
 					dialog.show();
 				}else{
-					emanda2.alert.set("message", "Please choose a " + requiredEmbed + " first");
-  					emanda2.alert.show();
+					__.alert.set("message", "Please choose a " + requiredEmbed + " first");
+  					__.alert.show();
 				}
 			},
 
@@ -604,8 +604,8 @@ define([
 					dialog.setUpdatingEntity(null, true);
 					dialog.show();
 				}else{
-					emanda2.alert.set("message", "Please choose a " + requiredEmbed + " first");
-  					emanda2.alert.show();
+					__.alert.set("message", "Please choose a " + requiredEmbed + " first");
+  					__.alert.show();
 				}
 			},
 

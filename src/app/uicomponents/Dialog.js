@@ -40,9 +40,9 @@ define([
 			if(this._hideConfirmed || requiresConfirmation == false){
 				this.inherited(arguments);
 			}else{
-				emanda2.confirmDialog.set("confirmMessage", 'Are you sure you want to discard them ?');
-				emanda2.confirmDialog.set("title", 'Unsaved changes');
-				emanda2.confirmDialog.show(lang.hitch(this, "confirmHide"));
+				__.confirmDialog.set("confirmMessage", 'Are you sure you want to discard them ?');
+				__.confirmDialog.set("title", 'Unsaved changes');
+				__.confirmDialog.show(lang.hitch(this, "confirmHide"));
 			}
 			
 		},

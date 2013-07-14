@@ -32,13 +32,13 @@ define([
 
 			if(typeof(showLoader) == "undefined" || showLoader == null) showLoader = true;
 			if(typeof(headers) == "undefined" || headers == null) headers = {};
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 
 
-			if(typeof(url) == "string" && url.indexOf(dojo.config.drivercheck.api_host) == -1){
-				url = dojo.config.drivercheck.api_host + url;
+			if(typeof(url) == "string" && url.indexOf(dojo.config.appSpecific.api_host) == -1){
+				url = dojo.config.appSpecific.api_host + url;
 			}
 			
 			return xhr.get({
@@ -58,12 +58,12 @@ define([
 		
 		post:function(url, data, headers) {
 			if(typeof(headers) == "undefined" || headers == null) headers = {};
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 
-			if(typeof(url) == "string" && url.indexOf(dojo.config.drivercheck.api_host) == -1){
-				url = dojo.config.drivercheck.api_host + url;
+			if(typeof(url) == "string" && url.indexOf(dojo.config.appSpecific.api_host) == -1){
+				url = dojo.config.appSpecific.api_host + url;
 			}			
 			
 			return xhr("POST", {
@@ -81,12 +81,12 @@ define([
 			}else{
 
 				if(typeof(headers) == "undefined" || headers == null) headers = {};
-				if(typeof(emanda2.user.auth_token) !== 'undefined'){
-					headers["X-Auth-Token"] = emanda2.user.auth_token;
+				if(typeof(__.user.auth_token) !== 'undefined'){
+					headers["X-Auth-Token"] = __.user.auth_token;
 				}
 
-				if(typeof(url) == "string" && url.indexOf(dojo.config.drivercheck.api_host) == -1){
-					url = dojo.config.drivercheck.api_host + url;
+				if(typeof(url) == "string" && url.indexOf(dojo.config.appSpecific.api_host) == -1){
+					url = dojo.config.appSpecific.api_host + url;
 				}			
 
 				url += "?id=" + data.id;

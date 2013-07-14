@@ -11,10 +11,9 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/xhr",
 	"dijit/registry",
-	"dojo/parser",
-	"app/modules/GlobalSystemSettingsSetup"
+	"dojo/parser"
 	],
-	function(declare, on, dom, Breadcrumb, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, xhr, registry, parser, GlobalSystemSettings){
+	function(declare, on, dom, Breadcrumb, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, xhr, registry, parser){
 	
 	return declare("app.workspace.Topbar", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule], {
 			
@@ -35,32 +34,19 @@ define([
 				this.settingsButton = this.getWidget('settingsButton');
 				this.breadcrumb = this.getWidget('breadcrumb');
 				on(this.logoutButton, 'click', lang.hitch(this, "onLogoutClicked"));
-				on(this.settingsButton, 'click', lang.hitch(this, "onSettingsClicked"));
 			},
 			
-			onSettingsClicked:function(event){
-				this.globalSystemSetting = emanda2.workspaceManager.getModuleInDialog( new GlobalSystemSettings(), {title:"Global System Settings", dialogWidth:"800", dialogHeight:"620px"});
-				var req = emanda2.api.get(emanda2.urls.GLOBAL_SETTING);
-				var owner = this;
-	  			req.then(function(response){
-	  				var entity = response[0];
-	  				owner.globalSystemSetting.setUpdatingEntity(entity,true);
-	  				owner.globalSystemSetting.show();
-	  			});
-				
-			},
-
 			onLogoutClicked:function(event){
 				var headers = {};
-				if(typeof(emanda2.user.auth_token) !== 'undefined'){
-					headers["X-Auth-Token"] = emanda2.user.auth_token;
+				if(typeof(__.user.auth_token) !== 'undefined'){
+					headers["X-Auth-Token"] = __.user.auth_token;
 				}
 			
 				xhr.get({
-						url: dojo.config.drivercheck.api_host + "emanda2/_logout",
+						url: dojo.config.appSpecific.api_host + "api/surveys/logout",
 						headers:headers,
 						load: function(logoutObject) {
-							emanda2.logout();
+							__.logout();
 						}
 				});
 				

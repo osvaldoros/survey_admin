@@ -55,32 +55,32 @@ define([
 			 */
 			initializeMapApi:function(){
 				
-				// if emanda2.maps doesn't exist it means we need to add the script node and wait for it to load
-				if(typeof(emanda2.maps) == 'undefined'){
-					// create the emanda2.maps namespace, which will hold the load call back and the apiReady flag ( for quick checking )
-					emanda2.maps = {
+				// if __.maps doesn't exist it means we need to add the script node and wait for it to load
+				if(typeof(__.maps) == 'undefined'){
+					// create the __.maps namespace, which will hold the load call back and the apiReady flag ( for quick checking )
+					__.maps = {
 						apiReady:false,
 						// this call back function gets executed by the google maps api when it is ready
 						loadCallBack:function(){
 							// dispatch a ready event as a topic so that many instances that are initiating at the same time know the api is ready to rock
-							emanda2.maps.apiReady = true;
-							topic.publish("emanda2-maps-ready");
+							__.maps.apiReady = true;
+							topic.publish("__-maps-ready");
 						}
 					};
 					
 					// create the script node, add it to the body and wait for the callBack
 					var script = document.createElement("script");
 					script.type = "text/javascript";
-					script.src = "http://maps.googleapis.com/maps/api/js?key=" + this._apiKey + "&sensor=false&callback=emanda2.maps.loadCallBack";
+					script.src = "http://maps.googleapis.com/maps/api/js?key=" + this._apiKey + "&sensor=false&callback=__.maps.loadCallBack";
 					document.body.appendChild(script);
 				} 
 				
 				// if apiReady is true at this point it means the api was already loaded, so we don't need to wait at all
-				if(emanda2.maps.apiReady){
+				if(__.maps.apiReady){
 					this.apiReady();
 				}else{
 				// if not, then subscribe to the event so we can initialize ourselves when the api is ready
-					this.apiLoadHandler = topic.subscribe("emanda2-maps-ready", lang.hitch(this, "apiReady"));
+					this.apiLoadHandler = topic.subscribe("__-maps-ready", lang.hitch(this, "apiReady"));
 				}
 				
 			},

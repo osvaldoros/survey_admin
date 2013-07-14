@@ -38,9 +38,9 @@ define([
 			this.contentTabs = this.getWidget('contentTabs');
 			this.topBar = this.getWidget('topBar');
 			
-			emanda2.workspaceManager = this;
-			emanda2.confirmDialog = new ConfirmDialog();
-			emanda2.searchDialog = new SearchDialog();
+			__.workspaceManager = this;
+			__.confirmDialog = new ConfirmDialog();
+			__.searchDialog = new SearchDialog();
 
 		},
 		
@@ -83,7 +83,7 @@ define([
 				this.eventHandlers = [];
 			}			
 			
-			this.eventHandlers.push( dojo.subscribe("/emanda2/hashchange", this, this.onHashChange) );
+			this.eventHandlers.push( dojo.subscribe("/__/hashchange", this, this.onHashChange) );
 			// load the catalogs and delay building the tabs until we have them			
 			this.createTabs();
 			
@@ -95,13 +95,13 @@ define([
 
 			// populate the tabs with the modules defined int he configuration
 			if(typeof(this.contentTabs) != 'undefined'){
-				var tabArray = dojo.config.drivercheck.tabs;				
+				var tabArray = dojo.config.appSpecific.tabs;				
 				for (var i = 0; i < tabArray.length; i++){
 					var tabObj = tabArray[i]
 					this.addTab(tabObj);
 				};
 				// create a map for the modules even thought they won't be tabs right away...
-				var moduleArray = dojo.config.drivercheck.modules;				
+				var moduleArray = dojo.config.appSpecific.modules;				
 				for (var i = 0; i < moduleArray.length; i++){
 					var moduleObj = moduleArray[i]
 					this.addModule(moduleObj);

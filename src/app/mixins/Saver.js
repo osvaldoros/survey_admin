@@ -165,7 +165,7 @@ define([
 		__entitySaved:function(entity){
 			//console.log("__EntitySaved > " + entity)
 			//var owner = this;
-			//var res = emanda2.entities.withEntity(entity, this.__storeURL, function(entity){
+			//var res = __.entities.withEntity(entity, this.__storeURL, function(entity){
 				this.runCallBack("entitySaved", entity);
 				this.setUpdatingEntity(entity);
 				this.refreshButtons();

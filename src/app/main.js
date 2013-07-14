@@ -39,22 +39,22 @@ define([
 	function(LayoutContainer, StackContainer, ContentPane, declare, Selection, GridFromHtml, topic, Alert, Spinner, domClass, API,
 		Entities, GridFormatters, URLs, ModuleLoader){
     	//var app = {};
-		emanda2 = {};
+		__ = {};
 		
 		
 		// global instances
-		emanda2.urls = new URLs();
-		emanda2.urls.init();
-		emanda2.api = API;
-		emanda2.alert = new Alert();
-		emanda2.spinner = new Spinner();
-		emanda2.entities = new Entities();
+		__.urls = new URLs();
+		__.urls.init();
+		__.api = API;
+		__.alert = new Alert();
+		__.spinner = new Spinner();
+		__.entities = new Entities();
 		
 		// Global IO listener for outgoing requests
 		topic.subscribe("/dojo/io/send", function(defered, response){
 			if(typeof(defered) == "object" && defered != null && typeof(defered.ioArgs) == "object" && defered.ioArgs != null ){
 				if(defered.ioArgs.handleAs == "json" && defered.ioArgs.args.showLoader !== false){
-					emanda2.spinner.spin();
+					__.spinner.spin();
 				}
 			}
 		})
@@ -63,20 +63,20 @@ define([
 		topic.subscribe("/dojo/io/done", function(defered, response){
 			if(typeof(defered) == "object" && defered != null && typeof(defered.ioArgs) == "object" && defered.ioArgs != null ){
 				if(defered.ioArgs.handleAs == "json"){
-					emanda2.spinner.unspin();
+					__.spinner.unspin();
 					
 					if(typeof(response) == "object" && response != null && response.hasOwnProperty("error")){
 						console.log(response.error)
 						
 						// Authorization error
 						if(response.error.code > 5000 && response.error.code < 6000){
-							emanda2.logout();
+							__.logout();
 						}
 						
 						if(response.error.code != 2000){
-							//emanda2.alert.set("message", response.error.message);
+							//__.alert.set("message", response.error.message);
 							console.warn(response.error.message);
-							//emanda2.alert.show();
+							//__.alert.show();
 						}
 						
 					}
@@ -101,51 +101,51 @@ define([
 
 
 		// create the TabContainer
-		emanda2.topLevelComponents = new StackContainer({
+		__.topLevelComponents = new StackContainer({
 			region: "center",
 			id: "topLevelComponents"
 		})
 		
-		emanda2.logout = function(){
-			delete emanda2.user;
-			emanda2.authManager.logout();
-			emanda2.setCurrentState('app/Auth');
+		__.logout = function(){
+			delete __.user;
+			__.authManager.logout();
+			__.setCurrentState('app/Auth');
 		}
 		
-		emanda2.getCurrentState = function(){
-			return emanda2.topLevelComponents.selectedChildWidget.moduleURL;
+		__.getCurrentState = function(){
+			return __.topLevelComponents.selectedChildWidget.moduleURL;
 		}
 		
-		emanda2.setCurrentState = function(value){
-			var topLevelChildren = emanda2.topLevelComponents.getChildren();
+		__.setCurrentState = function(value){
+			var topLevelChildren = __.topLevelComponents.getChildren();
 			for (var i=0; i < topLevelChildren.length; i++) {
 				var child = topLevelChildren[i];
 				if(child.moduleURL == value){
-					emanda2.topLevelComponents.selectChild(child);
+					__.topLevelComponents.selectChild(child);
 					break;
 				}
 			};
 		}
 		
-		appLayout.addChild( emanda2.topLevelComponents );
-		appLayout.addChild( emanda2.spinner );
+		appLayout.addChild( __.topLevelComponents );
+		appLayout.addChild( __.spinner );
 		
 		//var workspace =  new Workspace();
 		//var auth =  new Auth();
 		
-		//emanda2.topLevelComponents.addChild(auth);
-		//emanda2.topLevelComponents.addChild(workspace);
+		//__.topLevelComponents.addChild(auth);
+		//__.topLevelComponents.addChild(workspace);
 		
-		emanda2.topLevelComponents.addChild(new ContentPane()); // dummy state with nothing ( needed to trigger activate event when selecting app/Auth )
-		emanda2.topLevelComponents.addChild(new ModuleLoader({moduleURL:'app/Auth', parentStack: emanda2.topLevelComponents}));
-		emanda2.topLevelComponents.addChild(new ModuleLoader({moduleURL:'app/Workspace', parentStack: emanda2.topLevelComponents}));
+		__.topLevelComponents.addChild(new ContentPane()); // dummy state with nothing ( needed to trigger activate event when selecting app/Auth )
+		__.topLevelComponents.addChild(new ModuleLoader({moduleURL:'app/Auth', parentStack: __.topLevelComponents}));
+		__.topLevelComponents.addChild(new ModuleLoader({moduleURL:'app/Workspace', parentStack: __.topLevelComponents}));
 		
 		// start up and do layout
 		appLayout.startup();
 		
-		emanda2.setCurrentState("app/Auth");
+		__.setCurrentState("app/Auth");
 		
-		//emanda2.spinner.spin();
+		//__.spinner.spin();
 		
 			
 });

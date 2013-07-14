@@ -15,19 +15,17 @@ define([
 	"app/form/AjaxForm",
 	"dijit/form/Button",
 	"dijit/form/ValidationTextBox",
-	"app/utils/OrbiterManager",
 	"app/store/UIStores",
 	"app/utils/HashManager"		
 	
 	],
-	function(declare, on, ContentPane, StatefulModule, template, lang, xhr, StringUtils, Tooltip, Validate, Validate_web, AjaxForm, Button, ValidationTextBox, OrbiterManager, UIStores, HashManager ){
+	function(declare, on, ContentPane, StatefulModule, template, lang, xhr, StringUtils, Tooltip, Validate, Validate_web, AjaxForm, Button, ValidationTextBox, UIStores, HashManager ){
 	
 		return declare("app.Auth", [ContentPane, StatefulModule], {
 			uiStores: UIStores.getInstance(),	
 			hashManager: HashManager.getInstance(),	
 			//widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			content: template, // Our template - important!
-			orbiterManager: OrbiterManager.getInstance(),
 			/**
 			 * 
 			 * startup is called by the framework as part of the livecycle of all widgets, it happens after the children widgets have been created and are ready to be used
@@ -43,8 +41,7 @@ define([
 				this.usernameFld = this.getWidget('usernameFld');
 				this.passwordFld = this.getWidget('passwordFld');
 				
-				emanda2.authManager = this;
-				emanda2.orbiter = this.orbiterManager;
+				__.authManager = this;
 
 				var token = this.hashManager.getAuthToken();
 				if(typeof(token) != "undefined" && token != null){
@@ -83,8 +80,8 @@ define([
 				
 				
 				if(dojo.config.isDebug){
-					this.usernameFld.set('value', "ofr");
-					this.passwordFld.set('value', "osrocheck");
+					this.usernameFld.set('value', "osvaldo.ros@gmail.com");
+					this.passwordFld.set('value', "asdasd");
 					//this.onLoginClicked();
 				}
 			},
@@ -146,7 +143,7 @@ define([
 				var owner = this;
 				var headers = {"X-Auth-Token":token};
 				
-				var auth_url = emanda2.urls.LOGIN;
+				var auth_url = __.urls.LOGIN;
 				
 				var loginRequest = xhr.get({
 					url: auth_url,
@@ -165,7 +162,7 @@ define([
 			 */
 			onLoginClicked:function(event){
 				if(this.loginForm.validate()){
-					emanda2.spinner.show();
+					__.spinner.show();
 					this.enableForm(false);
 					
 					var credentials = {
@@ -176,7 +173,7 @@ define([
 					var owner = this;
 					var headers = {Authorization:'Plain ' + credentials.username + ':' + credentials.password};
 					
-					var auth_url = emanda2.urls.LOGIN;
+					var auth_url = __.urls.LOGIN;
 					
 					var loginRequest = xhr.get({
 						url: auth_url,
@@ -192,19 +189,17 @@ define([
 			},
 
 			xhrError:function(error){
-				emanda2.spinner.hide();
+				__.spinner.hide();
 				this.enableForm(true);
-				emanda2.alert.set("title","Communication error");
-				emanda2.alert.set("message", error.status + " : " + error.xhr.statusText);
-   				emanda2.alert.show();
+				__.alert.set("title","Communication error");
+				__.alert.set("message", error.status + " : " + error.xhr.statusText);
+   				__.alert.show();
 			},
 
 			handleLogin:function(req, authObject){
-				emanda2.spinner.hide();
+				__.spinner.hide();
 				this.enableForm(true);
-				////console.log(authObject)
 				var auth_token = req.ioArgs.xhr.getResponseHeader("X-Auth-Token");
-				console.log(auth_token);
 				document.cookie = "X-Auth-Token="+auth_token+";path=/;"; // expires when the browser closes
 				
 				if(typeof(authObject.error) != 'undefined'){
@@ -212,37 +207,36 @@ define([
 						this.showInvalidCredentialsTootip(authObject.error.message);
 					}
 				}else{
-					emanda2.user = authObject;
-					emanda2.user.auth_token = auth_token;
+					__.user = authObject;
+					__.user.auth_token = auth_token;
 
-					var tabs = emanda2.user.role.tabs;
+					var tabs;
+					var modules;
 
-					var modules = emanda2.user.role.modules;
-
+					if(typeof(__.user.role) == "object" && __.user.role != null && lang.isArray(__.user.role.tabs) && lang.isArray(__.user.role.modules)){
+						tabs = __.user.role.tabs;
+						modules = __.user.role.modules;
+					}else{
+						tabs = dojo.config.appSpecific.tabs;
+						modules = dojo.config.appSpecific.modules;
+					}
+					// if there are no tabs, use the modules as tabs
 					if(!lang.isArray(tabs) || tabs.length == 0){
 						tabs = modules.slice(0);
 					}
 
-					modules.push({ name:'Donors', module_url:'app/modules/Donors', hash:'donors', id:'13'})
-					modules.push({ name:'Company Group', module_url:'app/modules/CompanyGroup', hash:'company_group', id:'9'});						
-					modules.push({ name:'Messenger', module_url:'app/modules/MessengerOrbiter', hash:'messenger', id:'10'});						
-					modules.push({ name:'State Demo', module_url:'app/modules/StateDemo', hash:'state_demo', id:'12'});	
-					modules.push({ name:'Roles', module_url:'app/modules/Roles', hash:'roles', id:'14', closable:true});	
-					modules.push({ name:'Company Tree', module_url:'app/modules/CompanyTree', hash:'company-tree', id:'14', closable:true});
-					//modules.push({ name:'ExpressionBuilder', module_url:'app/modules/ExpressionBuilder', hash:'expression', id:'25'});
-					//tabs.push({ name:'ExpressionBuilder', module_url:'app/modules/ExpressionBuilder', hash:'expression', id:'25'});
-					dojo.config.drivercheck.tabs = this.processModules(tabs);
-					dojo.config.drivercheck.modules = this.processModules(modules);
+					dojo.config.appSpecific.tabs = this.processModules(tabs);
+					dojo.config.appSpecific.modules = this.processModules(modules);
 					
 					this.initApp();
-					
+
 				}
 			},
 
 			hasPermission:function(permission){
-				if(typeof(emanda2.user) == "object" && emanda2.user != null && typeof(emanda2.user.role) == "object" && emanda2.user.role != null && lang.isArray(emanda2.user.role.perms) && emanda2.user.role.perms.length > 0){
-					for (var i = emanda2.user.role.perms.length - 1; i >= 0; i--) {
-						var perm = emanda2.user.role.perms[i];
+				if(typeof(__.user) == "object" && __.user != null && typeof(__.user.role) == "object" && __.user.role != null && lang.isArray(__.user.role.perms) && __.user.role.perms.length > 0){
+					for (var i = __.user.role.perms.length - 1; i >= 0; i--) {
+						var perm = __.user.role.perms[i];
 						if(perm.name == permission){
 							return true;
 						}
@@ -253,19 +247,14 @@ define([
 			},
 			
 			initApp:function(){
-				this.orbiterManager.connect(lang.hitch(this, "orbiterReady"));
-			},
-
-			orbiterReady:function(){
 				this.uiStores.preloadCatalogs(lang.hitch(this, "gotoWorkspace"));
 			},
-			
+
 			gotoWorkspace:function(){
-				emanda2.setCurrentState('app/Workspace');
+				__.setCurrentState('app/Workspace');
 			},
 			
 			logout:function(){
-				this.orbiterManager.disconnect();
 			},
 			
 			processModules:function(modules){

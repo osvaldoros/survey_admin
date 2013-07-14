@@ -43,7 +43,7 @@ define([
 				if(lang.isArray(config.array)){
 					this.uiStores.populateComboArray(this, config.array, filterFunction)
 				}else if(typeof(config.url) == "string"){
-					this.uiStores.populateComboDynamicREST(this, emanda2.urls[config.url], config.base_query);
+					this.uiStores.populateComboDynamicREST(this, __.urls[config.url], config.base_query);
 				}else if(typeof(config.uiStore) == "string"){
 					this.uiStores.populateCombo(this, lang.hitch(this.uiStores, config.uiStore), filterFunction);
 				}

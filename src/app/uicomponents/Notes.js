@@ -43,7 +43,7 @@ define([
 				this._actionBtn.set("label", this._newLabel);
 				this.notesForm.domNode.style.display = "none";
 				this._cancelBtn.domNode.style.display = "none";
-				this.notesForm.set("storeURL", emanda2.urls.ACTIVITY);
+				this.notesForm.set("storeURL", __.urls.ACTIVITY);
 
 			},
 
@@ -67,9 +67,9 @@ define([
 				if(typeof(entity) == "undefined") entity = this.hashManager.getEntity();
 
 				var owner = this;
-				var res = emanda2.api.list(
+				var res = __.api.list(
 					// url
-					emanda2.urls.ACTIVITY, 
+					__.urls.ACTIVITY, 
 					// callback
 					function(activities){
 						owner.populateNotes(activities);
@@ -120,11 +120,11 @@ define([
 						this.closeForm();
 
 						//var formValues = this.notesForm.gatherFormValues(); -- doesn't work with textEditors
-						var formValues = this.changeTracker.getChangesObject(emanda2.urls.ACTIVITY)
-						var req = emanda2.api.post(emanda2.urls.ACTIVITY, {
+						var formValues = this.changeTracker.getChangesObject(__.urls.ACTIVITY)
+						var req = __.api.post(__.urls.ACTIVITY, {
 							details: formValues._notes.trim(), 
 							entity_id: this.hashManager.getEntity(),
-							user: {id: emanda2.user.id}
+							user: {id: __.user.id}
 						});
 						var owner = this;
 						req.then(function(response){

@@ -34,12 +34,12 @@ define([
 		
 			refreshPermissions:function(){
 				
-				if(typeof(emanda2.user) == "object" && emanda2.user != null && typeof(emanda2.user.role) == "object" && emanda2.user.role != null && lang.isArray(emanda2.user.role.perms) && emanda2.user.role.perms.length > 0){
+				if(typeof(__.user) == "object" && __.user != null && typeof(__.user.role) == "object" && __.user.role != null && lang.isArray(__.user.role.perms) && __.user.role.perms.length > 0){
 					
 					var permissionComponents = [];
 					
-					for (var p = emanda2.user.role.perms.length - 1; p >= 0; p--) {
-						var thisPermission = emanda2.user.role.perms[p];
+					for (var p = __.user.role.perms.length - 1; p >= 0; p--) {
+						var thisPermission = __.user.role.perms[p];
 						var thisPermissionComponents = query('.' + thisPermission.name, this.domNode);
 						
 						for(var i=0; i < thisPermissionComponents.length; i++){

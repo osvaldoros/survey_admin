@@ -48,7 +48,7 @@ define([
 								{
 									//To manopulate the tooltip behavior you need to indicate if the tooltip will have a link or not
 									data.hasLink = true;
-									var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( emanda2.urls.model.links.editor[data[p].$ref] , data[p].id ));
+									var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( __.urls.model.links.editor[data[p].$ref] , data[p].id ));
 									objectInfo += "<li><strong>"+p+ "</strong> : <a href=" + link + " target=\"_blank\"> " + display + "</a> </li>";;
 								}
 							}

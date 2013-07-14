@@ -1,18 +1,16 @@
-@import "../../dijit/themes/drivercheck/icons/commonIcons.css";
-
-@import "../../dijit/themes/drivercheck/icons/commonIcons_rtl.css";
-
 @import '../../dojo/resources/dojo.css';
 
-@import '../../dijit/themes/drivercheck/drivercheck.css';
+@import '../../dijit/themes/claro/claro.css';
 
 @import "../../dgrid/css/dgrid.css";
 
-@import "../../dgrid/css/skins/drivercheck.css";
+@import "../../dgrid/css/skins/claro.css";
 
 @import "../../dojox/layout/resources/FloatingPane.css";
 
 @import "../../dojox/layout/resources/ResizeHandle.css";
+/*@import "../../dijit/themes/claro/icons/commonIcons.css";*/
+/*@import "../../dijit/themes/claro/icons/commonIcons_rtl.css";*/
 /**
  * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
  * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
@@ -26,8 +24,6 @@
 /*
  * FloatingPane
  */
-
-
 html, body {
   height: 100%;
   margin: 0;
@@ -61,10 +57,10 @@ td[label] {
   text-align: right;
   font-weight: bold;
 }
-.drivercheck .moduleLoader {
+.claro .moduleLoader {
   padding: 0;
 }
-.drivercheck .gridButtons {
+.claro .gridButtons {
   padding: 0;
   margin-top: 5px;
 }
@@ -76,60 +72,60 @@ td[label] {
   padding-right: 0;
   padding-left: 0;
 }
-.drivercheck .filterForm .edgePanel {
+.claro .filterForm .edgePanel {
   padding-right: 10px;
   padding-left: 5px;
 }
-.drivercheck .modifiedLabel {
+.claro .modifiedLabel {
   color: #000000;
   background-color: yellow;
   padding: 1px;
   marging-left: 3px;
 }
-.drivercheck .activeUsersLabel {
+.claro .activeUsersLabel {
   color: #FFFFFF;
   background-color: red;
   padding: 1px;
 }
-.drivercheck .link {
+.claro .link {
   /*border-bottom:1px solid @button-background-color;*/
 
   padding-right: 1px;
-  color: #960003;
+  color: #e5f2fe;
   display: inline-block;
   /*cursor: pointer; cursor: hand;*/
 
 }
-.drivercheck .link:hover {
+.claro .link:hover {
   /*border-bottom:1px solid @unfocused-clickable-color;*/
 
-  color: #ff6562;
+  color: #e5f2fe;
 }
-.drivercheck .XwBorder {
-  border-bottom: 1px solid #960003;
+.claro .XwBorder {
+  border-bottom: 1px solid #e5f2fe;
   background-color: #FCFCFC;
   padding-right: 2px;
   padding-left: 2px;
-  color: #960003;
+  color: #e5f2fe;
   display: inline-block;
   cursor: pointer;
   cursor: hand;
 }
-.drivercheck .XwBorder:hover {
-  border-bottom: 1px solid #ff6562;
-  color: #ff6562;
+.claro .XwBorder:hover {
+  border-bottom: 1px solid #e5f2fe;
+  color: #e5f2fe;
 }
-.drivercheck .permissionTable tr {
+.claro .permissionTable tr {
   height: 40px;
 }
-.drivercheck .permissionTable td {
+.claro .permissionTable td {
   padding-left: 10px;
 }
-.drivercheck .moreInfo ul {
+.claro .moreInfo ul {
   list-style-type: none;
   padding: 5px;
 }
-.drivercheck .noOutline {
+.claro .noOutline {
   outline: none;
 }
 #topLevelModule {
@@ -145,24 +141,24 @@ td[label] {
   width: 550px;
   height: 550px;
 }
-.drivercheck .secondayColoredBackground {
-  background-color: #e3e3e3;
+.claro .secondayColoredBackground {
+  background-color: #efefef;
 }
-.drivercheck .panel {
+.claro .panel {
   padding: 8px;
   display: block;
   overflow: auto;
 }
-.drivercheck .edgePanel {
-  background-color: #e3e3e3;
+.claro .edgePanel {
+  background-color: #efefef;
   padding: 8px;
   display: block;
   overflow: auto;
 }
-.drivercheck .leftArrowOffset {
+.claro .leftArrowOffset {
   background-position: -77px 53%;
 }
-.drivercheck .whitePanel {
+.claro .whitePanel {
   background-color: #ffffff;
   padding: 8px;
   display: block;
@@ -170,16 +166,16 @@ td[label] {
   /*background-color: #c9192a;*/
 
 }
-.drivercheck .coloredPanel {
+.claro .coloredPanel {
   /*background-color: #231f1e;*/
 
-  background-color: #ff4c48;
+  background-color: #cfe5fa;
   padding: 8px;
   display: block;
   overflow: auto;
 }
 .logo {
-  background-image: url('driverchecklogo.png');
+  background-image: url('clarologo.png');
   background-repeat: no-repeat;
 }
 .checkmark {
@@ -231,29 +227,29 @@ td[label] {
   top: 50%;
 }
 .logo_small {
-  background-image: url('driverchecklogo_small.png');
+  background-image: url('iCAS_logo_small.png');
   background-repeat: no-repeat;
 }
 .coloredLabel {
-  color: #960003;
+  color: #e5f2fe;
 }
 .boldedRow {
   font-weight: bold;
 }
-.drivercheck .dgrid-row-odd {
-  background-color: #e3e3e3;
+.claro .dgrid-row-odd {
+  background-color: #efefef;
 }
-.drivercheck .disabledRow {
+.claro .disabledRow {
   background-color: #EDEDED;
   color: #999999;
 }
-.drivercheck .fadedRow {
+.claro .fadedRow {
   font-style: italic;
   background-color: #FFE4E1;
   color: #666666;
 }
-.drivercheck .note_label {
-  color: #3d3d3d;
+.claro .note_label {
+  color: #494949;
   font-size: small;
   font-style: italic;
 }
@@ -275,36 +271,3 @@ td[label] {
 .floatLeft {
   float: left;
 }
-
-.dgrid-column-randomSelectionParticipantDonor36746 {
-   width: 210px;
-}
-
-.dgrid-column-randomSelectionParticipantCompany36746 {
-   width: 250px;
-}
-
-.dgrid-column-randomSelectionParticipantOccupation36746 {
-   width: 100px;
-}
-
-.dgrid-column-accountInvoiceAccountName36746 {
-   width: 270px;
-}
-.dgrid-column-accountInvoiceTotal36746 {
-   width: 80px;
-}
-.dgrid-column-accountInvoicesApprove36746 {
-   width: 60px;
-}
-.dgrid-column-accountInvoicesReject36746 {
-   width: 60px;
-}
-.dgrid-column-accountInternalExceptions36746 {
-   width: 110px;
-}
-.dgrid-column-accountInvoicesNotes36746 {
-   width: 120px;
-}
-
-

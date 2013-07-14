@@ -48,15 +48,15 @@ define([
 					titleString = "Choose one";
 				}
 
-				emanda2.searchDialog.set("title", titleString);
-				emanda2.searchDialog.set("store", this.storeURL);
-				emanda2.searchDialog.set("edit_store", this.edit_store);
-				emanda2.searchDialog.set("base_query", this.base_query);
-				emanda2.searchDialog.set("newButtonHandler", this.newButtonHandler);
+				__.searchDialog.set("title", titleString);
+				__.searchDialog.set("store", this.storeURL);
+				__.searchDialog.set("edit_store", this.edit_store);
+				__.searchDialog.set("base_query", this.base_query);
+				__.searchDialog.set("newButtonHandler", this.newButtonHandler);
 				if(typeof(this.columns) != "undefined"){
-					emanda2.searchDialog.set("resultColumns", this.columns);
+					__.searchDialog.set("resultColumns", this.columns);
 				}else{
-					emanda2.searchDialog.set("resultColumns", [
+					__.searchDialog.set("resultColumns", [
 						{label:"Id", field:"id", sortable:true},
 						{label:"Name", field:"name", sortable:true},
 						{label:"Address", field:"street1", sortable:true},
@@ -64,7 +64,7 @@ define([
 						{label:"Phone", field:"phone"}
 					]);
 				}
-				emanda2.searchDialog.show(lang.hitch(this, "entitySelected"));
+				__.searchDialog.show(lang.hitch(this, "entitySelected"));
 			},
 
 			entitySelected:function(entity){

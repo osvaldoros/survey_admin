@@ -31,7 +31,7 @@ define([
 				
 				// order_id is a string, so the usual $ref to gen links won't catch it, but we want to have a link...
 				if(name == "order_id"){
-					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( emanda2.urls.model.links.editor["order"], prop ));
+					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( __.urls.model.links.editor["order"], prop ));
 					return "<li><strong>order</strong> : <a href=" + link + " target=\"_blank\"> " + prop + "</a> </li>";
 				}
 
@@ -44,7 +44,7 @@ define([
 				var _isTest = this.isTest();
 
 				if(_isTest && this.useLink){
-					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL(emanda2.urls.model.links.editor["test"], this._data.id) );
+					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL(__.urls.model.links.editor["test"], this._data.id) );
 					this.name.innerHTML = '<a href="'+ link +'" target="_blank">'+ this.getName() +'</a>'
 				}else{
 					this.name.innerHTML = this.getName();

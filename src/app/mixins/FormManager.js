@@ -116,7 +116,7 @@ define([
 			
 			var entityId = this.hashManager.getEntity();
 			var owner = this;
-			var res = emanda2.entities.withEntity(entityId, this.__form.storeURL, function(data){
+			var res = __.entities.withEntity(entityId, this.__form.storeURL, function(data){
 				owner.viewInForm(data, owner.__form);
 			});
 			
@@ -256,7 +256,7 @@ define([
 			////console.log("_formManagerEntityCreated > ")
 			this.entityCreated(entityId);
 			var owner = this;
-			emanda2.entities.withEntity(entityId, this.__form.storeURL, function(data){
+			__.entities.withEntity(entityId, this.__form.storeURL, function(data){
 				owner.updatingEntity = data;
 				owner.viewInForm(data, owner.__form);
 			});

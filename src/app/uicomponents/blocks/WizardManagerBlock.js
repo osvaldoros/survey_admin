@@ -43,7 +43,7 @@ define([
 			_autoGenerateStepsFromMeta:false,
 			_preloadedEntity:null,
 			_showPreviousButton:false,
-			_enableNavigateButtons:true,
+			_enableNavigateButtons:false,
 			_preflightNavOnLoad:true,
 			
 			// The constructor
@@ -65,7 +65,6 @@ define([
 				this._prevBtn = this.getWidget("_prevBtn");
 				this._nextBtn = this.getWidget("_nextBtn");
 				this._saveBtn = this.getWidget("_saveBtn");
-				this._chatLinkBtn = this.getWidget("_chatLinkBtn");
 				this._cancelBtn = this.getWidget("_cancelBtn");
 				this._modified_label = this.getWidget("_modified_label");
 				this._users_active_label = this.getWidget("_users_active_label");
@@ -160,9 +159,6 @@ define([
 				if(typeof(this._nextEntityBtn) != 'undefined' && this._nextEntityBtn != null) this.eventHandlers.push( on(this._nextEntityBtn, 'click', lang.hitch(this, "onNextEntityBtnClicked")) );
 				if(typeof(this._lastEntityBtn) != 'undefined' && this._lastEntityBtn != null) this.eventHandlers.push( on(this._lastEntityBtn, 'click', lang.hitch(this, "onLastEntityBtnClicked")) );
 
-				if(typeof(this._chatLinkBtn) != 'undefined' && this._chatLinkBtn != null) this.eventHandlers.push( on(this._chatLinkBtn, 'click', lang.hitch(this, "shareLinkOnChat")) );
-				
-
 				if(lang.isArray(this._extraButtons) && this._extraButtons.length > 0){
 					for (var i = this._extraButtons.length - 1; i >= 0; i--) {
 						var extraButtonInfo = this._extraButtons[i];
@@ -176,10 +172,6 @@ define([
 
 				// this causes WizardManager to build the tabs
 				this.inherited(arguments);
-			},
-
-			shareLinkOnChat:function(){
-				topic.publish("share-current-hash-on-chat");
 			},
 
 			loadEntityviaLoader:function(customOnLoadFn){
@@ -308,11 +300,11 @@ define([
 
 			onCancelBtnClicked:function(){
 				if(typeof(this._cancelConfirmMessage) != "undefined"){
-					emanda2.confirmDialog.set("confirmMessage", this._cancelConfirmMessage);
+					__.confirmDialog.set("confirmMessage", this._cancelConfirmMessage);
 				}else{
-					emanda2.confirmDialog.set("confirmMessage", 'Are you sure you want to cancel this ' + this._entityLabel + ' ?');
+					__.confirmDialog.set("confirmMessage", 'Are you sure you want to cancel this ' + this._entityLabel + ' ?');
 				}
-				emanda2.confirmDialog.show(lang.hitch(this, "cancelConfirmed"));
+				__.confirmDialog.show(lang.hitch(this, "cancelConfirmed"));
 			},
 
 			cancelConfirmed:function(){
@@ -338,9 +330,9 @@ define([
 			navigateEntityList:function(command){
 				var owner = this;
 				if(this.changeTracker.isModified(this._store)){
-					emanda2.confirmDialog.set("confirmMessage", 'You are about to leave this, are you sure you want to discard your changes ?');
-					emanda2.confirmDialog.set("title", 'Unsaved changes');
-					emanda2.confirmDialog.show(function(){
+					__.confirmDialog.set("confirmMessage", 'You are about to leave this, are you sure you want to discard your changes ?');
+					__.confirmDialog.set("title", 'Unsaved changes');
+					__.confirmDialog.show(function(){
 						owner.confirmNavigateAway(command)
 					});
 				}else{
@@ -420,7 +412,7 @@ define([
 				}
 
 
-				var context = emanda2.entities.getContext(this._store);
+				var context = __.entities.getContext(this._store);
 
 				if(!context.entityArrayStore){
 
@@ -445,7 +437,7 @@ define([
 					}
 
 					var owner = this;
-					var req = emanda2.api.get(this._store + "?_nav=" + command + "&_nav_id=" + this._currentEntity.id + optionsString,null, false);
+					var req = __.api.get(this._store + "?_nav=" + command + "&_nav_id=" + this._currentEntity.id + optionsString,null, false);
 					req.then(function(response){
 						if(typeof(response) == "object" && response != null){
 							if(response.hasOwnProperty("error")){

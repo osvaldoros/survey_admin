@@ -39,8 +39,8 @@ define([
 
 			renderItem:function(){
 				// update the text in the span to match the "name" of the data if one exists
-				if(this._data && this._data.hasOwnProperty("$ref") && emanda2.urls.model.links.editor.hasOwnProperty(this._data.$ref) && this.useLink){
-					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL(emanda2.urls.model.links.editor[this._data.$ref], this._data.id) );
+				if(this._data && this._data.hasOwnProperty("$ref") && __.urls.model.links.editor.hasOwnProperty(this._data.$ref) && this.useLink){
+					var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL(__.urls.model.links.editor[this._data.$ref], this._data.id) );
 					this.name.innerHTML = '<a href="'+ link +'" target="_blank">'+ this.getName() +'</a>'
 				}else{
 					this.name.innerHTML = this.getName();
@@ -96,8 +96,8 @@ define([
 				if(typeof(prop) == "string"){
 					display = prop;
 				}else if(typeof(prop) == "object" && prop != null && prop.hasOwnProperty("name")){
-					if(prop.hasOwnProperty("$ref") && emanda2.urls.model.links.editor.hasOwnProperty(prop.$ref)){
-						var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( emanda2.urls.model.links.editor[prop.$ref], prop.id ));
+					if(prop.hasOwnProperty("$ref") && __.urls.model.links.editor.hasOwnProperty(prop.$ref)){
+						var link = HashManager.getInstance().addAuthToken( HashManager.getInstance().addIdToURL( __.urls.model.links.editor[prop.$ref], prop.id ));
 						return "<li><strong>"+name+ "</strong> : <a href=" + link + " target=\"_blank\"> " + prop.name + "</a> </li>";
 					}else{
 						display = prop.name;

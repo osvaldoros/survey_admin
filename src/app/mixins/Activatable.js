@@ -80,7 +80,7 @@ define([
 					
 					// only top modules are driven by hashChanges, it is their responsibility to update the state of their children
 					if(this.topModule){
-						this.hashChangeHandle = dojo.subscribe("/emanda2/hashchange", this, this._onActivatableHashChange);
+						this.hashChangeHandle = dojo.subscribe("/__/hashchange", this, this._onActivatableHashChange);
 						stateRefreshed = this.setStateFromHash(this.hashManager.getHash());
 					}
 					// first attempt to set the state based on the hash, this will call refreshState implicitly

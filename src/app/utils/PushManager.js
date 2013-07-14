@@ -27,8 +27,8 @@ define([
 		connect:function(){
 			var owner = this;
 			
-			if(dojo.config.drivercheck.websocket_enabled == true){
-				this.socket = dojox.socket(emanda2.urls.WEBSOCKET + "?token=" + emanda2.user.auth_token);
+			if(dojo.config.appSpecific.websocket_enabled == true){
+				this.socket = dojox.socket(__.urls.WEBSOCKET + "?token=" + __.user.auth_token);
 				this._connectHandler = this.socket.on("open", function(event){
 					owner._connected = true;
 				});

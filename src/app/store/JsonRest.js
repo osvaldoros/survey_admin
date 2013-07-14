@@ -67,8 +67,8 @@ define([
 			headers.Accept = this.accepts;
 			
 			//<custom>
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 
 			if(typeof(query) == "object"){
@@ -108,8 +108,8 @@ define([
 				"If-None-Match": options.overwrite === false ? "*" : null
 			};
 			//<custom>
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 			//</custom>
 			return xhr(hasId && !options.incremental ? "PUT" : "POST", {
@@ -127,8 +127,8 @@ define([
 			//		The identity to use to delete the object
 			var headers = {};
 			//<custom>
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 			//</custom>
 			return xhr("DELETE",{
@@ -162,7 +162,7 @@ define([
 			}
 
 			// put the query in the context
-			emanda2.entities.addOptionsToContext(query, this.target);
+			__.entities.addOptionsToContext(query, this.target);
 
 			if(query && typeof query == "object"){
 				//query = this.sanitizeQuery(query);
@@ -176,7 +176,7 @@ define([
 				var sortParam = this.sortParam;
 
 				// put the query in the context
-				emanda2.entities.addOptionsToContext({sortParam:sortParam, sort:options.sort}, this.target);
+				__.entities.addOptionsToContext({sortParam:sortParam, sort:options.sort}, this.target);
 				
 				query += this.getFirstDivider(query) + (sortParam ? sortParam + '=' : "sort(");
 				for(var i = 0; i<options.sort.length; i++){
@@ -189,8 +189,8 @@ define([
 			}
 			
 			//<custom>
-			if(typeof(emanda2.user.auth_token) !== 'undefined'){
-				headers["X-Auth-Token"] = emanda2.user.auth_token;
+			if(typeof(__.user.auth_token) !== 'undefined'){
+				headers["X-Auth-Token"] = __.user.auth_token;
 			}
 			//</custom>
 			var results = xhr("GET", {
@@ -229,7 +229,7 @@ define([
  		 * @param {Object} query
     	 */
     	getFirstDivider:function(query){
-    		var targetWithoutHost = this.target.split(dojoConfig.drivercheck.api_host).join('');
+    		var targetWithoutHost = this.target.split(dojoConfig.appSpecific.api_host).join('');
     		if(targetWithoutHost.indexOf('?') != -1){
     			return "&";
     		}
