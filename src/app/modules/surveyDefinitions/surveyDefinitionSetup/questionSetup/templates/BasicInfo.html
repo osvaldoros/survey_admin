@@ -7,6 +7,12 @@
 				<td><input type="text" required="true" name="name" data-dojo-attach-point="nameBox" observer="recordChange" placeholder="Acme Lab Inc" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the question name" /></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td  label="true">Response Type: </td>
+				<td><select data-dojo-attach-point="response_typeBox" name="response_type" store="{config:{url:'DISTINCT_RESPONSE_TYPE', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+
 		</table>
 	</form>
 

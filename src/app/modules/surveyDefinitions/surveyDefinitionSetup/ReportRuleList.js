@@ -3,14 +3,14 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
-	"./QuestionSetup"
+	"./ReportRuleSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, QuestionSetup){
+	function(declare, on, lang, GridManagerBlock, ReportRuleSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.QuestionList", [GridManagerBlock], {
-		title:"Questions",
-		_store:__.urls.QUESTION,
-		_entityLabel: "Question",
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock], {
+		title:"Report Rules",
+		_store:__.urls.REPORT_RULE,
+		_entityLabel: "Rule",
 		_columns: [
 			{label:"Name", field:"name", sortable:true}
 		],
@@ -22,10 +22,10 @@ define([
 				{label:"Name", field:"name", sortable:true}
 			];
 
-			this._base_query = lang.hitch(this, "questionBaseQuery")
+			this._base_query = lang.hitch(this, "reportRuleBaseQuery")
 	    },
 
-		questionBaseQuery:function(){
+		reportRuleBaseQuery:function(){
 			if(typeof(this.survey_definition_id) == "undefined" || this.survey_definition_id == null){
 				return false;
 			}
@@ -37,12 +37,12 @@ define([
    			this.inherited(arguments);
 
 			var setupDialogInfo = {
-				title:"Question Setup", 
+				title:"ReportRule Setup", 
 				dialogWidth:"700px", 
 				dialogHeight:"450px"
 			}
 
-   			this.setupDialog = __.workspaceManager.getModuleInDialog(new QuestionSetup(), setupDialogInfo);
+   			this.setupDialog = __.workspaceManager.getModuleInDialog(new ReportRuleSetup(), setupDialogInfo);
    			
    		},
 

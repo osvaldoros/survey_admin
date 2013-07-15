@@ -40,13 +40,14 @@ define([
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
-	"app/uicomponents/Map"
-	
+	"app/uicomponents/Map",
+	"./LanguagedReportRuleList",
+
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map){
+			UIStores, Map, LanguagedReportRuleList){
 	
 	/*
 	 * 
@@ -64,7 +65,7 @@ define([
 	 * 
 	 */
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.languagedQuestionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -79,13 +80,15 @@ define([
 			startup:function(){
 				this.inherited(arguments);
 				
+				this.languagedReportRuleList = this.getWidget('languagedReportRuleList');
+
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.languagedQuestionBasicInfoForm = this.getWidget('languagedQuestionBasicInfoForm');
-				this.languagedQuestionBasicInfoForm.set('storeURL', __.urls.LANGUAGED_QUESTION);
-				this.languagedQuestionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.reportRuleBasicInfoForm = this.getWidget('reportRuleBasicInfoForm');
+				this.reportRuleBasicInfoForm.set('storeURL', __.urls.REPORT_RULE);
+				this.reportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.languagedQuestionBasicInfoForm);
+				this.configureForm(this.reportRuleBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -95,9 +98,23 @@ define([
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
+				}								
+
+				var reportRule = this.getUpdatingEntity();
+
+				if(typeof(reportRule) == "object" && reportRule != null){
+					this.languagedReportRuleList.set("report_rule_id", reportRule.id, true);		
+				}else{
+					this.languagedReportRuleList.set("report_rule_id", null, true);		
 				}
-				var entity = this.getUpdatingEntity();
-				this.viewInForm(entity, this.languagedQuestionBasicInfoForm);				
+				this.languagedReportRuleList.activate();	
+
+				this.viewInForm(reportRule, this.reportRuleBasicInfoForm);	
+
+			},
+
+			deactivate:function(){
+				this.inherited(arguments);
 			},
 			
 			onDeactivate:function(){

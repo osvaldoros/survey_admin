@@ -64,7 +64,7 @@ define([
 	 * 
 	 */
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.languagedQuestionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.languagedReportRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -80,12 +80,12 @@ define([
 				this.inherited(arguments);
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.languagedQuestionBasicInfoForm = this.getWidget('languagedQuestionBasicInfoForm');
-				this.languagedQuestionBasicInfoForm.set('storeURL', __.urls.LANGUAGED_QUESTION);
-				this.languagedQuestionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.languagedReportRuleBasicInfoForm = this.getWidget('languagedReportRuleBasicInfoForm');
+				this.languagedReportRuleBasicInfoForm.set('storeURL', __.urls.LANGUAGED_REPORT_RULE);
+				this.languagedReportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.languagedQuestionBasicInfoForm);
+				this.configureForm(this.languagedReportRuleBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -96,8 +96,9 @@ define([
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
 				}
+
 				var entity = this.getUpdatingEntity();
-				this.viewInForm(entity, this.languagedQuestionBasicInfoForm);				
+				this.viewInForm(entity, this.languagedReportRuleBasicInfoForm);				
 			},
 			
 			onDeactivate:function(){

@@ -41,8 +41,6 @@ define([
 	
 	"app/store/UIStores",
 	"app/uicomponents/Map"
-	
-	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
@@ -64,7 +62,7 @@ define([
 	 * 
 	 */
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.languagedQuestionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.navigationRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -80,12 +78,12 @@ define([
 				this.inherited(arguments);
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.languagedQuestionBasicInfoForm = this.getWidget('languagedQuestionBasicInfoForm');
-				this.languagedQuestionBasicInfoForm.set('storeURL', __.urls.LANGUAGED_QUESTION);
-				this.languagedQuestionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.navigationRuleBasicInfoForm = this.getWidget('navigationRuleBasicInfoForm');
+				this.navigationRuleBasicInfoForm.set('storeURL', __.urls.NAVIGATION_RULE);
+				this.navigationRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.languagedQuestionBasicInfoForm);
+				this.configureForm(this.navigationRuleBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -95,9 +93,15 @@ define([
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
-				}
-				var entity = this.getUpdatingEntity();
-				this.viewInForm(entity, this.languagedQuestionBasicInfoForm);				
+				}								
+
+				var navigationRule = this.getUpdatingEntity();
+				this.viewInForm(navigationRule, this.navigationRuleBasicInfoForm);	
+
+			},
+
+			deactivate:function(){
+				this.inherited(arguments);
 			},
 			
 			onDeactivate:function(){

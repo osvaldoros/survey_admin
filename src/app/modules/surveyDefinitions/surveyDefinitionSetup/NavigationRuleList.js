@@ -3,29 +3,29 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
-	"./QuestionSetup"
+	"./NavigationRuleSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, QuestionSetup){
+	function(declare, on, lang, GridManagerBlock, NavigationRuleSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.QuestionList", [GridManagerBlock], {
-		title:"Questions",
-		_store:__.urls.QUESTION,
-		_entityLabel: "Question",
-		_columns: [
-			{label:"Name", field:"name", sortable:true}
-		],
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.NavigationRuleList", [GridManagerBlock], {
+		title:"Navigation Rules",
+		_store:__.urls.NAVIGATION_RULE,
+		_entityLabel: "Rule",
 		gridHeight:"250px",
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true}
+				{label:"Name", field:"name", sortable:true},
+				{label:"From", field:"from_question_id", sortable:true},
+				{label:"Response Condition", field:"reponse_value_condition", sortable:true},
+				{label:"To", field:"to_question_id", sortable:true}
 			];
 
-			this._base_query = lang.hitch(this, "questionBaseQuery")
+			this._base_query = lang.hitch(this, "navRulesBaseQuery")
 	    },
 
-		questionBaseQuery:function(){
+		navRulesBaseQuery:function(){
 			if(typeof(this.survey_definition_id) == "undefined" || this.survey_definition_id == null){
 				return false;
 			}
@@ -37,12 +37,12 @@ define([
    			this.inherited(arguments);
 
 			var setupDialogInfo = {
-				title:"Question Setup", 
+				title:"Navigation Rule Setup", 
 				dialogWidth:"700px", 
 				dialogHeight:"450px"
 			}
 
-   			this.setupDialog = __.workspaceManager.getModuleInDialog(new QuestionSetup(), setupDialogInfo);
+   			this.setupDialog = __.workspaceManager.getModuleInDialog(new NavigationRuleSetup(), setupDialogInfo);
    			
    		},
 

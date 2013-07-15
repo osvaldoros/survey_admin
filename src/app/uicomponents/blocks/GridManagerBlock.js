@@ -37,7 +37,7 @@ define([
 			_showSearchFld:false,
 			_requiredPermissions:null,
 
-			gridMarginTop: '40px',
+			gridMarginTop: '30px',
 
 			startup:function(){
 				this.inherited(arguments);

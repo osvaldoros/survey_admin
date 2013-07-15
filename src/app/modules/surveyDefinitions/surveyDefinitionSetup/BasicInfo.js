@@ -41,13 +41,15 @@ define([
 	
 	"app/store/UIStores",
 	"app/uicomponents/Map",
-	"app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList"
+	"app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList",
+	"app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleList",
+	"app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList"
 	
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map, QuestionList){
+			UIStores, Map, QuestionList, NavigationRuleList, ReportRuleList){
 	
 	/*
 	 * 
@@ -82,6 +84,8 @@ define([
 
 
 				this.questionList = this.getWidget('questionList');
+				this.navigationRuleList = this.getWidget('navigationRuleList');
+				this.reportRuleList = this.getWidget('reportRuleList');
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.surveyDefinitionBasicInfoForm = this.getWidget('surveyDefinitionBasicInfoForm');
@@ -102,13 +106,20 @@ define([
 				}						
 
 				var surveyDefinition = this.getUpdatingEntity();
+				
 				if(typeof(surveyDefinition) == "object" && surveyDefinition != null){
 					this.questionList.set("survey_definition_id", surveyDefinition.id, true);		
+					this.navigationRuleList.set("survey_definition_id", surveyDefinition.id, true);		
+					this.reportRuleList.set("survey_definition_id", surveyDefinition.id, true);		
 				}else{
 					this.questionList.set("survey_definition_id", null, true);		
+					this.navigationRuleList.set("survey_definition_id", null, true);		
+					this.reportRuleList.set("survey_definition_id", null, true);		
 				}
 
 				this.questionList.activate();	
+				this.navigationRuleList.activate();	
+				this.reportRuleList.activate();	
 
 				this.viewInForm(surveyDefinition, this.surveyDefinitionBasicInfoForm);				
 			},
