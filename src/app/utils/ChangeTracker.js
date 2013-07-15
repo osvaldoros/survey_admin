@@ -131,8 +131,14 @@ define([
 			
 			isModified:function(storeURL, property){
 				if(typeof(property) == "undefined"){
-					if(this.__entityMap.hasOwnProperty(storeURL) && this.__entityMap[storeURL] != null){
-						return true;
+					var changesObject = this.getChangesObject(storeURL);
+					var oldValues = changesObject.oldValues;
+					if(typeof(changesObject) == "object" && changesObject != null && typeof(oldValues) == "object" && oldValues != null){
+						for(var p in changesObject){
+							if(p != "oldValues" && oldValues.hasOwnProperty(p) && changesObject[p] != oldValues[p]){
+								return true;
+							}
+						}
 					}
 				}else{
 					var changesObject = this.getChangesObject(storeURL);

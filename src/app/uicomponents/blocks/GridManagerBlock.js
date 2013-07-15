@@ -34,8 +34,10 @@ define([
 			_showAddBtn:true,
 			_showEditBtn:true,
 			_showDeleteBtn:true,
-			_showSearchFld:true,
+			_showSearchFld:false,
 			_requiredPermissions:null,
+
+			gridMarginTop: '40px',
 
 			startup:function(){
 				this.inherited(arguments);

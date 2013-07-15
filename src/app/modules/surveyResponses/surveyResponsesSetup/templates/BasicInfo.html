@@ -1,0 +1,59 @@
+<div class="moduleContainer" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+	
+	<form dojoType="app.form.Manager" data-dojo-attach-point="surveyResponseBasicInfoForm" method="post">
+		<table cellpadding="0" cellspacing="2" style="width: 100%;">
+			<tr>
+				<td  label="true">Name*: </td>
+				<td><input type="text" required="true" name="name" data-dojo-attach-point="name" observer="recordChange" placeholder="Acme Lab Inc" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the survey Response name" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Age: </td>
+				<td><input type="text" required="true" name="age" data-dojo-attach-point="age" observer="recordChange" placeholder="18" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the survey Response age" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Client: </td>
+				<td><select data-dojo-attach-point="client" name="client_id" data-dojo-attach-point="clientBox" store="{config:{url:'CLIENT', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Education: </td>
+				<td><select data-dojo-attach-point="education" name="education_id" data-dojo-attach-point="educationBox" store="{config:{url:'EDUCATION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">English Proficiency: </td>
+				<td><select data-dojo-attach-point="english_proficiency" name="english_proficiency_id" data-dojo-attach-point="english_proficiencyBox" store="{config:{url:'ENGLISH_PROFICIENCY', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Immigration Status: </td>
+				<td><select data-dojo-attach-point="immigration_status" name="immigration_status_id" data-dojo-attach-point="immigration_statusBox" store="{config:{url:'IMMIGRATION_STATUS', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Home Life: </td>
+				<td><select data-dojo-attach-point="home_life" name="home_life_id" data-dojo-attach-point="home_lifeBox" store="{config:{url:'HOME_LIFE', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Income: </td>
+				<td><select data-dojo-attach-point="income" name="income_id" data-dojo-attach-point="incomeBox" store="{config:{url:'INCOME', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Relationship Status: </td>
+				<td><select data-dojo-attach-point="relationship_status" name="relationship_status_id" data-dojo-attach-point="relationship_statusBox" store="{config:{url:'RELATIONSHIP_STATUS', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Gender: </td>
+				<td><select data-dojo-attach-point="gender" name="gender_id" data-dojo-attach-point="genderBox" store="{config:{url:'GENDER', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	
+	
+</div>

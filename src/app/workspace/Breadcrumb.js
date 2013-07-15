@@ -68,7 +68,7 @@ define([
 				if(typeof(__.user.client) == "object" && __.user.client != null && typeof(__.user.client.name) != "undefined"){
 					displayOrgname = __.user.client.name
 				}else{
-					displayOrgname = "All clients";
+					displayOrgname = "Global Admin";
 				}
 				
 				this.userCrumb.set('label', displayUsername);
@@ -119,12 +119,12 @@ define([
 				}
 				if(this.stateCrumb != null){
 					this.crumbEventHandlers.push( on(this.stateCrumb, 'click', function(){
-						owner.hashManager.dropHashItemsAfterNumber(1)
+						owner.hashManager.dropHashItemsAfterNumber(1);
 					}));
 				}
 				if(this.entityCrumb != null){
 					this.crumbEventHandlers.push( on(this.entityCrumb, 'click', function(){
-						owner.hashManager.dropHashItemsAfterNumber(2)
+						owner.hashManager.dropHashItemsAfterNumber(2);
 					}));
 				}
 			},

@@ -95,7 +95,7 @@ define([
 							}
 							return JsonRest.prototype.get.call(this, combinedQuery, options);
 						}else{
-							alert("Here is false");
+							return null;
 						//	return QueryResults([]);
 						}
 					}

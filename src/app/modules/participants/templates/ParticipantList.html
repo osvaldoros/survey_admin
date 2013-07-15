@@ -1,0 +1,12 @@
+<div>
+	
+	<form dojoType="app.form.Manager" data-dojo-attach-point="participantFilteringForm" method="post">
+		<div style="position: absolute; top: 31px;">
+			<select name="clientFilter" data-dojo-attach-point="clientFilter" observer="refreshUI" store="{config:{url:'CLIENT', selectFirst:true}}" observer="refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select>
+    	</div>
+	</form>
+	
+	<div data-dojo-attach-point="participantGrid" class="activatable" data-dojo-type="app.modules.participants.ParticipantGrid"></div>	
+	
+</div>
+		
