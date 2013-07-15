@@ -102,10 +102,13 @@ define([
 				}						
 
 				var surveyDefinition = this.getUpdatingEntity();
-				this.questionList.activate();	
 				if(typeof(surveyDefinition) == "object" && surveyDefinition != null){
 					this.questionList.set("survey_definition_id", surveyDefinition.id, true);		
+				}else{
+					this.questionList.set("survey_definition_id", null, true);		
 				}
+
+				this.questionList.activate();	
 
 				this.viewInForm(surveyDefinition, this.surveyDefinitionBasicInfoForm);				
 			},

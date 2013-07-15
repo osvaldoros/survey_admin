@@ -95,8 +95,9 @@ define([
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
-				}								
-				this.viewInForm(this.getUpdatingEntity(), this.languagedQuestionBasicInfoForm);				
+				}
+
+				this.viewInForm(question, this.languagedQuestionBasicInfoForm);				
 			},
 			
 			onDeactivate:function(){

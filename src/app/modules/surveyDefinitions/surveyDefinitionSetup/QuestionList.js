@@ -26,7 +26,7 @@ define([
 	    },
 
 		questionBaseQuery:function(){
-			if(typeof(this.survey_definition_id) == "undefined"){
+			if(typeof(this.survey_definition_id) == "undefined" || this.survey_definition_id == null){
 				return false;
 			}
 
@@ -50,6 +50,13 @@ define([
    			this.survey_definition_id = value;
    			this.setupDialog.set("survey_definition_id", value, true);
    			this.refresh();
+
+   			this._showAddBtn = (this.survey_definition_id != null && typeof(this.survey_definition_id) != "undefined");
+			this._showEditBtn = (this.survey_definition_id != null && typeof(this.survey_definition_id) != "undefined");
+			this._showDeleteBtn = (this.survey_definition_id != null && typeof(this.survey_definition_id) != "undefined");
+
+			this.showOrHideStuff();
+
    		}
 
 	});

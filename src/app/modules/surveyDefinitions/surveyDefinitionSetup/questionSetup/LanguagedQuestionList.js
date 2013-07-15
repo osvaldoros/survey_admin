@@ -25,7 +25,7 @@ define([
 	    },
 
 		languagedQuestionBaseQuery:function(){
-			if(typeof(this.question_id) == "undefined"){
+			if(typeof(this.question_id) == "undefined" || this.question_id == null){
 				return false;
 			}
 
@@ -47,6 +47,13 @@ define([
    		_setQuestion_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
    			this.question_id = value;
    			this.setupDialog.set("question_id", value, true);
+
+   			this._showAddBtn = (this.question_id != null && typeof(this.question_id) != "undefined");
+			this._showEditBtn = (this.question_id != null && typeof(this.question_id) != "undefined");
+			this._showDeleteBtn = (this.question_id != null && typeof(this.question_id) != "undefined");
+
+			this.showOrHideStuff();
+
    			this.refresh();
    		}
 
