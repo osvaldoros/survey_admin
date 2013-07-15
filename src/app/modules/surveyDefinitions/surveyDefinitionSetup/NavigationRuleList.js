@@ -3,15 +3,17 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
+	"app/mixins/SelfActivates",
 	"./NavigationRuleSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, NavigationRuleSetup){
+	function(declare, on, lang, GridManagerBlock, SelfActivates, NavigationRuleSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.NavigationRuleList", [GridManagerBlock], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.NavigationRuleList", [GridManagerBlock, SelfActivates], {
 		title:"Navigation Rules",
 		_store:__.urls.NAVIGATION_RULE,
 		_entityLabel: "Rule",
 		gridHeight:"250px",
+		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
@@ -46,8 +48,14 @@ define([
    			
    		},
 
+   		onActivate:function(){
+			this.inherited(arguments);
+			console.log("Nav Rules > activate");
+   		},
+
    		_setSurvey_definition_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
    			this.survey_definition_id = value;
+			console.log("Nav Rules > survey_definition_id = " + value);
    			this.setupDialog.set("survey_definition_id", value, true);
    			this.refresh();
 

@@ -383,6 +383,19 @@ define([
 			return results;
 		},
 
+		setOnChildren:function(propName, value, passDown){
+			var children = this.__tabContainer.getChildren();
+			var results = [];
+			for (var i=0; i < children.length; i++) {
+				var child = children[i];
+				if(typeof(child.set) == "function"){
+					child.set(propName, value, passDown); // the last argument is so it is passed down from Dialogs to modules
+				}
+			}
+		},
+
+
+
 		executeAfterNavigate:function(){
 			this.callOnChildren("executeAfterNavigate");
 		},

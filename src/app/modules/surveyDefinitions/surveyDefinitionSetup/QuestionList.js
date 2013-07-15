@@ -3,11 +3,12 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
+	"app/mixins/SelfActivates",
 	"./QuestionSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, QuestionSetup){
+	function(declare, on, lang, GridManagerBlock, SelfActivates, QuestionSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.QuestionList", [GridManagerBlock], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.QuestionList", [GridManagerBlock, SelfActivates], {
 		title:"Questions",
 		_store:__.urls.QUESTION,
 		_entityLabel: "Question",
@@ -15,6 +16,7 @@ define([
 			{label:"Name", field:"name", sortable:true}
 		],
 		gridHeight:"250px",
+		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
@@ -46,8 +48,15 @@ define([
    			
    		},
 
+
+   		onActivate:function(){
+			this.inherited(arguments);
+			console.log("Questions > activate");
+   		},
+
    		_setSurvey_definition_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
    			this.survey_definition_id = value;
+   			console.log("Questions > survey_definition_id = " + value);
    			this.setupDialog.set("survey_definition_id", value, true);
    			this.refresh();
 

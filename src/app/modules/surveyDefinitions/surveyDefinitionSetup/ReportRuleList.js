@@ -3,11 +3,12 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
+	"app/mixins/SelfActivates",
 	"./ReportRuleSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, ReportRuleSetup){
+	function(declare, on, lang, GridManagerBlock, SelfActivates, ReportRuleSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock, SelfActivates], {
 		title:"Report Rules",
 		_store:__.urls.REPORT_RULE,
 		_entityLabel: "Rule",
@@ -15,6 +16,7 @@ define([
 			{label:"Name", field:"name", sortable:true}
 		],
 		gridHeight:"250px",
+		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
@@ -46,8 +48,15 @@ define([
    			
    		},
 
+
+   		onActivate:function(){
+			this.inherited(arguments);
+			console.log("Report Rules > activate");
+   		},   		
+
    		_setSurvey_definition_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
    			this.survey_definition_id = value;
+   			console.log("Report Rules > survey_definition_id = " + value);
    			this.setupDialog.set("survey_definition_id", value, true);
    			this.refresh();
 

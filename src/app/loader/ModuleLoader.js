@@ -78,6 +78,14 @@ define([
 				this.__activate();
 				this._pendingActivation = false;
 			}
+
+			if(lang.isArray(this._pendingSets) && this._pendingSets.length > 0){
+				for (var i = 0; i < this._pendingSets.length; i++) {
+					var pendingSetObj = this._pendingSets[i];
+					this.set(pendingSetObj.name, pendingSetObj.value, pendingSetObj.passDown);
+				};
+				this._pendingSets = null;
+			}
     	},
 		
 		__activate:function(){
@@ -130,6 +138,25 @@ define([
 		deactivate:function(){
 			this.__deactivate();
 		},
+
+		
+		set: function(name, value, passDown){
+			
+			if(passDown === true){
+				this.inherited(arguments);
+				// call set on all the children of this Dialog
+				if(typeof(this.module) == 'object' && this.module != null){
+					if(typeof(this.module.set) == 'function'){
+						this.module.set(name, value);
+					}
+				}else{
+					if(!lang.isArray(this._pendingSets)) this._pendingSets = [];
+					this._pendingSets.push({name:name, value:value, passDown:passDown});
+				}
+			}else{
+				this.inherited(arguments);
+			}
+		},			
 		
 		setCurrentState:function(state){
 			if(typeof(this.module) != 'undefined' && typeof(this.module.setCurrentState) != 'undefined'){
