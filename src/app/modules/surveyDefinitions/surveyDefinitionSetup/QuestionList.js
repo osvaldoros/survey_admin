@@ -41,7 +41,7 @@ define([
 			var setupDialogInfo = {
 				title:"Question Setup", 
 				dialogWidth:"700px", 
-				dialogHeight:"450px"
+				dialogHeight:"480px"
 			}
 
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new QuestionSetup(), setupDialogInfo);
