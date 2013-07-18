@@ -1,0 +1,3 @@
+//>>built
+define("app/mixins/WidgetMap",["dojo/_base/declare","dojo/dom"],function(f,g){return f([],{__widgetMap:null,getWidget:function(a){if(typeof this[a]!="undefined")return this[a];this.__widgetMap==null&&this.__buildWidgetMap();if(typeof this.__widgetMap[a]!="undefined")return this.__widgetMap[a];var b=dijit.byId(a);if(typeof b!="undefined")return b;a=g.byId(a);if(typeof a!="undefined")return a;return null},__buildWidgetMap:function(){this.__widgetMap={};this.__mapWidgets(this,this.__widgetMap)},__mapWidgets:function(a,
+b){for(var e=a.getChildren(),c=0;c<e.length;c++){var d=e[c];b[d.dojoAttachPoint]=d;this.__mapWidgets(d,b)}}})});

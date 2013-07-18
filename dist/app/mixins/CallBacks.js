@@ -1,0 +1,2 @@
+//>>built
+define("app/mixins/CallBacks",["dojo/_base/declare","dojo/_base/lang"],function(c){return c([],{runCallBack:function(a,b){if(typeof this.callBacks=="object"&&this.callBacks!=null&&this.callBacks.hasOwnProperty(a)&&typeof this.callBacks[a]=="function")this.callBacks[a](b);else if(typeof this.callbacks=="object"&&this.callbacks!=null&&this.callbacks.hasOwnProperty(a)&&typeof this.callbacks[a]=="function")this.callbacks[a](b)}})});

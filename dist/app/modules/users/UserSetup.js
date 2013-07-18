@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/users/UserSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock"],function(b,c,d,a){return b("app.modules.users.UserSetup",[a],{_store:__.urls.USER,_entityLabel:"User",constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/users/userSetup/BasicInfo"}]}})});

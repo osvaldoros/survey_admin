@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/clients/ClientSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock"],function(b,c,d,a){return b("app.modules.clients.ClientSetup",[a],{_store:__.urls.CLIENT,_entityLabel:"client",constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/clients/clientSetup/BasicInfo"}]}})});

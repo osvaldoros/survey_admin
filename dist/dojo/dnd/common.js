@@ -1,0 +1,2 @@
+//>>built
+define("dojo/dnd/common",["../main"],function(a){a.getObject("dnd",!0,a);a.dnd.getCopyKeyState=a.isCopyKey;a.dnd._uniqueId=0;a.dnd.getUniqueId=function(){var b;do b=a._scopeName+"Unique"+ ++a.dnd._uniqueId;while(a.byId(b));return b};a.dnd._empty={};a.dnd.isFormElement=function(a){a=a.target;if(a.nodeType==3)a=a.parentNode;return" button textarea input select option ".indexOf(" "+a.tagName.toLowerCase()+" ")>=0};return a.dnd});

@@ -1,0 +1,3 @@
+//>>built
+define("app/utils/MathUtils",["dojo/_base/declare","dojo/_base/lang"],function(d,e){var f=d("app.utils.MathUtils",[],{});e.mixin(app.utils.MathUtils,{toRadians:function(a){return a*(Math.PI/180)},displacePoint:function(a,c,b){b=app.utils.MathUtils.toRadians(b);return{x:a.x+c*Math.cos(b),y:a.y+c*Math.sin(b)}},getLinePointY:function(a,c,b){return typeof b!="undefined"?a*c+b:a*c},randomNumber:function(){return Math.floor(Math.random()*1048576).toString(16)+""+Math.floor(Math.random()*1048576).toString(16)}});
+return f});

@@ -1,0 +1,12 @@
+<div>
+	
+	<form dojoType="app.form.Manager" data-dojo-attach-point="surveyDefinitionFilteringForm" method="post">
+		<div style="position: absolute; top: 31px;">
+			<select name="programFilter" data-dojo-attach-point="programFilter" observer="refreshUI" store="{config:{url:'PROGRAM', selectFirst:true}}" observer="refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select>
+    	</div>
+	</form>
+	
+	<div data-dojo-attach-point="surveyDefinitionGrid" class="activatable" data-dojo-type="app.modules.surveyDefinitions.SurveyDefinitionGrid"></div>	
+	
+</div>
+		

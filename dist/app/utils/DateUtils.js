@@ -1,0 +1,2 @@
+//>>built
+define("app/utils/DateUtils",["dojo/_base/declare","dojo/_base/lang"],function(e,f){var g=e("app.utils.DateUtils",[],{});f.mixin(app.utils.DateUtils,{dateFromYYYY_MM_DD:function(b){var c=new Date,d=!1;if(typeof b=="string"){var a=b.split("-");a.length>=3?d=!0:(a=b.split("/"),a.length>=3?d=!0:(a=b.split(" "),a.length>=3&&(d=!0)));if(d)return c.setFullYear(a[0]),c.setMonth(a[1]-1),c.setDate(a[2]),c}else return null}});return g});

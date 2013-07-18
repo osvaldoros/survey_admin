@@ -1,0 +1,3 @@
+//>>built
+define("xstyle/shim/ie-filter",[],function(){return{onProperty:function(e,d){var b=d.split(/\s+/);if(e=="box-shadow"){var a=parseFloat(b[0]),c=parseFloat(b[1]);return"filter: progid:DXImageTransform.Microsoft.Shadow(strength="+Math.sqrt(a*a+c*c)+",direction="+((c>0?180:360)-Math.atan(a/c)*180/Math.PI)+",color='"+b[3]+"');"}if(e=="transform"&&d.match(/rotate/))return a=d.match(/rotate\(([-\.0-9]+)deg\)/)[1]/180*Math.PI,b=Math.cos(a),a=Math.sin(a),"filter: progid:DXImageTransform.Microsoft.Matrix(M11="+
+b+", M12="+-a+",M21="+a+", M22="+b+", sizingMethod='auto expand');"}}});

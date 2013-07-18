@@ -1,0 +1,76 @@
+@import "../../../dijit/themes/drivercheck/variables";
+
+.drivercheck .dgrid {
+	border: 1px solid #aaa;
+	background: @secondary-color;
+	color: #000;
+}
+
+.drivercheck .ui-widget-header {
+	font-weight: bold;
+}
+.drivercheck .ui-widget-header,
+.drivercheck .dgrid-footer { 
+  color: @secondary-color;
+	background: @button-background-color; /* Old browsers */
+	background: -moz-linear-gradient(top, @button-background-color 0%, @button-background-color 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@button-background-color), color-stop(100%,@button-background-color)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, @button-background-color 0%,@button-background-color 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, @button-background-color 0%,@button-background-color 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, @button-background-color 0%,@button-background-color 100%); /* IE10+ */
+	background: linear-gradient(top, @button-background-color 0%,@button-background-color 100%); /* W3C */
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf0f5', endColorstr='#d5e0ea',GradientType=0 ); *//* IE6-9 */
+}
+.drivercheck .ui-widget-header .dgrid-cell:hover {
+  color: @text-color;
+	background: @primary-color; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, @primary-color 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,@primary-color)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,@primary-color 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,@primary-color 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,@primary-color 100%); /* IE10+ */
+	background: linear-gradient(top, #ffffff 0%,@primary-color 100%); /* W3C */
+}
+
+
+.drivercheck .ui-state-default { 
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	-o-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+	-webkit-transition-property: background-color, border-color;
+	-moz-transition-property: background-color, border-color;
+	-o-transition-property: background-color, border-color;
+	transition-property: background-color, border-color;
+	background: url("images/row_back.png") #fff repeat-x;
+}
+.has-ie-6 .drivercheck .ui-state-default {
+	background-image: none;
+}
+.drivercheck .ui-state-default:hover {
+	background-color: @unfocused-clickable-color;
+}
+
+.drivercheck .ui-state-active {
+	background-color: @minor-selected-color;
+}
+
+.drivercheck .ui-state-active[data-selected=true] {
+	background-color: @minor-selected-color;
+}
+
+.drivercheck .ui-state-active:hover {
+	background-color: @minor-selected-color;
+}
+
+.drivercheck .ui-state-highlight {
+	background-color: @button-background-color;
+}
+
+.drivercheck .dgrid-cell {
+	border-color: @secondary-color;
+}
+
+.drivercheck .ui-widget-header .dgrid-cell {
+	border-color: #bbb;
+}

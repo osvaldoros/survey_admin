@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/users/UserList",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/GridManagerBlock"],function(a,c,d,b){return a("app.modules.users.UserList",[b],{title:"Users",_store:__.urls.USER,_entityLabel:"User",_columns:[{label:"Name",field:"name",sortable:!0},{label:"Email",field:"email",sortable:!0},{label:"Created",field:"created"}]})});

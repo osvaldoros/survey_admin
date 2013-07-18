@@ -1,0 +1,3 @@
+//>>built
+define("app/modules/surveyResponses/SurveyResponseSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock"],function(b,d,c,a){return b("app.modules.surveyResponses.SurveyResponseSetup",[a],{_store:__.urls.SURVEY_RESPONSE,_entityLabel:"SurveyResponse",constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/surveyResponses/surveyResponseSetup/BasicInfo"}];this._extraButtons=[{label:"Edit Questions",handler:c.hitch(this,
+"onEditQuestionsClicked"),instanceName:"_addPrepaymentButton"}]},onEditQuestionsClicked:function(){}})});

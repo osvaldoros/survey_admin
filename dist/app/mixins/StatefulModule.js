@@ -1,0 +1,2 @@
+//>>built
+define("app/mixins/StatefulModule",["dojo/_base/declare","app/mixins/Activatable","app/mixins/VisualStates","app/mixins/VisualPermissions","app/mixins/WidgetMap","app/mixins/CallBacks"],function(a,b,c,d,e,f){return a([b,c,d,e,f],{})});

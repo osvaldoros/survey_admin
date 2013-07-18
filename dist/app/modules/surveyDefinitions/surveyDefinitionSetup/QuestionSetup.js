@@ -1,0 +1,3 @@
+//>>built
+define("app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock","app/utils/ChangeTracker"],function(b,d,e,a,c){return b("app.modules.surveyDefinitions.surveyDefinitionSetup.QuestionSetup",[a],{_store:__.urls.QUESTION,_entityLabel:"Question",changeTracker:c.getInstance(),constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo"}]},
+prepareForSave:function(){this.changeTracker.getChangesObject(__.urls.QUESTION).data_definition_id=this.survey_definition_id;return!0}})});

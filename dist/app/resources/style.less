@@ -1,0 +1,316 @@
+@import "../../dijit/themes/claro/variables";
+/*@import "../../dijit/themes/claro/icons/commonIcons.css";*/
+/*@import "../../dijit/themes/claro/icons/commonIcons_rtl.css";*/
+
+
+/**
+ * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
+ * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
+ * @imported CSS files into a single file.
+ *
+ * It is highly, highly recommended that you develop your CSS using LESS: http://lesscss.org.
+ */
+
+@import '../../dojo/resources/dojo.css';
+@import '../../dijit/themes/claro/claro.css';
+
+/*
+ * Dgrid
+ */
+@import "../../dgrid/css/dgrid.css";
+@import "../../dgrid/css/skins/claro.css";
+
+/*
+ * FloatingPane
+ */
+@import "../../dojox/layout/resources/FloatingPane.css";
+@import "../../dojox/layout/resources/ResizeHandle.css";
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #231f1e;
+    padding: 0;
+}
+
+
+h2{
+    margin-top: 5px; 
+    margin-bottom: 0;
+}
+
+h3, h4, h5, h6 {
+    font-size: 1em; 
+    font-weight: bold; 
+    line-height: 1.5em; 
+    margin-top: 0; 
+    margin-bottom: 0;
+}
+
+tr{
+  height: 25px;
+}
+
+form td{
+  width: 150px;
+  vertical-align:middle;
+  padding-right: 10px;
+}
+
+td[label]{
+  text-align: right;
+  font-weight:bold;
+}
+
+.claro .moduleLoader{
+  padding: 0;
+}
+
+.claro .gridButtons{
+  padding: 0;
+  margin-top: 5px;
+}
+
+.filterForm tr{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.filterForm td{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.claro .filterForm .edgePanel{
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+.claro .modifiedLabel{
+  color: #000000;
+  background-color: yellow;
+  padding: 1px;
+  marging-left: 3px;
+}
+
+.claro .activeUsersLabel{
+  color: #FFFFFF;
+  background-color: red;
+  padding: 1px;
+}
+
+.claro .link{
+  /*border-bottom:1px solid @button-background-color;*/
+  padding-right: 1px; 
+  color: @button-background-color;
+  display:inline-block;
+  /*cursor: pointer; cursor: hand;*/
+  
+  &:hover{
+    /*border-bottom:1px solid @unfocused-clickable-color;*/
+    color: @unfocused-clickable-color;
+  }
+}
+
+
+.claro .XwBorder{
+  border-bottom:1px solid @button-background-color;
+  background-color:#FCFCFC;
+  padding-right: 2px; 
+  padding-left: 2px; 
+  color: @button-background-color;
+  display:inline-block;
+  cursor: pointer; cursor: hand;
+  
+  &:hover{
+    border-bottom:1px solid @unfocused-clickable-color;
+    color: @unfocused-clickable-color;
+  }
+}
+
+
+.claro .permissionTable tr{
+  height: 40px;
+}
+.claro .permissionTable td{
+  padding-left: 10px;
+}
+
+.claro .moreInfo ul{
+  list-style-type: none;
+  padding:5px;
+}
+
+.claro .noOutline{
+  outline: none;
+}
+
+#topLevelModule {
+    height: 100%;
+}
+#appLayout {
+    height: 100%;
+}
+#leftCol {
+    width: 14em;
+}
+
+#viewsChart {
+	width: 550px;
+	height: 550px;
+}
+
+.claro .secondayColoredBackground{
+    background-color: @secondary-color;
+}
+
+.claro .panel{
+    padding: 8px; 
+    display: block; 
+    overflow: auto;
+}
+
+.claro .edgePanel {
+    .claro .secondayColoredBackground;  
+    .claro .panel;
+}
+
+.claro .leftArrowOffset{
+  background-position: -77px 53%;
+}
+
+.claro .whitePanel {
+    background-color: #ffffff;
+    .claro .panel;
+    /*background-color: #c9192a;*/
+}
+
+.claro .coloredPanel {
+    /*background-color: #231f1e;*/
+    background-color: @primary-color;
+    .claro .panel;
+}
+
+
+.logo{
+	background-image: url('clarologo.png');
+	background-repeat:no-repeat;
+}
+.checkmark{
+	background-image: url('checkmark.png');
+	background-repeat:no-repeat;
+}
+
+.checkmark_red{
+  background-image: url('checkmark_red.png');
+  background-repeat:no-repeat;
+  width:15px; 
+  height:12px;
+}
+
+/*
+
+.dgrid-cell {
+    border: none;
+}
+*/
+
+.lockedRow{
+  background-image: url('lock.png');
+  background-repeat:no-repeat;
+  padding-left: 15px;
+}
+
+
+.greenHighliteRow{
+  background-color: #A4DA6C;
+}
+
+.yellowHighliteRow{
+  background-color: #FFFF00;
+}
+
+.redHighliteRow{
+  background-color: #FF0000;
+}
+
+.always_on_top{
+	position:relative;
+	z-index: 999999;
+}
+
+.spinner_container{
+  width:100%;
+  height:100%;
+}
+
+.spinner{
+	background-image: url('spinner.gif');
+	background-repeat:no-repeat;
+	.always_on_top;
+	width:32px; 
+	height:32px;
+	left: 50%;
+	top:50%;
+}
+
+
+.logo_small{
+	background-image: url('iCAS_logo_small.png');
+	background-repeat:no-repeat;
+}
+
+.coloredLabel{
+  color: @button-background-color;
+}
+
+.boldedRow{
+  font-weight:bold;
+}
+
+.claro .dgrid-row-odd {
+    .claro .secondayColoredBackground;  
+}
+
+.claro .disabledRow{
+  background-color: #EDEDED;
+  color:#999999;
+}
+
+.claro .fadedRow{
+  font-style: italic;
+  background-color: #FFE4E1;
+  color:#666666;
+}
+
+.claro .note_label{
+  color: darken(@secondary-color, 65);
+  font-size: small;
+  font-style: italic;
+}
+
+.dc_dialog{
+  margin-bottom: 40px;
+}
+
+.pad10{
+	padding: 10px;
+}
+
+.padBottom10{
+	padding-bottom: 10px;
+}
+
+.paddingTopAndBottomOnly{
+  padding: 10px 0;
+}
+
+.floatRight{
+	float:right;
+}
+
+.floatLeft{
+	float:left;
+}

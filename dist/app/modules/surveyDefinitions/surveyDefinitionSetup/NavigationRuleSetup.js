@@ -1,0 +1,3 @@
+//>>built
+define("app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock","app/utils/ChangeTracker"],function(b,d,e,a,c){return b("app.modules.surveyDefinitions.surveyDefinitionSetup.NavigationRuleSetup",[a],{_store:__.urls.NAVIGATION_RULE,_entityLabel:"Rule",changeTracker:c.getInstance(),constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/BasicInfo"}]},
+prepareForSave:function(){this.changeTracker.getChangesObject(__.urls.NAVIGATION_RULE).data_definition_id=this.survey_definition_id;return!0}})});

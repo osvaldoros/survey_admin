@@ -1,0 +1,2 @@
+//>>built
+require({cache:{"url:app/workspace/templates/Sidebar.html":'<div class="moduleContainer">\n</div>\n\t\t\n'}});define("app/workspace/Sidebar",["dojo/_base/declare","dojo/on","app/mixins/StatefulModule","dijit/_WidgetBase","dijit/_TemplatedMixin","dijit/_WidgetsInTemplateMixin","dojo/text!./templates/Sidebar.html","dojo/_base/lang","dijit/registry","dojo/parser"],function(a,g,b,c,d,e,f){return a("app.workspace.Sidebar",[b,c,d,e],{widgetsInTemplate:!0,templateString:f,startup:function(){this.inherited(arguments)}})});

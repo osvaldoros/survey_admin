@@ -1,0 +1,2 @@
+//>>built
+define("app/utils/ImageUtils",["dojo/_base/declare","dojo/_base/lang"],function(d,e){var f=d("app.utils.ImageUtils",[],{});e.mixin(app.utils.ImageUtils,{getDimensions:function(b,c){if(typeof b!="string")console.warn("url used for ImageUtils.getDimensions is not a string");else if(typeof c!="function")console.warn("callback used for ImageUtils.getDimensions is not a function");else{var a=new Image;a.name=b;a.onload=function(){c({width:a.width,height:a.height})};a.src=b}}});return f});

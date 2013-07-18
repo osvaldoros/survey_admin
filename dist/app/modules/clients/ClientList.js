@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/clients/ClientList",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/GridManagerBlock"],function(a,c,d,b){return a("app.modules.clients.ClientList",[b],{title:"Clients",_store:__.urls.CLIENT,_entityLabel:"Client",_columns:[{label:"Name",field:"name",sortable:!0},{label:"Address",field:"street",sortable:!0},{label:"City",field:"city",sortable:!0},{label:"Phone",field:"phone"},{label:"Created",field:"created"}]})});

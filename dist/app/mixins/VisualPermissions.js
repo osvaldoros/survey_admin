@@ -1,0 +1,3 @@
+//>>built
+define("app/mixins/VisualPermissions",["dojo/_base/declare","dojo/_base/lang","dojo/query","dojo/hash","dojo/_base/array","app/utils/DisplayManager"],function(f,g,e,j,h,i){return f([],{displayManager:i.getInstance(),refreshPermissions:function(){if(typeof __.user=="object"&&__.user!=null&&typeof __.user.role=="object"&&__.user.role!=null&&g.isArray(__.user.role.perms)&&__.user.role.perms.length>0){for(var b=[],c=__.user.role.perms.length-1;c>=0;c--)for(var d=e("."+__.user.role.perms[c].name,this.domNode),
+a=0;a<d.length;a++)h.indexOf(b,d[a])==-1&&b.push(d[a]);this.displayManager.includeElements(b,e(".permissions",this.domNode))}this.displayManager.valid||this.displayManager.validate()}})});

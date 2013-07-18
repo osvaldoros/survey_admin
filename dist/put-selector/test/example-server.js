@@ -1,0 +1,2 @@
+//>>built
+define(["dijit","dojo","dojox"],function(){var c=require("http"),a=require("put-selector");c.createServer(function(c,d){d.writeHead(200,{"Content-Type":"text/html"});var b=a("html").sendTo(d);a(b,"head script[src=app.js]");a(b,"body div.content","Hello, World");b.end()}).listen(81)});
