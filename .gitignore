@@ -1,0 +1,3 @@
+# ignore dojo components ( we don't want to commit any of that code )
+dist
+api
