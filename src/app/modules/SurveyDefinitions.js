@@ -12,7 +12,7 @@ define([
 	"dijit/form/Button",
 	"app/modules/surveyDefinitions/SurveyDefinitionList",
 	"app/loader/DialogLauncher",
-	"app/utils/HashManager",
+	"app/utils/HashManager"
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, 
 		template, lang, 

@@ -43,6 +43,6 @@ define([
 				queryObj["client_id"] = this._clientFilter;
 			}
 			return queryObj;			
-		},
+		}
 	});
 });

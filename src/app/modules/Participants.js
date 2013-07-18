@@ -12,7 +12,7 @@ define([
 	"dijit/form/Button",
 	"app/modules/participants/ParticipantList",
 	"app/loader/DialogLauncher",
-	"app/utils/HashManager",
+	"app/utils/HashManager"
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, 
 		template, lang, 

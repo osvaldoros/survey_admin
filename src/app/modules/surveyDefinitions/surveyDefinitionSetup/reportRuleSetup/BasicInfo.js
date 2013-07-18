@@ -41,7 +41,7 @@ define([
 	
 	"app/store/UIStores",
 	"app/uicomponents/Map",
-	"./LanguagedReportRuleList",
+	"./LanguagedReportRuleList"
 
 	
 	],

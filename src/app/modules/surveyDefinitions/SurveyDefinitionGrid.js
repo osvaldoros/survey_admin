@@ -43,6 +43,6 @@ define([
 				queryObj["program_id"] = this._programFilter;
 			}
 			return queryObj;			
-		},
+		}
 	});
 });

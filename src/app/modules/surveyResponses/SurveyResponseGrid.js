@@ -62,6 +62,6 @@ define([
 
 
 			return queryObj;			
-		},
+		}
 	});
 });
