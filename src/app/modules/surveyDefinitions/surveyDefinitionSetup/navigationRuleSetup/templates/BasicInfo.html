@@ -18,8 +18,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td  label="true">Response Condition*: </td>
-				<td><input type="text" required="true" name="reponse_value_condition" data-dojo-attach-point="reponse_value_conditionBox" observer="recordChange" placeholder="The response value that makes it jump" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the response value" /></td>
+				<td  label="true">Response Code: </td>
+				<td><select data-dojo-attach-point="response_value_conditionBox" name="response_value_condition" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
 		</table>

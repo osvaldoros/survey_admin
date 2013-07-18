@@ -77,10 +77,14 @@ define([
 			startup:function(){
 				this.inherited(arguments);
 				
+				this.response_value_conditionBox = this.getWidget('response_value_conditionBox');
+				this.from_question_idBox = this.getWidget('from_question_idBox');
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.navigationRuleBasicInfoForm = this.getWidget('navigationRuleBasicInfoForm');
 				this.navigationRuleBasicInfoForm.set('storeURL', __.urls.NAVIGATION_RULE);
 				this.navigationRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+
+				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 				
 				
 				this.configureForm(this.navigationRuleBasicInfoForm);
@@ -98,6 +102,15 @@ define([
 				var navigationRule = this.getUpdatingEntity();
 				this.viewInForm(navigationRule, this.navigationRuleBasicInfoForm);	
 
+			},
+
+			responseCodeBaseQuery:function(){
+				var questionItem = this.from_question_idBox.item;
+				if(typeof(questionItem) == "object" && questionItem != null){
+					return {response_type:questionItem.response_type};
+				}
+
+				return false;
 			},
 
 			deactivate:function(){

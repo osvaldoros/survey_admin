@@ -19,9 +19,9 @@ define([
 	        declare.safeMixin(this,args || {});
 			this._columns = [
 				{label:"Name", field:"name", sortable:true},
-				{label:"From", field:"from_question_id", sortable:true},
-				{label:"Response Condition", field:"reponse_value_condition", sortable:true},
-				{label:"To", field:"to_question_id", sortable:true}
+				{label:"From", field:"from_question_display", sortable:true},
+				{label:"Response Condition", field:"response_value_condition", sortable:true},
+				{label:"To", field:"to_question_display", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "navRulesBaseQuery")
