@@ -13,7 +13,8 @@ define([
 	    constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._steps = [
-				{ title: 'Basic', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/BasicInfo'}
+				{ title: 'Basic', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/BasicInfo'},
+				{ title: 'Configure', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/Configure'}
 			];
 	    }		
 	});

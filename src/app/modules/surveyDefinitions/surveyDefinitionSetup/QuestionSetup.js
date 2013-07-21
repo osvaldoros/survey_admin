@@ -15,7 +15,8 @@ define([
 	    constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._steps = [
-				{ title: 'Basic', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo'}
+				{ title: 'Basic', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo'},
+				{ title: 'Languaged Questions', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/LanguagedQuestionList'}
 			];
 	    },
 

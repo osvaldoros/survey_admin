@@ -40,18 +40,12 @@ define([
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
-	"app/uicomponents/Map",
-
-	"app/mixins/TabManager"
-	//"app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList",
-	//"app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleList",
-	//"app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList"
-	
+	"app/uicomponents/Map"
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map, TabManager/*, QuestionList, NavigationRuleList, ReportRuleList*/){
+			UIStores, Map){
 	
 	/*
 	 * 
@@ -69,7 +63,7 @@ define([
 	 * 
 	 */
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager, TabManager], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -83,30 +77,12 @@ define([
 			 */
 			startup:function(){
 				this.inherited(arguments);
-
-
-				//this.questionList = this.getWidget('questionList');
-				//this.navigationRuleList = this.getWidget('navigationRuleList');
-				//this.reportRuleList = this.getWidget('reportRuleList');
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.surveyDefinitionBasicInfoForm = this.getWidget('surveyDefinitionBasicInfoForm');
 				this.surveyDefinitionBasicInfoForm.set('storeURL', __.urls.SURVEY_DEFINITION);
 				this.surveyDefinitionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 
-
-				this._tabs = this.getWidget("_tabs");
-				
-				var tabsConfig = {
-					tabs: this._tabs,
-					steps: [
-						{ title: 'Questions', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList'},
-						{ title: 'Navigation Rules', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleList'},
-						{ title: 'Report Rules', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList'}
-					]
-				}
-
-				this.configureTabs(tabsConfig);
 				this.configureForm(this.surveyDefinitionBasicInfoForm);
 			},
 			
@@ -118,32 +94,12 @@ define([
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
 				}						
-
 				var surveyDefinition = this.getUpdatingEntity();
 				
-				if(typeof(surveyDefinition) == "object" && surveyDefinition != null){
-
-					this.setOnChildren("survey_definition_id", surveyDefinition.id, true);
-					/*this.questionList.set("survey_definition_id", surveyDefinition.id, true);		
-					this.navigationRuleList.set("survey_definition_id", surveyDefinition.id, true);		
-					this.reportRuleList.set("survey_definition_id", surveyDefinition.id, true);		*/
-				}else{
-					this.setOnChildren("survey_definition_id", null, true);
-					/*this.questionList.set("survey_definition_id", null, true);		
-					this.navigationRuleList.set("survey_definition_id", null, true);		
-					this.reportRuleList.set("survey_definition_id", null, true);		*/
-				}
-
-				/*this.questionList.activate();	
-				this.navigationRuleList.activate();	
-				this.reportRuleList.activate();	
-				*/
-
 				this.viewInForm(surveyDefinition, this.surveyDefinitionBasicInfoForm);				
 			},
 
 			deactivate:function(){
-				//this.questionList.deactivate();
 				this.inherited(arguments);
 			},
 			

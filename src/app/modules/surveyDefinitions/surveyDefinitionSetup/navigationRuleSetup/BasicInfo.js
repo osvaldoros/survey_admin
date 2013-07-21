@@ -40,33 +40,19 @@ define([
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
+	"app/utils/ChangeTracker",
 	"app/uicomponents/Map"
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map){
-	
-	/*
-	 * 
-	 * *IMPORTANT
-	 * 
-	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
-	 * 
-	 *  - instances of Dgrid cannot be access via diji.byId('')
-	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
-	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
-	 * 
-	 * TODO: 
-	 * 
-	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
-	 * 
-	 */
+			UIStores, ChangeTracker, Map){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.navigationRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			uiStores: UIStores.getInstance(),
+			changeTracker: ChangeTracker.getInstance(),
 	
 			/**
 			 * 
@@ -79,6 +65,8 @@ define([
 				
 				this.response_value_conditionBox = this.getWidget('response_value_conditionBox');
 				this.from_question_idBox = this.getWidget('from_question_idBox');
+				this.question_to_evaluate_idBox = this.getWidget('question_to_evaluate_idBox');
+				this.to_question_idBox = this.getWidget('to_question_idBox');
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.navigationRuleBasicInfoForm = this.getWidget('navigationRuleBasicInfoForm');
 				this.navigationRuleBasicInfoForm.set('storeURL', __.urls.NAVIGATION_RULE);
@@ -88,9 +76,6 @@ define([
 				
 				
 				this.configureForm(this.navigationRuleBasicInfoForm);
-			},
-			
-			refreshFormUI:function(value, name, element, event){
 			},
 			
 			onActivate:function(){
@@ -104,8 +89,31 @@ define([
 
 			},
 
+			refreshFormUI:function(value, name, element, event){
+				switch(name){
+					case "from_question_id":
+						this.question_to_evaluate_idBox.set("value", value);
+						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+					break;
+				}
+			},
+
+			prepareForSave:function(){
+
+				var changesObject = this.changeTracker.getChangesObject(__.urls.NAVIGATION_RULE);
+
+				for(var p in changesObject){
+					if(p == "from_question_id") changesObject["from_question_display"] = this.from_question_idBox.item.name
+					if(p == "question_to_evaluate_id") changesObject["question_to_evaluate_display"] = this.question_to_evaluate_idBox.item.name
+					if(p == "to_question_id") changesObject["to_question_display"] = this.to_question_idBox.item.name
+					if(p == "response_value_condition") changesObject["response_value_condition_display"] = this.response_value_conditionBox.item.name
+				}
+
+				return true;
+			},
+
 			responseCodeBaseQuery:function(){
-				var questionItem = this.from_question_idBox.item;
+				var questionItem = this.question_to_evaluate_idBox.item;
 				if(typeof(questionItem) == "object" && questionItem != null){
 					return {response_type:questionItem.response_type};
 				}
@@ -113,10 +121,6 @@ define([
 				return false;
 			},
 
-			deactivate:function(){
-				this.inherited(arguments);
-			},
-			
 			onDeactivate:function(){
 				//remove event handlers
 				for (var i=0; i < this.eventHandlers.length; i++) {
@@ -127,11 +131,7 @@ define([
 				};
 				
 				this.eventHandlers = []				
-			},
-			
-			
-			destroy:function(){
-    			this.inherited(arguments);	
+				this.inherited(arguments);
 			}
 	});
 });

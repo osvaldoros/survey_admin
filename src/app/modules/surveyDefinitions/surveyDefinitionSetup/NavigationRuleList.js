@@ -18,10 +18,10 @@ define([
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true},
 				{label:"From", field:"from_question_display", sortable:true},
-				{label:"Response Condition", field:"response_value_condition", sortable:true},
-				{label:"To", field:"to_question_display", sortable:true}
+				{label:"Evaluate", field:"question_to_evaluate_display", sortable:true},
+				{label:"If response", field:"response_value_condition_display", sortable:true},
+				{label:"Jump to", field:"to_question_display", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "navRulesBaseQuery")

@@ -12,9 +12,6 @@ define([
 		title:"Report Rules",
 		_store:__.urls.REPORT_RULE,
 		_entityLabel: "Rule",
-		_columns: [
-			{label:"Name", field:"name", sortable:true}
-		],
 		gridHeight:"250px",
 		_showTitle:false,
 

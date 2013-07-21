@@ -32,10 +32,11 @@ define([
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			hashManager: HashManager.getInstance(),
+			_autoClose:false,
 			_inheritOnActivate:true,
 			_hashManagement: null,
 			_entityLabel:undefined,
-			_showTabs:false,
+			_showTabs:true,
 			_showInstructions:false,
 			_showNotes:false,
 			_showCancelBtn:false,
@@ -524,7 +525,7 @@ define([
 			__entitySaved:function(entity){
 				this.inherited(arguments);
 				this.updateTitle(entity);
-				if(this.parentDialog){
+				if(this.parentDialog && this._autoClose){
 					this.parentDialog.confirmHide();
 				}
 			},

@@ -101,13 +101,6 @@ define([
 				}								
 
 				var question = this.getUpdatingEntity();
-				if(typeof(question) == "object" && question != null){
-					this.languagedQuestionList.set("question_id", question.id, true);		
-				}else{
-					this.languagedQuestionList.set("question_id", null, true);		
-				}
-				this.languagedQuestionList.activate();	
-
 				this.viewInForm(question, this.questionBasicInfoForm);	
 
 			},
