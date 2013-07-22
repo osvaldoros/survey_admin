@@ -9,17 +9,18 @@ define([
 	function(declare, on, lang, GridManagerBlock, LanguagedReportRuleSetup, DCFormManager){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList", [GridManagerBlock, DCFormManager], {
-		title:"Languaged Report Rules",
+		title:"Languaged Report Item",
 		_store:__.urls.LANGUAGED_REPORT_RULE,
-		_entityLabel: "Languaged Report Rule",
-
+		_entityLabel: "Languaged Item",
+		_showTitle:false,
 		gridHeight:"140px",
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true},
-				{label:"Language", field:"language_id", sortable:true}
+				{label:"Language", field:"language_id", sortable:true},
+				{label:"Participant", field:"participant_report_item", sortable:true},
+				{label:"Staff", field:"staff_report_item", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "languagedReportRuleBaseQuery");

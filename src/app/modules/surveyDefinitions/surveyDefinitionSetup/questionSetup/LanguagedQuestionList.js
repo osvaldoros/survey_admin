@@ -12,7 +12,7 @@ define([
 		title:"Languaged Questions",
 		_store:__.urls.LANGUAGED_QUESTION,
 		_entityLabel: "Languaged Question",
-
+		_showTitle:false,
 		gridHeight:"180px",
 
 		constructor: function(args){

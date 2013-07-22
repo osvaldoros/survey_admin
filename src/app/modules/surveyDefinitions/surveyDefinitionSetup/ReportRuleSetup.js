@@ -16,7 +16,7 @@ define([
 	        declare.safeMixin(this,args || {});
 			this._steps = [
 				{ title: 'Basic', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/BasicInfo'},
-				{ title: 'Languaged Item ', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/LanguagedReportRuleList'}
+				{ title: 'Languaged Items', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/LanguagedReportRuleList'}
 			];
 	    },
 

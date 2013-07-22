@@ -12,7 +12,7 @@ define([
 		title:"Languaged Reusable Report Items",
 		_store:__.urls.LANGUAGED_REUSABLE_REPORT_ITEM,
 		_entityLabel: "Languaged Item",
-
+		_showTitle:false,
 		gridHeight:"180px",
 
 		constructor: function(args){

@@ -11,7 +11,7 @@ define([
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock, SelfActivates], {
 		title:"Report Items",
 		_store:__.urls.REPORT_RULE,
-		_entityLabel: "Item",
+		_entityLabel: "Rule",
 		gridHeight:"250px",
 		_showTitle:false,
 
@@ -39,7 +39,7 @@ define([
    			this.inherited(arguments);
 
 			var setupDialogInfo = {
-				title:"ReportRule Setup", 
+				title:"Report Rule Setup", 
 				dialogWidth:"700px", 
 				dialogHeight:"450px"
 			}

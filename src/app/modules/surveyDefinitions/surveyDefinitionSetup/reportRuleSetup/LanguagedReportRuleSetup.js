@@ -8,7 +8,7 @@ define([
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleSetup", [WizardManagerBlock], {
 		_store:__.urls.LANGUAGED_REPORT_RULE,
-		_entityLabel: "Languaged Report Rule",
+		_entityLabel: "Languaged Report Item",
 		_showTabs:false,
 		_autoClose:true,
 		

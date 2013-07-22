@@ -40,8 +40,8 @@ define([
 
 			var setupDialogInfo = {
 				title:"Navigation Rule Setup", 
-				dialogWidth:"700px", 
-				dialogHeight:"450px"
+				dialogWidth:"500px", 
+				dialogHeight:"250px"
 			}
 
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new NavigationRuleSetup(), setupDialogInfo);
