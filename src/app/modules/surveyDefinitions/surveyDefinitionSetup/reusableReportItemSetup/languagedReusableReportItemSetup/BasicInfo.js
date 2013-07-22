@@ -40,23 +40,35 @@ define([
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
-	"app/uicomponents/Map",
-	"./LanguagedReportRuleList",
-	"app/utils/ChangeTracker"
-
+	"app/uicomponents/Map"
+	
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map, LanguagedReportRuleList, ChangeTracker){
+			UIStores, Map){
 	
+	/*
+	 * 
+	 * *IMPORTANT
+	 * 
+	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
+	 * 
+	 *  - instances of Dgrid cannot be access via diji.byId('')
+	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
+	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
+	 * 
+	 * TODO: 
+	 * 
+	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
+	 * 
+	 */
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reusableReportItemSetup.languagedReusableReportItemSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			uiStores: UIStores.getInstance(),
-			changeTracker: ChangeTracker.getInstance(),
 	
 			/**
 			 * 
@@ -67,60 +79,25 @@ define([
 			startup:function(){
 				this.inherited(arguments);
 				
-				this.question_idBox = this.getWidget('question_idBox');
-				this.response_value_conditionBox = this.getWidget('response_value_conditionBox');
-
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.reportRuleBasicInfoForm = this.getWidget('reportRuleBasicInfoForm');
-				this.reportRuleBasicInfoForm.set('storeURL', __.urls.REPORT_RULE);
-				this.reportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.languagedReusableReportItemBasicInfoForm = this.getWidget('languagedReusableReportItemBasicInfoForm');
+				this.languagedReusableReportItemBasicInfoForm.set('storeURL', __.urls.LANGUAGED_REUSABLE_REPORT_ITEM);
+				this.languagedReusableReportItemBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
-				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
-
-				this.configureForm(this.reportRuleBasicInfoForm);
+				
+				this.configureForm(this.languagedReusableReportItemBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
-				switch(name){
-					case "question_id":
-						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
-					break;
-				}
-			},
-
-
-			responseCodeBaseQuery:function(){
-				var questionItem = this.question_idBox.item;
-				if(typeof(questionItem) == "object" && questionItem != null){
-					return {response_type:questionItem.response_type};
-				}
-
-				return false;
-			},
-			
-			prepareForSave:function(){
-
-				var changesObject = this.changeTracker.getChangesObject(__.urls.REPORT_RULE);
-
-				for(var p in changesObject){
-					if(p == "question_id") changesObject["question_display"] = this.question_idBox.item.name
-					if(p == "response_value_condition") changesObject["response_value_condition_display"] = this.response_value_conditionBox.item.name
-					if(p == "reusable_report_item_id") changesObject["reusable_report_item_display"] = this.reusable_report_item_idBox.item.name
-				}
-
-				return true;
 			},
 			
 			onActivate:function(){
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
-				}						
-
-				var reportRule = this.getUpdatingEntity();		
-
-				this.viewInForm(reportRule, this.reportRuleBasicInfoForm);	
-
+				}
+				var entity = this.getUpdatingEntity();
+				this.viewInForm(entity, this.languagedReusableReportItemBasicInfoForm);				
 			},
 			
 			onDeactivate:function(){
@@ -132,8 +109,12 @@ define([
 					}
 				};
 				
-				this.eventHandlers = [];
-				this.inherited(arguments);			
+				this.eventHandlers = []				
+			},
+			
+			
+			destroy:function(){
+    			this.inherited(arguments);	
 			}
 	});
 });

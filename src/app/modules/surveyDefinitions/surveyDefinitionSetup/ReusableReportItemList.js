@@ -4,30 +4,30 @@ define([
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
 	"app/mixins/SelfActivates",
-	"./ReportRuleSetup"
+	"./ReusableReportItemSetup"
 	],
-	function(declare, on, lang, GridManagerBlock, SelfActivates, ReportRuleSetup){
+	function(declare, on, lang, GridManagerBlock, SelfActivates, ReusableReportItemSetup){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock, SelfActivates], {
-		title:"Report Items",
-		_store:__.urls.REPORT_RULE,
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReusableReportItemList", [GridManagerBlock, SelfActivates], {
+		title:"Reusable Report Items",
+		_store:__.urls.REUSABLE_REPORT_ITEM,
 		_entityLabel: "Item",
+		_columns: [
+			{label:"Name", field:"name", sortable:true}
+		],
 		gridHeight:"250px",
 		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true},
-				{label:"Question", field:"question_display", sortable:true},
-				{label:"If response", field:"response_value_condition_display", sortable:true},
-				{label:"Reusable Item", field:"reusable_report_item_display", sortable:true}
+				{label:"Name", field:"name", sortable:true}
 			];
 
-			this._base_query = lang.hitch(this, "reportRuleBaseQuery")
+			this._base_query = lang.hitch(this, "reusableReportItemBaseQuery")
 	    },
 
-		reportRuleBaseQuery:function(){
+		reusableReportItemBaseQuery:function(){
 			if(typeof(this.survey_definition_id) == "undefined" || this.survey_definition_id == null){
 				return false;
 			}
@@ -39,24 +39,24 @@ define([
    			this.inherited(arguments);
 
 			var setupDialogInfo = {
-				title:"ReportRule Setup", 
+				title:"Reusable Report Item Setup", 
 				dialogWidth:"700px", 
-				dialogHeight:"450px"
+				dialogHeight:"480px"
 			}
 
-   			this.setupDialog = __.workspaceManager.getModuleInDialog(new ReportRuleSetup(), setupDialogInfo);
+   			this.setupDialog = __.workspaceManager.getModuleInDialog(new ReusableReportItemSetup(), setupDialogInfo);
    			
    		},
 
 
    		onActivate:function(){
 			this.inherited(arguments);
-			console.log("Report Rules > activate");
-   		},   		
+			console.log("ReusableReportItems > activate");
+   		},
 
    		_setSurvey_definition_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
    			this.survey_definition_id = value;
-   			console.log("Report Rules > survey_definition_id = " + value);
+   			console.log("ReusableReportItems > survey_definition_id = " + value);
    			this.setupDialog.set("survey_definition_id", value, true);
    			this.refresh();
 

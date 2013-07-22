@@ -34,6 +34,8 @@ define([
 
 			this.NAVIGATION_RULE = dojo.config.appSpecific.api_host + "api/surveys/navigation_rule";
 			this.REPORT_RULE = dojo.config.appSpecific.api_host + "api/surveys/report_rule";
+			this.REUSABLE_REPORT_ITEM = dojo.config.appSpecific.api_host + "api/surveys/reusable_report_item";
+			this.LANGUAGED_REUSABLE_REPORT_ITEM = dojo.config.appSpecific.api_host + "api/surveys/languaged_reusable_report_item";
 			this.LANGUAGED_REPORT_RULE = dojo.config.appSpecific.api_host + "api/surveys/languaged_report_rule";
 			
 		}

@@ -3,11 +3,12 @@ define([
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
-	"./LanguagedReportRuleSetup"
+	"./LanguagedReportRuleSetup",
+	"app/mixins/FormManager"
 	],
-	function(declare, on, lang, GridManagerBlock, LanguagedReportRuleSetup){
+	function(declare, on, lang, GridManagerBlock, LanguagedReportRuleSetup, DCFormManager){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList", [GridManagerBlock], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList", [GridManagerBlock, DCFormManager], {
 		title:"Languaged Report Rules",
 		_store:__.urls.LANGUAGED_REPORT_RULE,
 		_entityLabel: "Languaged Report Rule",
@@ -44,9 +45,12 @@ define([
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new LanguagedReportRuleSetup(), setupDialogInfo);
    		},
 
-   		_setReport_rule_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
-   			this.report_rule_id = value;
-   			this.setupDialog.set("report_rule_id", value, true);
+   		onActivate:function(){
+   			this.inherited(arguments);
+
+   			var report_rule = this.getUpdatingEntity();
+   			this.report_rule_id = report_rule.id;
+   			this.setupDialog.set("report_rule_id", this.report_rule_id, true);
 
    			this._showAddBtn = (this.report_rule_id != null && typeof(this.report_rule_id) != "undefined");
 			this._showEditBtn = (this.report_rule_id != null && typeof(this.report_rule_id) != "undefined");
