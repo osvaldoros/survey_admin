@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/responses/ResponseTypeList",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/GridManagerBlock"],function(a,c,d,b){return a("app.modules.responses.ResponseTypeList",[b],{title:"Response Types",_store:__.urls.RESPONSE_TYPE,_entityLabel:"Response Type",_updateStateHash:"response-type-setup",_columns:[{label:"Name",field:"name",sortable:!0}]})});

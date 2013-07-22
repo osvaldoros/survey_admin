@@ -10,6 +10,8 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/Langua
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.LanguagedQuestionSetup", [WizardManagerBlock], {
 		_store:__.urls.LANGUAGED_QUESTION,
 		_entityLabel: "Languaged Question",
+		_autoClose:true,
+		_showTabs:false,
 		
 	    constructor: function(args){
 	        declare.safeMixin(this,args || {});

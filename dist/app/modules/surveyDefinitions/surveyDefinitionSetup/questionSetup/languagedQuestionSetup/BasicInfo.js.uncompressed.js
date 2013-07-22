@@ -51,22 +51,6 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/langua
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map){
 	
-	/*
-	 * 
-	 * *IMPORTANT
-	 * 
-	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
-	 * 
-	 *  - instances of Dgrid cannot be access via diji.byId('')
-	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
-	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
-	 * 
-	 * TODO: 
-	 * 
-	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
-	 * 
-	 */
-	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.languagedQuestionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
@@ -113,10 +97,6 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/langua
 				};
 				
 				this.eventHandlers = []				
-			},
-			
-			
-			destroy:function(){
     			this.inherited(arguments);	
 			}
 	});

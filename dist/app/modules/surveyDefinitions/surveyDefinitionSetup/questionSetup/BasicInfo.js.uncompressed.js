@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"questionBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the question name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Type: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"control_type_idBox\" name=\"control_type_id\" store=\"{config:{url:'CONTROL_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Choices: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_typeBox\" name=\"response_type\" store=\"{config:{url:'DISTINCT_RESPONSE_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\n\t\t</table>\n\t</form>\n\n\t<div data-dojo-attach-point=\"languagedQuestionList\" data-dojo-type=\"app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.LanguagedQuestionList\"></div>\n\t\n\t\n</div>"}});
+'url:app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"questionBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the question name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Type: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"control_type_idBox\" name=\"control_type_id\" store=\"{config:{url:'CONTROL_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Choices: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_typeBox\" name=\"response_type_id\" store=\"{config:{url:'RESPONSE_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\n\t\t</table>\n\t</form>\n\t\n</div>"}});
 define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo", [
 	"dojo/_base/declare",
 	"dojo/on",
@@ -43,31 +43,13 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
-	"app/uicomponents/Map",
-
-	"./LanguagedQuestionList"
+	"app/uicomponents/Map"
 	
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map, LanguagedQuestionList){
-	
-	/*
-	 * 
-	 * *IMPORTANT
-	 * 
-	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
-	 * 
-	 *  - instances of Dgrid cannot be access via diji.byId('')
-	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
-	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
-	 * 
-	 * TODO: 
-	 * 
-	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
-	 * 
-	 */
+			UIStores, Map){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
@@ -84,7 +66,6 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 			startup:function(){
 				this.inherited(arguments);
 				
-				this.languagedQuestionList = this.getWidget('languagedQuestionList');
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.questionBasicInfoForm = this.getWidget('questionBasicInfoForm');
 				this.questionBasicInfoForm.set('storeURL', __.urls.QUESTION);
@@ -104,22 +85,10 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 				}								
 
 				var question = this.getUpdatingEntity();
-				if(typeof(question) == "object" && question != null){
-					this.languagedQuestionList.set("question_id", question.id, true);		
-				}else{
-					this.languagedQuestionList.set("question_id", null, true);		
-				}
-				this.languagedQuestionList.activate();	
-
 				this.viewInForm(question, this.questionBasicInfoForm);	
 
 			},
 
-			deactivate:function(){
-				//this.languagedQuestionList.deactivate();
-				this.inherited(arguments);
-			},
-			
 			onDeactivate:function(){
 				//remove event handlers
 				for (var i=0; i < this.eventHandlers.length; i++) {
@@ -130,11 +99,8 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 				};
 				
 				this.eventHandlers = []				
-			},
-			
-			
-			destroy:function(){
-    			this.inherited(arguments);	
+				this.inherited(arguments);
 			}
+			
 	});
 });

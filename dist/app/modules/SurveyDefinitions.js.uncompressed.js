@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/templates/SurveyDefinitions.html':"<div class=\"moduleContainer\">\n\t<div data-dojo-attach-point=\"surveyDefinitionList\" class=\"activatable\" data-dojo-type=\"app.modules.surveyDefinitions.SurveyDefinitionList\"></div>\n\t<div data-dojo-attach-point=\"surveyDefinitionSetupDialog\" class=\"activatable includeInStates dialogsetup\" data-dojo-type=\"app.loader.DialogLauncher\" data-dojo-props=\"moduleURL: 'app/modules/surveyDefinitions/SurveyDefinitionSetup', title : 'Survey Definition Setup',  dialogWidth: '800px', dialogHeight: '620px'\"></div>\n</div>\n\t\t\n"}});
+'url:app/modules/templates/SurveyDefinitions.html':"<div class=\"moduleContainer\">\n\t<div data-dojo-attach-point=\"surveyDefinitionList\" class=\"activatable\" data-dojo-type=\"app.modules.surveyDefinitions.SurveyDefinitionList\"></div>\n\t<div data-dojo-attach-point=\"surveyDefinitionSetupDialog\" class=\"activatable includeInStates dialogsetup\" data-dojo-type=\"app.loader.DialogLauncher\" data-dojo-props=\"moduleURL: 'app/modules/surveyDefinitions/SurveyDefinitionSetup', title : 'Survey Definition Setup',  dialogWidth: '800px', dialogHeight: '520px'\"></div>\n</div>\n\t\t\n"}});
 define("app/modules/SurveyDefinitions", [
 	"dojo/_base/declare",
 	"dojo/on",

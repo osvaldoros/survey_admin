@@ -4,22 +4,24 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Lang
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
-	"./LanguagedReportRuleSetup"
+	"./LanguagedReportRuleSetup",
+	"app/mixins/FormManager"
 	],
-	function(declare, on, lang, GridManagerBlock, LanguagedReportRuleSetup){
+	function(declare, on, lang, GridManagerBlock, LanguagedReportRuleSetup, DCFormManager){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList", [GridManagerBlock], {
-		title:"Languaged Report Rules",
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList", [GridManagerBlock, DCFormManager], {
+		title:"Languaged Report Item",
 		_store:__.urls.LANGUAGED_REPORT_RULE,
-		_entityLabel: "Languaged Report Rule",
-
+		_entityLabel: "Languaged Item",
+		_showTitle:false,
 		gridHeight:"140px",
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true},
-				{label:"Language", field:"language_id", sortable:true}
+				{label:"Language", field:"language_id", sortable:true},
+				{label:"Participant", field:"participant_report_item", sortable:true},
+				{label:"Staff", field:"staff_report_item", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "languagedReportRuleBaseQuery");
@@ -45,9 +47,12 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Lang
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new LanguagedReportRuleSetup(), setupDialogInfo);
    		},
 
-   		_setReport_rule_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
-   			this.report_rule_id = value;
-   			this.setupDialog.set("report_rule_id", value, true);
+   		onActivate:function(){
+   			this.inherited(arguments);
+
+   			var report_rule = this.getUpdatingEntity();
+   			this.report_rule_id = report_rule.id;
+   			this.setupDialog.set("report_rule_id", this.report_rule_id, true);
 
    			this._showAddBtn = (this.report_rule_id != null && typeof(this.report_rule_id) != "undefined");
 			this._showEditBtn = (this.report_rule_id != null && typeof(this.report_rule_id) != "undefined");

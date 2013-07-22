@@ -1,0 +1,13 @@
+<div>
+	
+	<form dojoType="app.form.Manager" data-dojo-attach-point="languagedResponseFilteringForm" method="post">
+		<div style="position: absolute; top: 31px;">
+			<select name="responseTypeFilter" data-dojo-attach-point="responseTypeFilter" observer="refreshUI" store="{config:{url:'RESPONSE_TYPE', selectFirst:true}}" observer="refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select>
+			<select name="languageFilter" data-dojo-attach-point="languageFilter" observer="refreshUI" store="{config:{url:'LANGUAGE', selectFirst:true}}" observer="refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select>
+    	</div>
+	</form>
+	
+	<div data-dojo-attach-point="languagedResponseGrid" class="activatable" data-dojo-type="app.modules.responses.responseSetup.LanguagedResponseGrid"></div>	
+	
+</div>
+		

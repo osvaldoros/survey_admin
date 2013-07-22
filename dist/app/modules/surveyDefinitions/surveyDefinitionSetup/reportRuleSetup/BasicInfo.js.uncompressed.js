@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"reportRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the report Rule name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"question_idBox\" name=\"question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Response Condition*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"reponse_value_condition\" data-dojo-attach-point=\"reponse_value_conditionBox\" observer=\"recordChange\" placeholder=\"The response value that makes it jump\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the response value\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\t\t\t\n\t\t</table>\n\t</form>\n\n\n\t<div data-dojo-attach-point=\"languagedReportRuleList\" data-dojo-type=\"app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.LanguagedReportRuleList\"></div>\n\n\t\n\t\n</div>"}});
+'url:app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"reportRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the report Rule name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"question_idBox\" name=\"question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">If response equals: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_value_conditionBox\" name=\"response_value_condition\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\t\t\t\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Reusable report item: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"reusable_report_item_idBox\" name=\"reusable_report_item_id\" store=\"{config:{url:'REUSABLE_REPORT_ITEM'}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t</table>\n\t</form>\n</div>"}});
 define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/BasicInfo", [
 	"dojo/_base/declare",
 	"dojo/on",
@@ -44,35 +44,22 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 	
 	"app/store/UIStores",
 	"app/uicomponents/Map",
-	"./LanguagedReportRuleList"
+	"./LanguagedReportRuleList",
+	"app/utils/ChangeTracker"
 
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map, LanguagedReportRuleList){
+			UIStores, Map, LanguagedReportRuleList, ChangeTracker){
 	
-	/*
-	 * 
-	 * *IMPORTANT
-	 * 
-	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
-	 * 
-	 *  - instances of Dgrid cannot be access via diji.byId('')
-	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
-	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
-	 * 
-	 * TODO: 
-	 * 
-	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
-	 * 
-	 */
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.reportRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			uiStores: UIStores.getInstance(),
+			changeTracker: ChangeTracker.getInstance(),
 	
 			/**
 			 * 
@@ -83,41 +70,60 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 			startup:function(){
 				this.inherited(arguments);
 				
-				this.languagedReportRuleList = this.getWidget('languagedReportRuleList');
+				this.question_idBox = this.getWidget('question_idBox');
+				this.response_value_conditionBox = this.getWidget('response_value_conditionBox');
 
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.reportRuleBasicInfoForm = this.getWidget('reportRuleBasicInfoForm');
 				this.reportRuleBasicInfoForm.set('storeURL', __.urls.REPORT_RULE);
 				this.reportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
-				
+				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+
 				this.configureForm(this.reportRuleBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
+				switch(name){
+					case "question_id":
+						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+					break;
+				}
+			},
+
+
+			responseCodeBaseQuery:function(){
+				var questionItem = this.question_idBox.item;
+				if(typeof(questionItem) == "object" && questionItem != null){
+					return {response_type:questionItem.response_type};
+				}
+
+				return false;
+			},
+			
+			prepareForSave:function(){
+
+				var changesObject = this.changeTracker.getChangesObject(__.urls.REPORT_RULE);
+
+				for(var p in changesObject){
+					if(p == "question_id") changesObject["question_display"] = this.question_idBox.item.name
+					if(p == "response_value_condition") changesObject["response_value_condition_display"] = this.response_value_conditionBox.item.name
+					if(p == "reusable_report_item_id") changesObject["reusable_report_item_display"] = this.reusable_report_item_idBox.item.name
+				}
+
+				return true;
 			},
 			
 			onActivate:function(){
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
-				}								
+				}						
 
-				var reportRule = this.getUpdatingEntity();
-
-				if(typeof(reportRule) == "object" && reportRule != null){
-					this.languagedReportRuleList.set("report_rule_id", reportRule.id, true);		
-				}else{
-					this.languagedReportRuleList.set("report_rule_id", null, true);		
-				}
-				this.languagedReportRuleList.activate();	
+				var reportRule = this.getUpdatingEntity();		
 
 				this.viewInForm(reportRule, this.reportRuleBasicInfoForm);	
 
-			},
-
-			deactivate:function(){
-				this.inherited(arguments);
 			},
 			
 			onDeactivate:function(){
@@ -129,12 +135,8 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 					}
 				};
 				
-				this.eventHandlers = []				
-			},
-			
-			
-			destroy:function(){
-    			this.inherited(arguments);	
+				this.eventHandlers = [];
+				this.inherited(arguments);			
 			}
 	});
 });

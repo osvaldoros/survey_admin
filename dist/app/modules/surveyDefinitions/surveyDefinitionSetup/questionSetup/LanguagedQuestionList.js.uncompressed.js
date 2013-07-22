@@ -4,15 +4,16 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/Langua
 	"dojo/on",
 	"dojo/_base/lang",
 	"app/uicomponents/blocks/GridManagerBlock",
-	"./LanguagedQuestionSetup"
+	"./LanguagedQuestionSetup",
+	"app/mixins/FormManager"
 	],
-	function(declare, on, lang, GridManagerBlock, LanguagedQuestionSetup){
+	function(declare, on, lang, GridManagerBlock, LanguagedQuestionSetup, DCFormManager){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.LanguagedQuestionList", [GridManagerBlock], {
+	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.LanguagedQuestionList", [GridManagerBlock, DCFormManager], {
 		title:"Languaged Questions",
 		_store:__.urls.LANGUAGED_QUESTION,
 		_entityLabel: "Languaged Question",
-
+		_showTitle:false,
 		gridHeight:"180px",
 
 		constructor: function(args){
@@ -45,9 +46,12 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/Langua
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new LanguagedQuestionSetup(), setupDialogInfo);
    		},
 
-   		_setQuestion_idAttr: function(/*String*/ value, /*Boolean?*/ priorityChange, /*String?*/ displayedValue, /*item?*/ item){
-   			this.question_id = value;
-   			this.setupDialog.set("question_id", value, true);
+   		onActivate:function(){
+   			this.inherited(arguments);
+   			var question = this.getUpdatingEntity();
+   			this.question_id = question.id;
+
+   			this.setupDialog.set("question_id", this.question_id, true);
 
    			this._showAddBtn = (this.question_id != null && typeof(this.question_id) != "undefined");
 			this._showEditBtn = (this.question_id != null && typeof(this.question_id) != "undefined");

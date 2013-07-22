@@ -29,11 +29,15 @@ define("app/config/URLs", [
 			this.SURVEY_DEFINITION = dojo.config.appSpecific.api_host + "api/surveys/data_definition";
 			this.QUESTION = dojo.config.appSpecific.api_host + "api/surveys/question";
 			this.LANGUAGED_QUESTION = dojo.config.appSpecific.api_host + "api/surveys/languaged_question";
-			this.DISTINCT_RESPONSE_TYPE = dojo.config.appSpecific.api_host + "api/surveys/distinct_reponse_type";
+			this.RESPONSE_TYPE = dojo.config.appSpecific.api_host + "api/surveys/response_type";
+			this.LANGUAGED_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/languaged_response";
+			this.RESPONSE_CODE = dojo.config.appSpecific.api_host + "api/surveys/response_code";
 
 
 			this.NAVIGATION_RULE = dojo.config.appSpecific.api_host + "api/surveys/navigation_rule";
 			this.REPORT_RULE = dojo.config.appSpecific.api_host + "api/surveys/report_rule";
+			this.REUSABLE_REPORT_ITEM = dojo.config.appSpecific.api_host + "api/surveys/reusable_report_item";
+			this.LANGUAGED_REUSABLE_REPORT_ITEM = dojo.config.appSpecific.api_host + "api/surveys/languaged_reusable_report_item";
 			this.LANGUAGED_REPORT_RULE = dojo.config.appSpecific.api_host + "api/surveys/languaged_report_rule";
 			
 		}

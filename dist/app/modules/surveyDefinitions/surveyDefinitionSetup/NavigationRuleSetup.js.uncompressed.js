@@ -12,6 +12,8 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleSetup"
 		_store:__.urls.NAVIGATION_RULE,
 		_entityLabel: "Rule",
 		changeTracker:ChangeTracker.getInstance(),
+		_showTabs:false,
+		_autoClose:true,
 		
 	    constructor: function(args){
 	        declare.safeMixin(this,args || {});
@@ -21,6 +23,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleSetup"
 	    },
 
 	    prepareForSave:function(){
+	    	this.inherited(arguments);
 			var changesObject = this.changeTracker.getChangesObject(__.urls.NAVIGATION_RULE);
 			changesObject.data_definition_id = this.survey_definition_id;
 			return true;

@@ -10,19 +10,19 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList", [
 	function(declare, on, lang, GridManagerBlock, SelfActivates, ReportRuleSetup){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.ReportRuleList", [GridManagerBlock, SelfActivates], {
-		title:"Report Rules",
+		title:"Report Items",
 		_store:__.urls.REPORT_RULE,
 		_entityLabel: "Rule",
-		_columns: [
-			{label:"Name", field:"name", sortable:true}
-		],
 		gridHeight:"250px",
 		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true}
+				{label:"Name", field:"name", sortable:true},
+				{label:"Question", field:"question_display", sortable:true},
+				{label:"If response", field:"response_value_condition_display", sortable:true},
+				{label:"Reusable Item", field:"reusable_report_item_display", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "reportRuleBaseQuery")
@@ -40,7 +40,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList", [
    			this.inherited(arguments);
 
 			var setupDialogInfo = {
-				title:"ReportRule Setup", 
+				title:"Report Rule Setup", 
 				dialogWidth:"700px", 
 				dialogHeight:"450px"
 			}

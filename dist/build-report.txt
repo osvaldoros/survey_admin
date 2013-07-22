@@ -1,4 +1,4 @@
-Build started: Thu Jul 18 2013 02:10:20 GMT-0400 (EDT)
+Build started: Mon Jul 22 2013 19:21:47 GMT-0400 (EDT)
 Build application version: 1.7.0dev (23930)
 Messages:
 info(100) Assumed module uses legacy loader API.
@@ -1370,6 +1370,8 @@ info(102) Optimizing module
 	module: app/store/Entities
 	module: app/mixins/SelfActivates
 	module: app/modules/Clients
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/ReusableReportItemList
+	module: app/modules/responses/responseSetup/LanguagedResponseList
 	module: app/mixins/Activatable
 	module: app/uicomponents/InheritedEntriesGrid
 	module: app/uicomponents/Notes
@@ -1385,6 +1387,8 @@ info(102) Optimizing module
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleSetup
 	module: app/utils/ImageUtils
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionSetup
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/Configure
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reusableReportItemSetup/LanguagedReusableReportItemSetup
 	module: app/form/FilteringSelect
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList
 	module: app/mixins/EntityLoader
@@ -1403,6 +1407,8 @@ info(102) Optimizing module
 	module: app/modules/SurveyResponses
 	module: app/Auth
 	module: app/uicomponents/Spinner
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/ReusableReportItemSetup
+	module: app/modules/responses/responseSetup/LanguagedResponseSetup
 	module: app/utils/HashManager
 	module: app/modules/users/UserSetup
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList
@@ -1415,6 +1421,7 @@ info(102) Optimizing module
 	module: app/uicomponents/Editor
 	module: app/uicomponents/Map
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/BasicInfo
+	module: app/modules/Responses
 	module: app/modules/clients/ClientSetup
 	module: app/store/UIStores
 	module: app/store/GridCheckboxes
@@ -1428,7 +1435,11 @@ info(102) Optimizing module
 	module: app/modules/programs/ProgramList
 	module: app/modules/participants/ParticipantSetup
 	module: app/uicomponents/moreInfoRenderers/TestMoreInfoRenderer
+	module: app/modules/responses/ResponseTypeSetup
 	module: app/utils/TooltipDialogController
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reusableReportItemSetup/LanguagedReusableReportItemList
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reusableReportItemSetup/languagedReusableReportItemSetup/BasicInfo
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reusableReportItemSetup/BasicInfo
 	module: app/modules/participants/ParticipantGrid
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/languagedReportRuleSetup/BasicInfo
 	module: app/store/GridFormatters
@@ -1437,18 +1448,19 @@ info(102) Optimizing module
 	module: app/store/StoreManager
 	module: app/utils/DateUtils
 	module: app/mixins/Saver
-	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/LanguagedQuestionSetup
 	module: app/modules/SurveyDefinitions
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/LanguagedQuestionSetup
 	module: app/uicomponents/NestedEntriesGrid
 	module: app/modules/programs/ProgramSetup
-	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/LanguagedReportRuleSetup
 	module: app/mixins/DynamicFormModule
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/LanguagedReportRuleSetup
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo
 	module: app/modules/Programs
 	module: app/utils/PushManager
 	module: app/loader/ModuleLoader
 	module: app/uicomponents/CompletionIndicator
 	module: app/main
+	module: app/modules/responses/responseSetup/LanguagedResponseGrid
 	module: app/utils/ChangeTracker
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/BasicInfo
 	module: app/utils/API
@@ -1456,15 +1468,18 @@ info(102) Optimizing module
 	module: app/run
 	module: app/modules/participants/participantSetup/BasicInfo
 	module: app/form/Manager
+	module: app/modules/responses/responseTypeSetup/BasicInfo
 	module: app/modules/surveyDefinitions/SurveyDefinitionList
 	module: app/workspace/Sidebar
 	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/LanguagedQuestionList
+	module: app/modules/responses/ResponseTypeList
 	module: app/uicomponents/MoreInfoRenderer
 	module: app/mixins/StatefulModule
 	module: app/mixins/GridManager
 	module: app/utils/StringUtils
-	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/languagedQuestionSetup/BasicInfo
+	module: app/modules/responses/responseSetup/languagedResponseSetup/BasicInfo
 	module: app/mixins/TabManager
+	module: app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/languagedQuestionSetup/BasicInfo
 	module: app/uicomponents/InfoWindowButton
 	module: app/form/DynamicForm
 	module: app/utils/MathUtils
@@ -2896,4 +2911,4 @@ app/modules/Companies:
 Process finished normally
 	errors: 1
 	warnings: 58
-	build time: 94.03 seconds
+	build time: 138.64 seconds

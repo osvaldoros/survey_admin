@@ -14,14 +14,11 @@
 			</tr>
 			<tr>
 				<td  label="true">Answer Choices: </td>
-				<td><select data-dojo-attach-point="response_typeBox" name="response_type" store="{config:{url:'DISTINCT_RESPONSE_TYPE', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td><select data-dojo-attach-point="response_typeBox" name="response_type_id" store="{config:{url:'RESPONSE_TYPE', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
 
 		</table>
 	</form>
-
-	<div data-dojo-attach-point="languagedQuestionList" data-dojo-type="app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.LanguagedQuestionList"></div>
-	
 	
 </div>

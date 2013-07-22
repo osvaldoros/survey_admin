@@ -1,0 +1,2 @@
+//>>built
+define("app/modules/responses/ResponseTypeSetup",["dojo/_base/declare","dojo/on","dojo/_base/lang","app/uicomponents/blocks/WizardManagerBlock"],function(b,c,d,a){return b("app.modules.responses.ResponseTypeSetup",[a],{_store:__.urls.RESPONSE_TYPE,_entityLabel:"Response Type",_showTabs:!1,_autoClose:!0,constructor:function(a){b.safeMixin(this,a||{});this._steps=[{title:"Basic",moduleURL:"app/modules/responses/responseTypeSetup/BasicInfo"}]}})});

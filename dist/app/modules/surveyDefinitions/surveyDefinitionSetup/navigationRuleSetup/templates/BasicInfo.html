@@ -3,23 +3,23 @@
 	<form dojoType="app.form.Manager" data-dojo-attach-point="navigationRuleBasicInfoForm" method="post">
 		<table cellpadding="0" cellspacing="2" style="width: 100%;">
 			<tr>
-				<td  label="true">Name*: </td>
-				<td><input type="text" required="true" name="name" data-dojo-attach-point="nameBox" observer="recordChange" placeholder="Acme Lab Inc" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the navigation Rule name" /></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td  label="true">From Question: </td>
+				<td  label="true">From question: </td>
 				<td><select data-dojo-attach-point="from_question_idBox" name="from_question_id" store="{config:{url:'QUESTION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td  label="true">To Question: </td>
-				<td><select data-dojo-attach-point="to_question_idBox" name="to_question_id" store="{config:{url:'QUESTION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td  label="true">Evaluate question: </td>
+				<td><select data-dojo-attach-point="question_to_evaluate_idBox" name="question_to_evaluate_id" store="{config:{url:'QUESTION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td  label="true">Response Condition*: </td>
-				<td><input type="text" required="true" name="reponse_value_condition" data-dojo-attach-point="reponse_value_conditionBox" observer="recordChange" placeholder="The response value that makes it jump" dojoType="dijit.form.ValidationTextBox" missingMessage="Ooops!  You forgot the response value" /></td>
+				<td  label="true">If response equals: </td>
+				<td><select data-dojo-attach-point="response_value_conditionBox" name="response_value_condition" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td  label="true">Jump to question: </td>
+				<td><select data-dojo-attach-point="to_question_idBox" name="to_question_id" store="{config:{url:'QUESTION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
 		</table>

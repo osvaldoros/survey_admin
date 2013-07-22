@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"navigationRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the navigation Rule name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">From Question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"from_question_idBox\" name=\"from_question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">To Question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"to_question_idBox\" name=\"to_question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Response Condition*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"reponse_value_condition\" data-dojo-attach-point=\"reponse_value_conditionBox\" observer=\"recordChange\" placeholder=\"The response value that makes it jump\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the response value\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t</table>\n\t</form>\n</div>"}});
+'url:app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"navigationRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">From question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"from_question_idBox\" name=\"from_question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Evaluate question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"question_to_evaluate_idBox\" name=\"question_to_evaluate_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">If response equals: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_value_conditionBox\" name=\"response_value_condition\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Jump to question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"to_question_idBox\" name=\"to_question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t</table>\n\t</form>\n</div>"}});
 define("app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/BasicInfo", [
 	"dojo/_base/declare",
 	"dojo/on",
@@ -43,33 +43,19 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/
 	"dojox/form/BusyButton",
 	
 	"app/store/UIStores",
+	"app/utils/ChangeTracker",
 	"app/uicomponents/Map"
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
-			UIStores, Map){
-	
-	/*
-	 * 
-	 * *IMPORTANT
-	 * 
-	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
-	 * 
-	 *  - instances of Dgrid cannot be access via diji.byId('')
-	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
-	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
-	 * 
-	 * TODO: 
-	 * 
-	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
-	 * 
-	 */
+			UIStores, ChangeTracker, Map){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.navigationRuleSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
 			uiStores: UIStores.getInstance(),
+			changeTracker: ChangeTracker.getInstance(),
 	
 			/**
 			 * 
@@ -80,16 +66,19 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/
 			startup:function(){
 				this.inherited(arguments);
 				
+				this.response_value_conditionBox = this.getWidget('response_value_conditionBox');
+				this.from_question_idBox = this.getWidget('from_question_idBox');
+				this.question_to_evaluate_idBox = this.getWidget('question_to_evaluate_idBox');
+				this.to_question_idBox = this.getWidget('to_question_idBox');
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
 				this.navigationRuleBasicInfoForm = this.getWidget('navigationRuleBasicInfoForm');
 				this.navigationRuleBasicInfoForm.set('storeURL', __.urls.NAVIGATION_RULE);
 				this.navigationRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+
+				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 				
 				
 				this.configureForm(this.navigationRuleBasicInfoForm);
-			},
-			
-			refreshFormUI:function(value, name, element, event){
 			},
 			
 			onActivate:function(){
@@ -103,10 +92,39 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/
 
 			},
 
-			deactivate:function(){
-				this.inherited(arguments);
+			refreshFormUI:function(value, name, element, event){
+				switch(name){
+					case "from_question_id":
+					case "question_to_evaluate_id":
+						this.question_to_evaluate_idBox.set("value", value);
+						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+					break;
+				}
 			},
-			
+
+			prepareForSave:function(){
+
+				var changesObject = this.changeTracker.getChangesObject(__.urls.NAVIGATION_RULE);
+
+				for(var p in changesObject){
+					if(p == "from_question_id") changesObject["from_question_display"] = this.from_question_idBox.item.name
+					if(p == "question_to_evaluate_id") changesObject["question_to_evaluate_display"] = this.question_to_evaluate_idBox.item.name
+					if(p == "to_question_id") changesObject["to_question_display"] = this.to_question_idBox.item.name
+					if(p == "response_value_condition") changesObject["response_value_condition_display"] = this.response_value_conditionBox.item.name
+				}
+
+				return true;
+			},
+
+			responseCodeBaseQuery:function(){
+				var questionItem = this.question_to_evaluate_idBox.item;
+				if(typeof(questionItem) == "object" && questionItem != null){
+					return {response_type_id:questionItem.response_type_id};
+				}
+
+				return false;
+			},
+
 			onDeactivate:function(){
 				//remove event handlers
 				for (var i=0; i < this.eventHandlers.length; i++) {
@@ -117,11 +135,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/navigationRuleSetup/
 				};
 				
 				this.eventHandlers = []				
-			},
-			
-			
-			destroy:function(){
-    			this.inherited(arguments);	
+				this.inherited(arguments);
 			}
 	});
 });
