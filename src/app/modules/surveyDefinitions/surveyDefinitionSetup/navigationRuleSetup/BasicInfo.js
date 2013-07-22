@@ -92,6 +92,7 @@ define([
 			refreshFormUI:function(value, name, element, event){
 				switch(name){
 					case "from_question_id":
+					case "question_to_evaluate_id":
 						this.question_to_evaluate_idBox.set("value", value);
 						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 					break;
@@ -115,7 +116,7 @@ define([
 			responseCodeBaseQuery:function(){
 				var questionItem = this.question_to_evaluate_idBox.item;
 				if(typeof(questionItem) == "object" && questionItem != null){
-					return {response_type:questionItem.response_type};
+					return {response_type_id:questionItem.response_type_id};
 				}
 
 				return false;

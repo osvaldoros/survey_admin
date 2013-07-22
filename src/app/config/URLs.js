@@ -29,6 +29,7 @@ define([
 			this.QUESTION = dojo.config.appSpecific.api_host + "api/surveys/question";
 			this.LANGUAGED_QUESTION = dojo.config.appSpecific.api_host + "api/surveys/languaged_question";
 			this.RESPONSE_TYPE = dojo.config.appSpecific.api_host + "api/surveys/response_type";
+			this.LANGUAGED_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/languaged_response";
 			this.RESPONSE_CODE = dojo.config.appSpecific.api_host + "api/surveys/response_code";
 
 

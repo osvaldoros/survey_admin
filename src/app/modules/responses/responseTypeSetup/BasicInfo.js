@@ -48,7 +48,23 @@ define([
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	/*
+	 * 
+	 * *IMPORTANT
+	 * 
+	 * This component doesn't extend ContentPane because of an inconsisten behaviour in the Dojo framework. 
+	 * 
+	 *  - instances of Dgrid cannot be access via diji.byId('')
+	 *  - when using ContentPane the template is assigned to the content property therefore attach-points are inaccesible and the only way to access components is diji.byId()
+	 *  - Not extending ContentPane (or similar) means we are not a true dijit widget? (guess) and so layout widgets don't render properly so whenever we use grids we must be careful
+	 * 
+	 * TODO: 
+	 * 
+	 *  - find a way to make components that don't extend ContentPane that can render all layout widgets correctly, Then we'll be able to get the best of both worlds.
+	 * 
+	 */
+	
+	return declare("app.modules.responses.responseTypeSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -64,12 +80,13 @@ define([
 				this.inherited(arguments);
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.questionBasicInfoForm = this.getWidget('questionBasicInfoForm');
-				this.questionBasicInfoForm.set('storeURL', __.urls.QUESTION);
-				this.questionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.responseTypeBasicInfoForm = this.getWidget('responseTypeBasicInfoForm');
+				this.responseTypeBasicInfoForm.set('storeURL', __.urls.RESPONSE_TYPE);
+				this.responseTypeBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.questionBasicInfoForm);
+				this.configureForm(this.responseTypeBasicInfoForm);
+				
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -81,11 +98,9 @@ define([
 					this.eventHandlers = [];
 				}								
 
-				var question = this.getUpdatingEntity();
-				this.viewInForm(question, this.questionBasicInfoForm);	
-
+				this.viewInForm(this.getUpdatingEntity(), this.responseTypeBasicInfoForm);	
 			},
-
+			
 			onDeactivate:function(){
 				//remove event handlers
 				for (var i=0; i < this.eventHandlers.length; i++) {
@@ -96,8 +111,11 @@ define([
 				};
 				
 				this.eventHandlers = []				
-				this.inherited(arguments);
-			}
+			},
 			
+			
+			destroy:function(){
+    			this.inherited(arguments);	
+			}
 	});
 });

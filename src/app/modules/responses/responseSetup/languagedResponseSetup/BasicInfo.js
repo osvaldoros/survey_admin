@@ -48,7 +48,7 @@ define([
 			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map){
 	
-	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
+	return declare("app.modules.responses.responseSetup.languagedResponseSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {
 
 			widgetsInTemplate: true, // To let the parser know that our template has nested widgets ( default is false to speed up parsing )
 			templateString: template, // Our template - important!
@@ -64,12 +64,12 @@ define([
 				this.inherited(arguments);
 				
 				// get a reference to the form and set the storeURL on it ( the store to which this form would commit data )				
-				this.questionBasicInfoForm = this.getWidget('questionBasicInfoForm');
-				this.questionBasicInfoForm.set('storeURL', __.urls.QUESTION);
-				this.questionBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
+				this.languagedResponseBasicInfoForm = this.getWidget('languagedResponseBasicInfoForm');
+				this.languagedResponseBasicInfoForm.set('storeURL', __.urls.LANGUAGED_RESPONSE);
+				this.languagedResponseBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
 				
-				this.configureForm(this.questionBasicInfoForm);
+				this.configureForm(this.languagedResponseBasicInfoForm);
 			},
 			
 			refreshFormUI:function(value, name, element, event){
@@ -79,13 +79,11 @@ define([
 				this.inherited(arguments);
 				if(typeof(this.eventHandlers) == "undefined"){
 					this.eventHandlers = [];
-				}								
-
-				var question = this.getUpdatingEntity();
-				this.viewInForm(question, this.questionBasicInfoForm);	
-
+				}
+				var entity = this.getUpdatingEntity();
+				this.viewInForm(entity, this.languagedResponseBasicInfoForm);				
 			},
-
+			
 			onDeactivate:function(){
 				//remove event handlers
 				for (var i=0; i < this.eventHandlers.length; i++) {
@@ -96,8 +94,11 @@ define([
 				};
 				
 				this.eventHandlers = []				
-				this.inherited(arguments);
-			}
+			},
 			
+			
+			destroy:function(){
+    			this.inherited(arguments);	
+			}
 	});
 });
