@@ -270,7 +270,7 @@ define([
 			},
 
 			refresh:function(){
-				this._grid.refresh();
+				this.__grid.refresh();
 			},
 
 			__checkForDisabledRows:function(){
