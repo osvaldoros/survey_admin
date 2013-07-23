@@ -11,6 +11,7 @@ define([
 		_entityLabel: "Languaged Question",
 		_autoClose:true,
 		_showTabs:false,
+		_showTitle:false,
 		
 	    constructor: function(args){
 	        declare.safeMixin(this,args || {});
