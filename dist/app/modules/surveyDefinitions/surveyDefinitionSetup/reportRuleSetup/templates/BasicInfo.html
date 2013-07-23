@@ -8,13 +8,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td  label="true">Question: </td>
-				<td><select data-dojo-attach-point="question_idBox" name="question_id" store="{config:{url:'QUESTION', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td  label="true">If response equals: </td>
-				<td><select data-dojo-attach-point="response_value_conditionBox" name="response_value_condition" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td  label="true">Order: </td>
+				<td><input type="text" required="true" name="order" data-dojo-attach-point="orderBox" observer="recordChange" placeholder="0" dojoType="dijit.form.NumberSpinner" data-dojo-props="smallDelta:1, constraints:{min:0, max:200, places:0}" /></td>
 				<td></td>
 			</tr>			
 			<tr>
@@ -22,6 +17,14 @@
 				<td><select data-dojo-attach-point="reusable_report_item_idBox" name="reusable_report_item_id" store="{config:{url:'REUSABLE_REPORT_ITEM'}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td></td>
+				<td><span><strong>Rule</strong></span></td>
+				<td></td>
+			</tr>			
+			<tr>
+				<td colspan="3"><textarea name="rule" data-dojo-attach-point="ruleBox" style="width:100%;" observer="recordChange" data-dojo-type="dijit.form.Textarea"></textarea></td>
+			</tr>		
 		</table>
 	</form>
 </div>

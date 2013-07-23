@@ -1,0 +1,7 @@
+{
+	"satisfy":"ALL",
+	"clauses":[
+		{"field":"data_aggregate.ANXIETY", "operator":"gte", "value":15},
+		{"field":"data_aggregate.ANXIETY", "operator":"lte", "value":21}
+	]
+}

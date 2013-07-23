@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"reportRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the report Rule name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Question: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"question_idBox\" name=\"question_id\" store=\"{config:{url:'QUESTION', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">If response equals: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_value_conditionBox\" name=\"response_value_condition\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\t\t\t\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Reusable report item: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"reusable_report_item_idBox\" name=\"reusable_report_item_id\" store=\"{config:{url:'REUSABLE_REPORT_ITEM'}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t</table>\n\t</form>\n</div>"}});
+'url:app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"reportRuleBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the report Rule name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Order: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"order\" data-dojo-attach-point=\"orderBox\" observer=\"recordChange\" placeholder=\"0\" dojoType=\"dijit.form.NumberSpinner\" data-dojo-props=\"smallDelta:1, constraints:{min:0, max:200, places:0}\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\t\t\t\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Reusable report item: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"reusable_report_item_idBox\" name=\"reusable_report_item_id\" store=\"{config:{url:'REUSABLE_REPORT_ITEM'}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td></td>\n\t\t\t\t<td><span><strong>Rule</strong></span></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\t\t\t\n\t\t\t<tr>\n\t\t\t\t<td colspan=\"3\"><textarea name=\"rule\" data-dojo-attach-point=\"ruleBox\" style=\"width:100%;\" observer=\"recordChange\" data-dojo-type=\"dijit.form.Textarea\"></textarea></td>\n\t\t\t</tr>\t\t\n\t\t</table>\n\t</form>\n</div>"}});
 define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/BasicInfo", [
 	"dojo/_base/declare",
 	"dojo/on",
@@ -33,6 +33,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 	"dijit/form/TimeTextBox",
 	"dijit/form/DateTextBox",
 	"dijit/form/Select",
+	"dijit/form/NumberSpinner",
 	"dijit/form/ComboBox",
 	"app/form/FilteringSelect",
 	"dijit/form/CheckBox",
@@ -50,7 +51,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
-			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
+			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, NumberSpinner, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map, LanguagedReportRuleList, ChangeTracker){
 	
 	
@@ -78,7 +79,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 				this.reportRuleBasicInfoForm.set('storeURL', __.urls.REPORT_RULE);
 				this.reportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
-				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+				//this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 
 				this.configureForm(this.reportRuleBasicInfoForm);
 			},
@@ -86,7 +87,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/reportRuleSetup/Basi
 			refreshFormUI:function(value, name, element, event){
 				switch(name){
 					case "question_id":
-						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+						//this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 					break;
 				}
 			},

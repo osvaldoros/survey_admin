@@ -403,10 +403,10 @@ define("app/uicomponents/blocks/WizardManagerBlock", [
 						});
 					});
 				}else{
-					this._lastEntityBtn.set("disabled", true);
-					this._firstEntityBtn.set("disabled", true);
-					this._previousEntityBtn.set("disabled", true);
-					this._nextEntityBtn.set("disabled", true);
+					this._lastEntityBtn.domNode.style.display = "none";
+					this._firstEntityBtn.domNode.style.display = "none";
+					this._previousEntityBtn.domNode.style.display = "none";
+					this._nextEntityBtn.domNode.style.display = "none";
 				}	
 
 			},
