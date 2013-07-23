@@ -1,0 +1,7 @@
+{
+	"satisfy":"ONE",
+	"clauses":[
+		{"field":"data_event.ac8890a287234deceec89af31e904ffe", "operator":"eq", "value":"O"},
+		{"field":"data_event.ac8890a287234deceec89af31e904ffe", "operator":"eq", "value":"S"}
+	]
+}

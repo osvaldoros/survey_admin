@@ -30,6 +30,7 @@ define([
 	"dijit/form/TimeTextBox",
 	"dijit/form/DateTextBox",
 	"dijit/form/Select",
+	"dijit/form/NumberSpinner",
 	"dijit/form/ComboBox",
 	"app/form/FilteringSelect",
 	"dijit/form/CheckBox",
@@ -47,7 +48,7 @@ define([
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
-			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
+			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, NumberSpinner, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map, LanguagedReportRuleList, ChangeTracker){
 	
 	
@@ -75,7 +76,7 @@ define([
 				this.reportRuleBasicInfoForm.set('storeURL', __.urls.REPORT_RULE);
 				this.reportRuleBasicInfoForm.set('refreshUI', lang.hitch(this, "refreshFormUI"));
 				
-				this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+				//this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 
 				this.configureForm(this.reportRuleBasicInfoForm);
 			},
@@ -83,7 +84,7 @@ define([
 			refreshFormUI:function(value, name, element, event){
 				switch(name){
 					case "question_id":
-						this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
+						//this.uiStores.populateComboDynamicREST(this.response_value_conditionBox, __.urls.RESPONSE_CODE, lang.hitch(this, "responseCodeBaseQuery"));
 					break;
 				}
 			},

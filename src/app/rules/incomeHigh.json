@@ -1,0 +1,6 @@
+{
+	"satisfy":"ALL",
+	"clauses":[
+		{"field":"data_event.ac8890a287234deceec89af31e904ffe", "operator":"eq", "value":"N"}
+	]
+}

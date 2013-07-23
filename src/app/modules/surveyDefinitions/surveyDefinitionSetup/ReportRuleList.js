@@ -40,8 +40,8 @@ define([
 
 			var setupDialogInfo = {
 				title:"Report Rule Setup", 
-				dialogWidth:"700px", 
-				dialogHeight:"450px"
+				dialogWidth:"480px", 
+				dialogHeight:"500px"
 			}
 
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new ReportRuleSetup(), setupDialogInfo);

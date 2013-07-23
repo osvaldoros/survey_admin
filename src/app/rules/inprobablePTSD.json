@@ -1,0 +1,6 @@
+{
+	"satisfy":"ALL",
+	"clauses":[
+		{"field":"data_aggregate.PTSD", "operator":"lte", "value":3}
+	]
+}
