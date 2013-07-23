@@ -8,6 +8,11 @@
 				<td></td>
 			</tr>
 			<tr>
+				<td  label="true">Order: </td>
+				<td><input type="text" required="true" name="name" data-dojo-attach-point="nameBox" observer="recordChange" placeholder="0" dojoType="dijit.form.NumberSpinner" data-dojo-props="smallDelta:1, constraints:{min:0, max:200, places:0}" /></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td  label="true">Answer Type: </td>
 				<td><select data-dojo-attach-point="control_type_idBox" name="control_type_id" store="{config:{url:'CONTROL_TYPE', selectFirst:true}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>

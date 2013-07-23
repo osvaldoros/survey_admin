@@ -1,6 +1,6 @@
 //>>built
 require({cache:{
-'url:app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"questionBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the question name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Type: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"control_type_idBox\" name=\"control_type_id\" store=\"{config:{url:'CONTROL_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Choices: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_typeBox\" name=\"response_type_id\" store=\"{config:{url:'RESPONSE_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\n\t\t</table>\n\t</form>\n\t\n</div>"}});
+'url:app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/templates/BasicInfo.html':"<div class=\"moduleContainer\" class=\"centerPanel\" data-dojo-type=\"dijit.layout.ContentPane\" data-dojo-props=\"region: 'center'\">\n\t\n\t<form dojoType=\"app.form.Manager\" data-dojo-attach-point=\"questionBasicInfoForm\" method=\"post\">\n\t\t<table cellpadding=\"0\" cellspacing=\"2\" style=\"width: 100%;\">\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Name*: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"Acme Lab Inc\" dojoType=\"dijit.form.ValidationTextBox\" missingMessage=\"Ooops!  You forgot the question name\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Order: </td>\n\t\t\t\t<td><input type=\"text\" required=\"true\" name=\"name\" data-dojo-attach-point=\"nameBox\" observer=\"recordChange\" placeholder=\"0\" dojoType=\"dijit.form.NumberSpinner\" data-dojo-props=\"smallDelta:1, constraints:{min:0, max:200, places:0}\" /></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Type: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"control_type_idBox\" name=\"control_type_id\" store=\"{config:{url:'CONTROL_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td  label=\"true\">Answer Choices: </td>\n\t\t\t\t<td><select data-dojo-attach-point=\"response_typeBox\" name=\"response_type_id\" store=\"{config:{url:'RESPONSE_TYPE', selectFirst:true}}\" observer=\"recordChange, refreshUI\" dojoType=\"app.form.FilteringSelect\" maxHeight=\"200\"></select></td>\n\t\t\t\t<td></td>\n\t\t\t</tr>\n\n\t\t</table>\n\t</form>\n\t\n</div>"}});
 define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicInfo", [
 	"dojo/_base/declare",
 	"dojo/on",
@@ -32,6 +32,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 	"dijit/form/TextBox",
 	"dijit/form/TimeTextBox",
 	"dijit/form/DateTextBox",
+	"dijit/form/NumberSpinner",
 	"dijit/form/Select",
 	"dijit/form/ComboBox",
 	"app/form/FilteringSelect",
@@ -48,7 +49,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/questionSetup/BasicI
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
-			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
+			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, NumberSpinner, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {

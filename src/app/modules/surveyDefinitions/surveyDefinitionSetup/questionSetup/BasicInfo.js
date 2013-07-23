@@ -29,6 +29,7 @@ define([
 	"dijit/form/TextBox",
 	"dijit/form/TimeTextBox",
 	"dijit/form/DateTextBox",
+	"dijit/form/NumberSpinner",
 	"dijit/form/Select",
 	"dijit/form/ComboBox",
 	"app/form/FilteringSelect",
@@ -45,7 +46,7 @@ define([
 	
 	],
 	function(declare, on, WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, template, lang, Deferred, registry, Dialog, GridFromHtml, Memory, Observable, Cache, JsonRest, Selection, parser, query, Button,
-			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
+			Validate, Validate_web, Manager, DCFormManager, Textarea, TextBox, TimeTextBox, DateTextBox, NumberSpinner, Select, ComboBox, FilteringSelect, CheckBox, RadioButton, ValidationTextBox, CheckedMultiSelect, BusyButton,
 			UIStores, Map){
 	
 	return declare("app.modules.surveyDefinitions.surveyDefinitionSetup.questionSetup.BasicInfo", [WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, StatefulModule, DCFormManager], {

@@ -12,16 +12,14 @@ define([
 		title:"Questions",
 		_store:__.urls.QUESTION,
 		_entityLabel: "Question",
-		_columns: [
-			{label:"Name", field:"name", sortable:true}
-		],
 		gridHeight:"250px",
 		_showTitle:false,
 
 		constructor: function(args){
 	        declare.safeMixin(this,args || {});
 			this._columns = [
-				{label:"Name", field:"name", sortable:true}
+				{label:"Name", field:"name", sortable:true},
+				{label:"Order", field:"order", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "questionBaseQuery")
