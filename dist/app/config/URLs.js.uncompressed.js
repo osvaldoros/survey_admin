@@ -25,7 +25,7 @@ define("app/config/URLs", [
 			this.PROGRAM = dojo.config.appSpecific.api_host + "api/surveys/program";
 			this.PARTICIPANT = dojo.config.appSpecific.api_host + "api/surveys/participant";
 
-			this.SURVEY_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/data_event";
+			this.SURVEY_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/survey_summary";
 			this.SURVEY_DEFINITION = dojo.config.appSpecific.api_host + "api/surveys/data_definition";
 			this.QUESTION = dojo.config.appSpecific.api_host + "api/surveys/question";
 			this.QUESTION_GROUP = dojo.config.appSpecific.api_host + "api/surveys/question_group";

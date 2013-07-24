@@ -2,9 +2,10 @@ define([
 	"dojo/_base/declare",
 	"dojo/on",
 	"dojo/_base/lang",
-	"app/uicomponents/blocks/GridManagerBlock"
+	"app/uicomponents/blocks/GridManagerBlock",
+	"app/store/GridFormatters"
 	],
-	function(declare, on, lang, GridManagerBlock){
+	function(declare, on, lang, GridManagerBlock, GridFormatters){
 	
 	return declare("app.modules.surveyResponses.SurveyResponseGrid", [GridManagerBlock], {
 		title:"Survey Responses",
@@ -23,8 +24,14 @@ define([
 			declare.safeMixin(this,args || {});
 			var owner = this;
 			this._baseColumns = [
-				{label:"Name", field:"name", sortable:true},
-				{label:"Created", field:"created"}
+				{label:"Participant", field:"participant_id"},
+				{label:"Started", field:"started"},
+				{label:"Depression", field:"DEPRESSION"},
+				{label:"Anxiety", field:"ANXIETY"},
+				{label:"PTSD", field:"PTSD"},
+				{label:"CAGE", field:"CAGE"},
+				{label:"Social Support", field:"SOCIAL_SUPPORT"},
+				{label:"Report", field:"participant_report_link", renderCell: GridFormatters.linkRenderer}
 			]
 
 			// get a copy of the entire array...

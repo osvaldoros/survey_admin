@@ -383,6 +383,18 @@ define("app/store/GridFormatters", [
 			return div;
 		},
 
+
+		linkRenderer:function(object, data, td, options, manual_field){
+
+			var div = document.createElement("div");
+			div.className = "renderedCell";
+
+			div.innerHTML = "<a href='" + data + "' target='_blank'>view report</a>";
+
+
+			return div;
+		},
+
 		moreInfoRenderer:function(object, data, td, options, manual_field){
 
 			var path = manual_field || this.field;
