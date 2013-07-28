@@ -31,8 +31,9 @@ define("app/modules/surveyResponses/SurveyResponseGrid", [
 				{label:"Anxiety", field:"ANXIETY"},
 				{label:"PTSD", field:"PTSD"},
 				{label:"CAGE", field:"CAGE"},
-				{label:"Social Support", field:"SOCIAL_SUPPORT"},
-				{label:"Report", field:"participant_report_link", renderCell: GridFormatters.linkRenderer}
+				{label:"Duration", field:"completion_time"},
+				{label:"Participant", field:"participant_report_link", renderCell: GridFormatters.linkRenderer},
+				{label:"Staff", field:"staff_report_link", renderCell: GridFormatters.linkRenderer}
 			]
 
 			// get a copy of the entire array...
