@@ -12,11 +12,16 @@
 				<td><input type="text" required="true" name="order" data-dojo-attach-point="orderBox" observer="recordChange" placeholder="0" dojoType="dijit.form.NumberSpinner" data-dojo-props="smallDelta:1, constraints:{min:0, max:200, places:0}" /></td>
 				<td></td>
 			</tr>			
-			<tr>
+			<!--tr>
 				<td  label="true">Reusable report item: </td>
 				<td><select data-dojo-attach-point="reusable_report_item_idBox" name="reusable_report_item_id" store="{config:{url:'REUSABLE_REPORT_ITEM'}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
-			</tr>
+			</tr-->
+			<tr>
+				<td  label="true">Report group: </td>
+				<td><select data-dojo-attach-point="report_group_idBox" name="report_group_id" store="{config:{url:'REPORT_GROUP'}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
+				<td></td>
+			</tr>	
 			<tr>
 				<td></td>
 				<td><span><strong>Rule</strong></span></td>

@@ -10640,6 +10640,7 @@ define("app/config/URLs", [
 			this.SURVEY_DEFINITION = dojo.config.appSpecific.api_host + "api/surveys/data_definition";
 			this.QUESTION = dojo.config.appSpecific.api_host + "api/surveys/question";
 			this.QUESTION_GROUP = dojo.config.appSpecific.api_host + "api/surveys/question_group";
+			this.REPORT_GROUP = dojo.config.appSpecific.api_host + "api/surveys/report_group";
 			this.LANGUAGED_QUESTION = dojo.config.appSpecific.api_host + "api/surveys/languaged_question";
 			this.RESPONSE_TYPE = dojo.config.appSpecific.api_host + "api/surveys/response_type";
 			this.LANGUAGED_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/languaged_response";

@@ -20,9 +20,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList", [
 	        declare.safeMixin(this,args || {});
 			this._columns = [
 				{label:"Name", field:"name", sortable:true},
-				{label:"Question", field:"question_display", sortable:true},
-				{label:"If response", field:"response_value_condition_display", sortable:true},
-				{label:"Reusable Item", field:"reusable_report_item_display", sortable:true}
+				{label:"Order", field:"order", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "reportRuleBaseQuery")

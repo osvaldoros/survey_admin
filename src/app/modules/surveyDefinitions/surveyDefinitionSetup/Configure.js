@@ -39,8 +39,8 @@ define([
 					steps: [
 						{ title: 'Questions', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList'},
 						{ title: 'Navigation Rules', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/NavigationRuleList'},
-						{ title: 'Report Rules', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList'},
-						{ title: 'Reusable Report Items', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/ReusableReportItemList'}
+						{ title: 'Report Rules', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList'}
+						//{ title: 'Reusable Report Items', moduleURL:'app/modules/surveyDefinitions/surveyDefinitionSetup/ReusableReportItemList'}
 					]
 				}
 
