@@ -39,7 +39,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/ReportRuleList", [
 
 			var setupDialogInfo = {
 				title:"Report Rule Setup", 
-				dialogWidth:"480px", 
+				dialogWidth:"650px", 
 				dialogHeight:"500px"
 			}
 

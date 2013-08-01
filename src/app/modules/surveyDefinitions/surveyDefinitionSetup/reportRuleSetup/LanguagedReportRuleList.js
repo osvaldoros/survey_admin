@@ -20,7 +20,8 @@ define([
 			this._columns = [
 				{label:"Language", field:"language_id", sortable:true},
 				{label:"Participant", field:"participant_report_item", sortable:true},
-				{label:"Staff", field:"staff_report_item", sortable:true}
+				{label:"Staff", field:"staff_report_item", sortable:true},
+				{label:"Referral", field:"staff_referral_item", sortable:true}
 			];
 
 			this._base_query = lang.hitch(this, "languagedReportRuleBaseQuery");
@@ -39,8 +40,8 @@ define([
 
 			var setupDialogInfo = {
 				title:"Languaged Report Rule Setup", 
-				dialogWidth:"500px", 
-				dialogHeight:"450px"
+				dialogWidth:"700px", 
+				dialogHeight:"650px"
 			}
 
    			this.setupDialog = __.workspaceManager.getModuleInDialog(new LanguagedReportRuleSetup(), setupDialogInfo);

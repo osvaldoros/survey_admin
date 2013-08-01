@@ -9,6 +9,7 @@ define([
 			
 			this.LOGIN = dojo.config.appSpecific.auth_host + "api/surveys/login";
 			this.LANGUAGE = dojo.config.appSpecific.api_host + "api/surveys/language";
+			this.REFERRAL = dojo.config.appSpecific.api_host + "api/surveys/referral";
 			this.CONTROL_TYPE = dojo.config.appSpecific.api_host + "api/surveys/control_type";
 
 			this.GENDER = dojo.config.appSpecific.api_host + "api/surveys/languaged_response?response_type=gender";
