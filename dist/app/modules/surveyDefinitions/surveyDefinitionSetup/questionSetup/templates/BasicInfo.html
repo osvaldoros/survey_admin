@@ -16,7 +16,12 @@
 				<td  label="true">Question group: </td>
 				<td><select data-dojo-attach-point="question_group_idBox" name="question_group_id" store="{config:{url:'QUESTION_GROUP'}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
 				<td></td>
-			</tr>			
+			</tr>	
+			<tr>
+				<td  label="true">Symptom: </td>
+				<td><input type="text" required="true" name="symptom_short_name" data-dojo-attach-point="symptom_short_nameBox" observer="recordChange" placeholder="Symptom" dojoType="dijit.form.ValidationTextBox" /></td>
+				<td></td>
+			</tr>		
 			<tr>
 				<td  label="true">Answer Type: </td>
 				<td><select data-dojo-attach-point="control_type_idBox" name="control_type_id" store="{config:{url:'CONTROL_TYPE'}}" observer="recordChange, refreshUI" dojoType="app.form.FilteringSelect" maxHeight="200"></select></td>
