@@ -8,6 +8,11 @@
 				<td></td>
 			</tr>
 			<tr>
+				<td  label="true">Code: </td>
+				<td><input type="text" disabled="true" name="id" data-dojo-attach-point="idBox" placeholder="A code will be generated automatically" dojoType="dijit.form.ValidationTextBox"/></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td  label="true">Order: </td>
 				<td><input type="text" required="true" name="order" data-dojo-attach-point="orderBox" observer="recordChange" placeholder="0" dojoType="dijit.form.NumberSpinner" data-dojo-props="smallDelta:1, constraints:{min:0, max:200, places:0}" /></td>
 				<td></td>
