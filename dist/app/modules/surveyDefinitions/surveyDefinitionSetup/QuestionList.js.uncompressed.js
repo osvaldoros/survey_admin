@@ -20,6 +20,7 @@ define("app/modules/surveyDefinitions/surveyDefinitionSetup/QuestionList", [
 	        declare.safeMixin(this,args || {});
 			this._columns = [
 				{label:"Name", field:"name", sortable:true},
+				{label:"Code", field:"id", sortable:true},
 				{label:"Order", field:"order", sortable:true}
 			];
 
