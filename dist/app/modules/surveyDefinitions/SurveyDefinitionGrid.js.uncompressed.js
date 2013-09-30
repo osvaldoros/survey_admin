@@ -37,7 +37,7 @@ define("app/modules/surveyDefinitions/SurveyDefinitionGrid", [
 		},
 
 		getFilters:function(){
-			var queryObj = false;
+			var queryObj = {};
 
 			if(typeof(this._programFilter) != "undefined" && this._programFilter != null && this._programFilter != "ALL"){
 				if(!queryObj) queryObj = {};

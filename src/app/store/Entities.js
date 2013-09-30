@@ -213,7 +213,7 @@ define([
 					}			
 					var owner = this;
 					
-					if(entity.then){
+					if(entity && entity.then){
 						this._requestMap[storeURL + "_" + id] = [func]; // if the entity is async, save the func in an array of callbacks, to make it support multiple callbacks for the same id
 						entity.then(function(data){
 							owner._entity = data;

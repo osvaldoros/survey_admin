@@ -10641,7 +10641,7 @@ define("app/config/URLs", [
 			this.SURVEY_DEFINITION = dojo.config.appSpecific.api_host + "api/surveys/data_definition";
 			this.QUESTION = dojo.config.appSpecific.api_host + "api/surveys/question";
 			this.QUESTION_GROUP = dojo.config.appSpecific.api_host + "api/surveys/question_group";
-			this.REPORT_GROUP = dojo.config.appSpecific.api_host + "api/surveys/report_group";
+			this.REPORT_GROUP = dojo.config.appSpecific.api_host + "api/surveys/report_group?language_id=EN";
 			this.LANGUAGED_QUESTION = dojo.config.appSpecific.api_host + "api/surveys/languaged_question";
 			this.RESPONSE_TYPE = dojo.config.appSpecific.api_host + "api/surveys/response_type";
 			this.LANGUAGED_RESPONSE = dojo.config.appSpecific.api_host + "api/surveys/languaged_response";
@@ -30665,7 +30665,7 @@ define("app/store/Entities", [
 					}			
 					var owner = this;
 					
-					if(entity.then){
+					if(entity && entity.then){
 						this._requestMap[storeURL + "_" + id] = [func]; // if the entity is async, save the func in an array of callbacks, to make it support multiple callbacks for the same id
 						entity.then(function(data){
 							owner._entity = data;
