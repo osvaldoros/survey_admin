@@ -59,11 +59,11 @@
          			api_host: api_host,
          			auth_host: auth_host,
          			modules:[
-                        { name:'Survey Responses', module_url:'app/modules/SurveyResponses', hash:'survey-responses', id:'1'},
-                        { name:'Survey Definitions', module_url:'app/modules/SurveyDefinitions', hash:'survey-definitions', id:'2'},
+                        { name:'Survey Responses', module_url:'app/modules/SurveyResponses', hash:'survey-responses', id:'1', roles:["ADMIN", "RECRUITER"]},
+                        { name:'Survey Definitions', module_url:'app/modules/SurveyDefinitions', hash:'survey-definitions', id:'2', roles:["ADMIN"]},
                         /*{ name:'Clients', module_url:'app/modules/Clients', hash:'clients', id:'3'},*/
                         /*{ name:'Programs', module_url:'app/modules/Programs', hash:'programs', id:'4'},*/
-                        { name:'Users', module_url:'app/modules/Users', hash:'users', id:'5'}
+                        { name:'Users', module_url:'app/modules/Users', hash:'users', id:'5', roles:["ADMIN"]}
                         /*{ name:'Participants', module_url:'app/modules/Participants', hash:'participants', id:'6'},*/
                         /*{ name:'Responses', module_url:'app/modules/Responses', hash:'responses', id:'7'}*/
                     ]

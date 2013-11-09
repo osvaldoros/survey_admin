@@ -52675,6 +52675,7 @@ define("app/Auth", [
 	"dojo/text!./templates/Auth.html", // this is what includes the html template
 	"dojo/_base/lang",
 	"dojo/_base/xhr",
+	"dojo/_base/array",
 	"app/utils/StringUtils",
 	
 	"dijit/Tooltip",
@@ -52688,7 +52689,7 @@ define("app/Auth", [
 	"app/utils/HashManager"		
 	
 	],
-	function(declare, on, ContentPane, StatefulModule, template, lang, xhr, StringUtils, Tooltip, Validate, Validate_web, AjaxForm, Button, ValidationTextBox, UIStores, HashManager ){
+	function(declare, on, ContentPane, StatefulModule, template, lang, xhr, baseArray, StringUtils, Tooltip, Validate, Validate_web, AjaxForm, Button, ValidationTextBox, UIStores, HashManager ){
 	
 		return declare("app.Auth", [ContentPane, StatefulModule], {
 			uiStores: UIStores.getInstance(),	
@@ -52886,8 +52887,32 @@ define("app/Auth", [
 						tabs = __.user.role.tabs;
 						modules = __.user.role.modules;
 					}else{
-						tabs = dojo.config.appSpecific.tabs;
-						modules = dojo.config.appSpecific.modules;
+
+						tabs = [];
+						modules = [];
+
+						if(__.user.role == undefined){
+							__.user.role = "RECRUITER";
+						}
+
+						if(lang.isArray(dojo.config.appSpecific.modules)){
+							for (var i = dojo.config.appSpecific.modules.length - 1; i >= 0; i--) {
+								var module = dojo.config.appSpecific.modules[i];
+								if(!lang.isArray(module.roles) || module.roles.length == 0 || baseArray.indexOf(module.roles, __.user.role) != -1){
+									modules.push(module);
+								}
+							};
+						}
+
+						if(lang.isArray(dojo.config.appSpecific.tabs)){
+							for (var i = dojo.config.appSpecific.tabs.length - 1; i >= 0; i--) {
+								var tab = dojo.config.appSpecific.modules[i];
+								if(!lang.isArray(tab.roles) || tab.roles.length == 0 || baseArray.indexOf(tab.roles, __.user.role) != -1){
+									tabs.push(tab);
+								}
+							};
+						}
+
 					}
 					// if there are no tabs, use the modules as tabs
 					if(!lang.isArray(tabs) || tabs.length == 0){
